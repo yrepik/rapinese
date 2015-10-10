@@ -72,7 +72,10 @@ class ProductsController extends Controller {
                     'product_description' => Request::input('productDescription')
                 ], 
                 function($message) {
-                    $message->to('german.medaglia@gmail.com', 'John Smith')->subject('Consulta desde la web');
+                    $message
+                        ->from(Request::input('email'), Request::input('name'))
+                        ->to('german.medaglia@gmail.com')
+                        ->subject('Consulta desde la web');
                 }
             );  
             $result = $sendResult;

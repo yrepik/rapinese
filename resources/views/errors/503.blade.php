@@ -35,6 +35,7 @@
 		<div class="container">
 			<div class="content">
 				<div class="title">Próximamente.</div>
+				<div>Contacto: rapinese@rapinese.com.ar</div>
 			</div>
 		</div>
 	</body>
