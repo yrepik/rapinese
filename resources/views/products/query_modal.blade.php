@@ -5,11 +5,14 @@
 	</div>
 	<div class="modal-body">
 		<div ng-show="sending"></div>
-		<div ng-show="result == false && !sending" class="alert alert-danger">
+		<div ng-show="result != null && !sending" class="alert" ng-class="{'alert-success': result == true, 'alert-danger': result == false}">
 			%%msg%%
-			<div ng-show="messages.length > 0">
-
-			</div>
+		</div>
+		<div ng-show="errors.length > 0 && !sending" class="alert alert-danger">
+			<h3>Verifique los siguientes errores:</h3>
+			<ul ng-repeat="error in errors">
+				<li></li>
+			</ul>
 		</div>
 		<div ng-show="result != true">
 			{!! Form::open(['role' => 'form', 'class' => '', 'ng-submit' => 'sendForm($event)']) !!}

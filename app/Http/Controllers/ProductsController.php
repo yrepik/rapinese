@@ -62,24 +62,25 @@ class ProductsController extends Controller {
             'tel' => 'required'
         ]);
 
-        if ($validator->fails()) {
+        if ($validator->passes()) {
+            $sendResult = Mail::send(
+                'emails.product_query', 
+                [
+                    'name' => Request::input('name'), 
+                    'email' => Request::input('email'),
+                    'product_code' => Request::input('productCode'),
+                    'product_description' => Request::input('productDescription')
+                ], 
+                function($message) {
+                    $message->to('german.medaglia@gmail.com', 'John Smith')->subject('Consulta desde la web');
+                }
+            );  
+            $result = $sendResult;
+            $msg = ($result) ? 'Gracias por contactarse con nosotros...' : 'Ha ocurrido un error.';
+        } else {       
             $errors = $validator->errors();
             $result = false;
         }        
-        Mail::send(
-            'emails.product_query', 
-            [
-                'name' => Request::input('name'), 
-                'email' => Request::input('email'),
-                'product_code' => Request::input('productCode'),
-                'product_description' => Request::input('productDescription')
-            ], 
-            function($message) {
-                $message->to('german.medaglia@gmail.com', 'John Smith')->subject('Consulta desde la web');
-            }
-        );
-        $result = false;
-        $msg = 'Salio todo mal!';
         return response()->json(['result' => $result, 'msg' => $msg, 'errors' => $errors]);
     }
 
