@@ -66,8 +66,8 @@ productsModule.controller('QueryModalController', function($scope, $http, $modal
 			email: $scope.email, 
 			tel: $scope.tel, 
 			comments: $scope.comments,
-			itemCod: $scope.item.codigo, 
-			itemDescrip: $scope.item.descripcion_es
+			itemCod: $scope.item.code, 
+			itemDescrip: $scope.item.name_es
 		}).success(function(data, status, headers, config) {
   			$scope.result = data.result;
   			$scope.msg = data.msg;

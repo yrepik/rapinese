@@ -68,13 +68,16 @@ class ProductsController extends Controller {
                 [
                     'name' => Request::input('name'), 
                     'email' => Request::input('email'),
-                    'product_code' => Request::input('productCode'),
-                    'product_description' => Request::input('productDescription')
+                    'tel' => Request::input('tel'),
+                    'comments' => Request::input('comments'),
+                    'product_code' => Request::input('itemCod'),
+                    'product_description' => Request::input('itemDescrip')
                 ], 
                 function($message) {
                     $message
                         ->from(Request::input('email'), Request::input('name'))
                         ->to('german.medaglia@gmail.com')
+                        //->bcc('german.medaglia@gmail.com')
                         ->subject('Consulta desde la web');
                 }
             );  
