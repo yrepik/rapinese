@@ -20,7 +20,7 @@
 				<div class="col-md-4">
 					<img src="/images/logo2.png" class="img-responsive" />
 				</div>	
-				<address class="col-md-4 col-md-offset-4 hidden-xs hidden-sm text-right">
+				<address class="col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 hidden-xs text-right">
 					<strong>Rapinese SRL</strong><br />
 					<span class="glyphicon glyphicon-envelope"></span> <a href="mailto:#">rapinese@rapinese.com.ar</a><br />			
 					<span class="glyphicon glyphicon-earphone"></span> +54 11 4764-5079 / 4768-3166
@@ -40,12 +40,13 @@
 					<ul class="nav navbar-nav">
 						<li><a href="{{ URL::to('/') }}">@lang('Qui&eacute;nes Somos')</a></li>
 						<li><a href="{{ URL::to('/products') }}">@lang('Nuestros Productos')</a></li>
+						<li><a href="{{ URL::to('/files/lista-de-precios.xls') }}" donwload><i class="glyphicon glyphicon-download-alt"></i> @lang('Lista de precios')</a></li>
 						<li><a href="{{ URL::to('/clients') }}">@lang('Quiero ser cliente')</a></li>
 					</ul>	
 					<ul class="nav navbar-nav navbar-right hidden">
 						<li class="dropdown">                             
 							<a data-toggle="dropdown" class="dropdown-toggle" href="">								
-								Idioma <span class="caret"></span>
+								@lang('Idioma') <span class="caret"></span>
 							</a>                                 
 							<ul class="dropdown-menu">
 								<li><a href="http://gifwall-admin.mundonick-q.mtvi.com/account/change-lang/es">Español</a></li>

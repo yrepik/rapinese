@@ -19,9 +19,9 @@
 						<div class="row row-no-sidemargin">
 							<div class="col-md-2 col-sm-3 text-center">
 								@if (count($item->images))
-									<img class="img-responsive cursor-pointer" src="/images/productos/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" ng-click="openModal($event, <?php echo $loop->index; ?>)" />
+									<img class="img-responsive cursor-pointer" src="/images/products/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" ng-click="openModal($event, <?php echo $loop->index; ?>)" />
 								@else
-									<img class="img-responsive" src="/images/productos/noImage.jpg" alt="{{ $item->descripcion_es }}" />
+									<img class="img-responsive" src="/images/products/noImage.jpg" alt="{{ $item->descripcion_es }}" />
 								@endif
 							</div>
 							<div class="col-md-5 col-sm-3">			
@@ -34,7 +34,7 @@
 							</div>
 							<div class="col-md-3 col-sm-4 text-center">
 								<button class="btn btn-success" ng-click="openQueryModal($event, <?php echo $loop->index; ?>)">
-									Consultar por este producto
+									@lang('Consultar por este producto')
 								</button>
 							</div>
 						</div>
@@ -50,7 +50,7 @@
 		@else
 
 			<p class="alert alert-danger">
-				Lo sentimos, su búsqueda no produjo resultados.
+				@lang('Lo sentimos, su búsqueda no produjo resultados.')
 			</p>
 
 		@endif

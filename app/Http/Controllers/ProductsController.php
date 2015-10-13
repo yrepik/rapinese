@@ -84,7 +84,7 @@ class ProductsController extends Controller {
             $result = $sendResult;
             $msg = ($result) ? 'Gracias por contactarse con nosotros...' : 'Ha ocurrido un error.';
         } else {       
-            $errors = $validator->errors();
+            $errors = $validator->errors()->all();
             $result = false;
         }        
         return response()->json(['result' => $result, 'msg' => $msg, 'errors' => $errors]);

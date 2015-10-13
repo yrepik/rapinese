@@ -11,13 +11,13 @@
 			</div>
 			<div class="col-md-6">
 				<div class="text-center">
-					<img class="img-responsive" ng-src="/images/productos/%%item.images[imgIndex].filename%%" alt="%%item.descripcion_es%%" title="%%item.descripcion_es%%" />
+					<img class="img-responsive" ng-src="/images/products/%%item.images[imgIndex].filename%%" alt="%%item.descripcion_es%%" title="%%item.descripcion_es%%" />
 				</div>
 			</div>
 			<div class="col-md-4">
 				<ul class="list-inline text-center">
 					<li ng-repeat="image in item.images">
-						<img class="img-responsive cursor-pointer thumb" ng-class="{'active': imgIndex == $index}" ng-src="/images/productos/%%image.filename%%" alt="%%item.descripcion_es%%" title="%%item.descripcion_es%%" ng-click="showImage($index)" style="width: 100px;" />
+						<img class="img-responsive cursor-pointer thumb" ng-class="{'active': imgIndex == $index}" ng-src="/images/products/%%image.filename%%" alt="%%item.descripcion_es%%" title="%%item.descripcion_es%%" ng-click="showImage($index)" style="width: 100px;" />
 					</li>
 				</ul>
 			</div>

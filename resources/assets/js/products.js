@@ -53,6 +53,7 @@ productsModule.controller('QueryModalController', function($scope, $http, $modal
 
 	$scope.result = null;
 	$scope.msg = null;
+	$scope.errors = [];
 
 	$scope.close = function() {
 		$modalInstance.dismiss('cancel');	 
@@ -71,6 +72,7 @@ productsModule.controller('QueryModalController', function($scope, $http, $modal
 		}).success(function(data, status, headers, config) {
   			$scope.result = data.result;
   			$scope.msg = data.msg;
+  			$scope.errors = data.errors;
 	  	}).error(function(data, status, headers, config) {
 	  	}).finally(function(data, status, headers, config) {
 	  		$scope.sending = false;
