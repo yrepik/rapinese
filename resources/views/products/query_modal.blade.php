@@ -9,14 +9,14 @@
 			%%msg%%
 		</div>
 		<div ng-show="errors.length > 0 && !sending" class="alert alert-danger alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<!--<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
 			<h5>@lang('Verifique los siguientes errores:')</h5>
 			<ul>
 				<li ng-repeat="error in errors">%%error%%</li>
 			</ul>
 		</div>
 		<div ng-show="result != true">
-			{!! Form::open(['role' => 'form', 'class' => '', 'ng-submit' => 'sendForm($event)']) !!}
+			{!! Form::open(['role' => 'form', 'class' => '', 'ng-submit' => 'sendForm($event)', 'novalidate']) !!}
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">

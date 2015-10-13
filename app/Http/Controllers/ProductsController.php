@@ -60,6 +60,10 @@ class ProductsController extends Controller {
         $validator = Validator::make(Request::all(), [
             'name' => 'required|max:100',
             'email' => 'required|email|max:100'
+        ], [
+            'name.required' => Lang::get('El campo Nombre y apellido es requerido.'),
+            'email.required' => Lang::get('El campo E-mail es requerido.'),
+            'email.email' => Lang::get('El campo E-mail no responde a un formato válido de e-mail.')
         ]);
 
         if ($validator->passes()) {
