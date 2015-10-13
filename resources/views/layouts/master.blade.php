@@ -62,9 +62,9 @@
                 @yield('content') 
             </div>
 			
-			<div id="brands" class="text-center hidden-xs hidden-sm hidden-md">
+			<!--<div id="brands" class="text-center hidden-xs hidden-sm hidden-md">
 				<img src="http://www.silvaflex.com/img/brands.jpg" class="img-responsive" />
-			</div>
+			</div>-->
 			
             <footer>                
 				<small>Rapinese SRL - 1965-{{ date('Y') }}.</small>				

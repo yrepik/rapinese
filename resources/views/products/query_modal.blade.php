@@ -28,13 +28,13 @@
 							{!! Form::email('email', null, ['class' => 'form-control', 'ng-model' => 'email', 'ng-disabled' => 'sending']) !!}
 						</div>
 						<div class="form-group">
-							{!! Form::label('tel', Lang::get('Teléfono')) !!}
+							{!! Form::label('tel', Lang::get('Teléfono (opcional)')) !!}
 							{!! Form::text('tel', null, ['class' => 'form-control', 'ng-model' => 'tel', 'ng-disabled' => 'sending']) !!}
 						</div>
 					</div> 
 					<div class="col-md-6">
 						<div class="form-group">
-							{!! Form::label('comments', Lang::get('Comentarios')) !!}
+							{!! Form::label('comments', Lang::get('Comentarios (opcional)')) !!}
 							{!! Form::textarea('comments', null, ['class' => 'form-control', 'ng-model' => 'comments', 'ng-disabled' => 'sending']) !!}
 						</div>
 					</div>

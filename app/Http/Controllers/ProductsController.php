@@ -6,6 +6,7 @@ use Product;
 use Request;
 use Validator;
 use Mail;
+use Lang;
 
 class ProductsController extends Controller {
 	
@@ -58,8 +59,7 @@ class ProductsController extends Controller {
 
         $validator = Validator::make(Request::all(), [
             'name' => 'required|max:100',
-            'email' => 'required|email',
-            'tel' => 'required'
+            'email' => 'required|email|max:100'
         ]);
 
         if ($validator->passes()) {
@@ -76,13 +76,15 @@ class ProductsController extends Controller {
                 function($message) {
                     $message
                         ->from(Request::input('email'), Request::input('name'))
-                        ->to('german.medaglia@gmail.com')
-                        //->bcc('german.medaglia@gmail.com')
+                        ->to('rapinese@rapinese.com.ar')
+                        ->bcc('german.medaglia@gmail.com')
                         ->subject('Consulta desde la web');
                 }
             );  
-            $result = $sendResult;
-            $msg = ($result) ? 'Gracias por contactarse con nosotros...' : 'Ha ocurrido un error.';
+            $result = $sendResult != false;
+            $msg = ($result) 
+                ? Lang::get('Gracias por contactarse con nosotros. Nos comunicaremos con usted a la brevedad.') 
+                : Lang::get('Ha ocurrido un error. Por favor, vuelva a intentarlo más tarde');
         } else {       
             $errors = $validator->errors()->all();
             $result = false;
