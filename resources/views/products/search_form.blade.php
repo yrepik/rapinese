@@ -1,31 +1,29 @@
-<div affix style="margin-bottom: 20px;">
-	<div id="cuco">
-		{!! Form::open(['action' => ['ProductsController@postSearchRedirect'], 'role' => 'form', 'class' => 'form-inline', 'style' => 'margin-bottom: 0;']) !!}
-			<div class="form-group">
-				{!! Form::select(
-					'brand_id', 
-					['' => Lang::get('Seleccione una marca')] + Brand::orderBy('order')->lists('name', 'alias')->all(),
-					$selected_brand, 
-					[                    
-						'id' => 'brand',
-						'class' => 'form-control',
-						'ng-modelo' => 'brand'
-					]) 
-				!!}
-			</div>
-			<div class="form-group">
-				{!! Form::select(
-					'category_id', 
-					['' => Lang::get('Seleccione un rubro')] + ProductCategory::orderBy('name_es')->where('status', 1)->lists('name_es', 'alias_es')->all(),
-					$selected_category, 
-					[                    
-						'id' => 'category',
-						'class' => 'form-control',
-						'ng-modelo' => 'category'
-					]) 
-				!!}
-			</div>
-			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> @lang('Buscar')</button>
-		{!! Form::close() !!}	
+{!! Form::open(['action' => ['ProductsController@postSearchRedirect'], 'role' => 'form', 'class' => 'form-inline mb20', 'ng-controller' => 'ProductSearchFormController']) !!}
+	<div class="form-group">
+		{!! Form::select(
+			'brand_id', 
+			['' => Lang::get('Seleccione una marca')] + Brand::orderBy('order')->lists('name', 'alias')->all(),
+			$selected_brand, 
+			[                    
+				'id' => 'brand',
+				'class' => 'form-control',
+				'ng-model' => 'brand',
+				'ng-initial'
+			]) 
+		!!}
 	</div>
-</div>
+	<div class="form-group">
+		{!! Form::select(
+			'category_id', 
+			['' => Lang::get('Seleccione un rubro')] + ProductCategory::orderBy('name_es')->where('status', 1)->lists('name_es', 'alias_es')->all(),
+			$selected_category, 
+			[                    
+				'id' => 'category',
+				'class' => 'form-control',
+				'ng-model' => 'category',
+				'ng-initial'
+			]) 
+		!!}
+	</div>
+	<button type="submit" class="btn btn-default" ng-disabled="brand == '' || category == ''"><span class="glyphicon glyphicon-search"></span> @lang('Buscar')</button>
+{!! Form::close() !!}

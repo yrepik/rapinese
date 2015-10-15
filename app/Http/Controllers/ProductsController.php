@@ -20,12 +20,12 @@ class ProductsController extends Controller {
 
     public function getSearchResults($brandAlias, $categoryAlias, $page = 1) {    
     
-        $brandId = Brand::where('alias', $brandAlias)->first()->id;
-        $categoryId = ProductCategory::where('alias_es', $categoryAlias)->first()->id;
+        $brand = Brand::where('alias', $brandAlias)->first();
+        $category = ProductCategory::where('alias_es', $categoryAlias)->first();
 
         $itemsPerPage = 20;
         
-        $items = Product::search($brandId, $categoryId, $itemsPerPage);
+        $items = Product::search($brand->id, $category->id, $itemsPerPage);
             
         $total = $items->total();
         $from = ($total > 0)
@@ -36,19 +36,21 @@ class ProductsController extends Controller {
             $to = $total;
         }
 
-        $data = array(
-            'result_count' => array(                
+        $data = [
+            'result_count' => [                
                 'total' => $total,
                 'from' => $from,
                 'to' => $to
-            ),
+            ],
             'results' => $items
-        );
+        ];
         return view('products/search_results', [
             'data' => $data, 
             'data_json' => $items->toJson(),
             'selected_brand' => $brandAlias, 
-            'selected_category' => $categoryAlias
+            'selected_category' => $categoryAlias,
+            'brand' => $brand,
+            'category' => $category
         ]);   
     }
 
@@ -88,7 +90,7 @@ class ProductsController extends Controller {
             $result = $sendResult != false;
             $msg = ($result) 
                 ? Lang::get('Gracias por contactarse con nosotros. Nos comunicaremos con usted a la brevedad.') 
-                : Lang::get('Ha ocurrido un error. Por favor, vuelva a intentarlo más tarde');
+                : Lang::get('Ha ocurrido un error. Por favor, vuelva a intentarlo más tarde.');
         } else {       
             $errors = $validator->errors()->all();
             $result = false;

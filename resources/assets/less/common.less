@@ -1,3 +1,5 @@
+@import (reference) "/bower_components/bootstrap/less/variables";
+
 [ng\:cloak], [ng-cloak], .ng-cloak {display: none;}
 
 header {
@@ -100,10 +102,11 @@ h1, h2, h3, h4, h5, h6 {font-family: 'Oswald', sans-serif !important;}
 .thumbnail > img {display: inline;}
 
 #icons {
-	/*i {
-		padding: 20px;
-		border-radius: 50%;
-	}*/
+	i {
+		color: @brand-success;
+		/*padding: 20px;
+		border-radius: 50%;*/
+	}
 }
 
 #product-results {

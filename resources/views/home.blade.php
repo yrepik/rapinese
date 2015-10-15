@@ -2,7 +2,7 @@
 
 @section('content')
 	<div ng-app="home">
-		<div class="row" ng-controller="HomeCarouselController" ng-cloak>
+		<div class="row hidden-xs" ng-controller="HomeCarouselController" ng-cloak>
 			<div>
 				<carousel interval="myInterval">
 					<slide ng-repeat="slide in slides" active="slide.active">

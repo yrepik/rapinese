@@ -20,7 +20,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							{!! Form::label('name', Lang::get('Nombre y Apellido')) !!}
+							{!! Form::label('name', Lang::get('Nombre y apellido')) !!}
 							{!! Form::text('name', null, ['class' => 'form-control', 'ng-model' => 'name', 'ng-disabled' => 'sending']) !!}
 						</div>
 						<div class="form-group">

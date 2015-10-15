@@ -17,7 +17,7 @@
 
         <div id="page" class="container">
 			<header class="row">
-				<div class="col-md-4">
+				<div class="col-xs-12 col-sm-4 col-md-4">
 					<img src="/images/logo2.png" class="img-responsive" />
 				</div>	
 				<address class="col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 hidden-xs text-right">
