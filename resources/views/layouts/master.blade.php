@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Rapinese</title>        
+        <title>RAPINESE @yield('title')</title>        
         @section('styles')
             {!! HTML::style('css/lib.css') !!}
             {!! HTML::style('css/styles.css') !!}

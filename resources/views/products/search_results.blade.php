@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+	{{ $category->name_es }} {{ $brand->name }}
+@stop
+
 @section('content')
 	<div ng-app="products">
 
@@ -27,7 +31,7 @@
 							<div class="col-md-5">			
 								<h6>{{ $item->code }}</h6>
 								<h5>{{ $item->name_es }}</h5>
-								<div>{{ @$item->material->name_es }}</div>
+								<div><span class="label label-{{ @$item->material->class }}">{{ @$item->material->name_es }}</span></div>
 							</div>
 							<div class="col-md-2">			
 								<h5>ARS {{ number_format($item->price_ars, 2) }}</h4>
