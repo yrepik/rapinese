@@ -1,7 +1,7 @@
-{!! Form::open(['action' => ['ProductsController@postSearchRedirect'], 'role' => 'form', 'class' => 'form-inline mb20', 'ng-controller' => 'ProductSearchFormController']) !!}
+{!! Form::open(['action' => ['ProductsController@getSearchRedirect'], 'role' => 'form', 'method' => 'get', 'class' => 'form-inline mb20', 'ng-controller' => 'ProductSearchFormController']) !!}
 	<div class="form-group">
 		{!! Form::select(
-			'brand_id', 
+			'brand_alias', 
 			['' => Lang::get('Seleccione una marca')] + Brand::orderBy('order')->lists('name', 'alias')->all(),
 			$selected_brand, 
 			[                    
@@ -14,7 +14,7 @@
 	</div>
 	<div class="form-group">
 		{!! Form::select(
-			'category_id', 
+			'category_alias', 
 			['' => Lang::get('Seleccione un rubro')] + ProductCategory::orderBy('name_es')->where('status', 1)->lists('name_es', 'alias_es')->all(),
 			$selected_category, 
 			[                    

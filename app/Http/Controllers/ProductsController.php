@@ -14,10 +14,10 @@ class ProductsController extends Controller {
         return view('products/index', ['selected_brand' => null, 'selected_category' => null]);
     }
 
-    public function postSearchRedirect() {
+    public function getSearchRedirect() {
         return redirect()->route(
             'product-search-results', 
-            ['brand_alias' => Request::input('brand_id'), 'category_alias' => Request::input('category_id')]
+            ['brand_alias' => Request::input('brand_alias'), 'category_alias' => Request::input('category_alias')]
         );
     }
 
