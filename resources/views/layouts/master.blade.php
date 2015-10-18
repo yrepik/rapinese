@@ -22,7 +22,7 @@
 				</div>	
 				<address class="col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 hidden-xs text-right">
 					<strong>Rapinese SRL</strong><br />
-					<span class="glyphicon glyphicon-envelope"></span> <a href="mailto:#">rapinese@rapinese.com.ar</a><br />			
+					<span class="glyphicon glyphicon-envelope"></span> rapinese@rapinese.com.ar<br />			
 					<span class="glyphicon glyphicon-earphone"></span> +54 11 4764-5079 / 4768-3166
 				</address>
 			</header>

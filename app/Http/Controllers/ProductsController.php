@@ -15,7 +15,10 @@ class ProductsController extends Controller {
     }
 
     public function postSearchRedirect() {
-        return redirect('products/search/' . Request::input('brand_id') . '/' . Request::input('category_id'));
+        return redirect()->route(
+            'product-search-results', 
+            ['brand_alias' => Request::input('brand_id'), 'category_alias' => Request::input('category_id')]
+        );
     }
 
     public function getSearchResults($brandAlias, $categoryAlias, $page = 1) {    

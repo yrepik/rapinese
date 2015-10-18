@@ -26,22 +26,8 @@ Route::get('/', function()
 	return View::make('home');
 });
 
-Route::get('/company', function()
-{
-	return View::make('company');
-});
-
-Route::get('/cv', function()
-{
-	return View::make('cv');
-});
-Route::get('/cven', function()
-{
-	return View::make('cv_en');
-});
-
-Route::get('/products/search/{brand}/{category}', ['uses' => 'ProductsController@getSearchResults']);
-Route::get('/products/search/{brand}/{category}/pag{page}', ['uses' => 'ProductsController@getSearchResults']);
+Route::get('/products/{brand_alias}/{category_alias}', ['as' => 'product-search-results', 'uses' => 'ProductsController@getSearchResults']);
+Route::get('/products/{brand}/{category}/pag{page}', ['uses' => 'ProductsController@getSearchResults']);
 
 Route::controller('home', 'HomeController');
 Route::controller('products', 'ProductsController');

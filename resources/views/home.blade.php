@@ -17,7 +17,7 @@
 				<div class="text-center"><i class="fa fa-4x fa-graduation-cap"></i></div>
 				<h3 class="text-center">@lang('Trayectoria')</h3>
 				<p>@lang('Desde 1965 nos especializamos en la fabricación y distribución de autopartes de carrocerías.')</p>
-				<p>@lang('Actualmente producimos más de 1000 piezas, lo que nos convierte en la mayor y más completa productora dentro del rubro.')</p>
+				<p>@lang('Actualmente producimos más de 2000 piezas, lo que nos convierte en la mayor y más completa productora dentro del rubro.')</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="text-center"><i class="fa fa-4x fa-check"></i></div>
