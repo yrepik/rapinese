@@ -1,5 +1,5 @@
 @extends('layouts.error')
 
 @section('message')
-	@lang('La página solicitada no existe.')
+	@lang('Se ha producido un incidente.')
 @stop
