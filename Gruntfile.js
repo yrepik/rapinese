@@ -138,7 +138,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-mysql-runfile');
 
-    grunt.registerTask("setup", function(arg) {
+    grunt.registerTask("install", function(arg) {
         if (arg == "clean") {
             grunt.file.delete("./bower_components");
         }

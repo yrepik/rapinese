@@ -19,4 +19,4 @@ Laravel is accessible, yet powerful, providing powerful tools needed for large, 
 ## Installation
     $ composer install
     $ npm install
-    $ grunt setup
+    $ grunt install
