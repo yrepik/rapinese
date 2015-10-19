@@ -27,7 +27,6 @@ Route::get('/', function()
 });
 
 Route::get('/products/{brand_alias}/{category_alias}', ['as' => 'product-search-results', 'uses' => 'ProductsController@getSearchResults']);
-Route::get('/products/{brand}/{category}/pag{page}', ['uses' => 'ProductsController@getSearchResults']);
 
 Route::controller('home', 'HomeController');
 Route::controller('products', 'ProductsController');

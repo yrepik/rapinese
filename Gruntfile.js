@@ -111,22 +111,11 @@ module.exports = function(grunt) {
         exec: {
             bower_install: {
                 command: "bower install"
-            }
-        },        
-        mysqlrunfile: {
-            updates: {
-                options: {
-                    connection: {
-                        host: 'localhost',
-                        username: 'root',
-                        password: '1234',
-                        database: 'rapinese',
-                        multipleStatements: true
-                    }                        
-                },
-                src: './rapi_updates.sql'
-            }
-        }        
+            },
+            migrate: {
+                command: "php artisan migrate"
+            }            
+        }      
     });
 
     grunt.loadNpmTasks('grunt-contrib-less');
@@ -136,7 +125,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-mysql-runfile');
 
     grunt.registerTask("install", function(arg) {
         if (arg == "clean") {
