@@ -148,6 +148,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 
 		'Radic\BladeExtensions\BladeExtensionsServiceProvider',
+		'Intervention\Image\ImageServiceProvider',		
 
 	],
 
@@ -196,8 +197,9 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+
 		'Form'		=> 'Illuminate\Html\FormFacade', 
-		'HTML'		=> 'Illuminate\Html\HtmlFacade'		
+		'HTML'		=> 'Illuminate\Html\HtmlFacade',	
 
 	],
 
