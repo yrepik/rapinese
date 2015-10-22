@@ -21,7 +21,7 @@ productsModule.controller('ProductSearchFormController', function($scope) {
 	
 });
 
-productsModule.controller('ProductSearchResultsController', function($scope, $modal) {
+productsModule.controller('ProductSearchResultsController', function($scope, $uibModal) {
 	$scope.items = [];
 
 	$scope.init = function($json) {
@@ -30,7 +30,7 @@ productsModule.controller('ProductSearchResultsController', function($scope, $mo
 	
 	$scope.openModal = function($event, $index) {
 		$event.preventDefault();
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			templateUrl: 'product-modal',
 			controller: 'ProductModalController',
 			size: 'lg',
@@ -50,7 +50,7 @@ productsModule.controller('ProductSearchResultsController', function($scope, $mo
 
 	$scope.openQueryModal = function($event, $index) {
 		$event.preventDefault();
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			templateUrl: 'product-query-modal',
 			controller: 'QueryModalController',
 			size: 'lg',
@@ -101,11 +101,11 @@ productsModule.controller('QueryModalController', function($scope, $http, $modal
 	};
 });
 
-productsModule.controller('ProductModalController', function($scope, $modalInstance, item, itemIndex, items) {
+productsModule.controller('ProductModalController', function($scope, $uibModal, $modalInstance, item, itemIndex, items) {
 	$scope.item = item;
 	$scope.imgIndex = 0;
 	$scope.productIndex = itemIndex;
-	$scope.items = item;
+	//$scope.items = items;
 
 	$scope.close = function() {
 		$modalInstance.dismiss('cancel');    
@@ -115,7 +115,21 @@ productsModule.controller('ProductModalController', function($scope, $modalInsta
 		$scope.imgIndex = $index;
 	};
 
-    $scope.nextProduct = function() {
+	$scope.openQueryModal = function($event, $item) {
+		$event.preventDefault();
+		var modalInstance = $uibModal.open({
+			templateUrl: 'product-query-modal',
+			controller: 'QueryModalController',
+			size: 'lg',
+			resolve: {
+				item: function() {
+					return $item;
+				}			
+			}
+		});
+	};		
+
+    /*$scope.nextProduct = function() {
 		if ($scope.productIndex + 1 >= $scope.items.length) {
 			$scope.productIndex = 0;
 		} else {
@@ -133,5 +147,5 @@ productsModule.controller('ProductModalController', function($scope, $modalInsta
 		}
         $scope.item = $scope.pedals[$scope.productIndex];
         $scope.imgIndex = 0;
-    };	
+    };*/	
 });

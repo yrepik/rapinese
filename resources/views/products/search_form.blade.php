@@ -2,7 +2,7 @@
 	<div class="form-group">
 		{!! Form::select(
 			'brand_alias', 
-			['' => Lang::get('Seleccione una marca')] + Brand::orderBy('order')->lists('name', 'alias')->all(),
+			['' => Lang::get('labels.products.search.brand')] + Brand::orderBy('order')->lists('name', 'alias')->all(),
 			$selected_brand, 
 			[                    
 				'id' => 'brand',
@@ -15,7 +15,7 @@
 	<div class="form-group">
 		{!! Form::select(
 			'category_alias', 
-			['' => Lang::get('Seleccione un rubro')] + ProductCategory::orderBy('name_es')->where('status', 1)->lists('name_es', 'alias_es')->all(),
+			['' => Lang::get('labels.products.search.category')] + ProductCategory::orderBy('name_es')->where('status', 1)->lists('name_es', 'alias_es')->all(),
 			$selected_category, 
 			[                    
 				'id' => 'category',
@@ -25,5 +25,5 @@
 			]) 
 		!!}
 	</div>
-	<button type="submit" class="btn btn-default" ng-disabled="brand == '' || category == ''"><span class="glyphicon glyphicon-search"></span> @lang('Buscar')</button>
+	<button type="submit" class="btn btn-default" ng-disabled="brand == '' || category == ''"><span class="glyphicon glyphicon-search"></span> @lang('buttons.products.search')</button>
 {!! Form::close() !!}

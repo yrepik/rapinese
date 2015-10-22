@@ -12,9 +12,7 @@ module.exports = function(grunt) {
                 src: [
                     "./bower_components/jquery/jquery.js",
                     "./bower_components/bootstrap/js/alert.js",
-                    "./bower_components/bootstrap/js/collapse.js",                      
-                    //"./bower_components/bootstrap/js/dropdown.js",
-                    //"./bower_components/bootstrap/js/transition.js",
+                    "./bower_components/bootstrap/js/collapse.js",
                     "./bower_components/angular/angular.js",
                     "./bower_components/angular-animate/angular-animate.js",                  
                     "./bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
@@ -38,9 +36,7 @@ module.exports = function(grunt) {
                     "./public/js/base.js": [
                         "./bower_components/jquery/jquery.js",
                         "./bower_components/bootstrap/js/alert.js",
-                        "./bower_components/bootstrap/js/collapse.js",                      
-                        //"./bower_components/bootstrap/js/dropdown.js",
-                        //"./bower_components/bootstrap/js/transition.js",
+                        "./bower_components/bootstrap/js/collapse.js",
                         "./bower_components/angular/angular.js",
                         "./bower_components/angular-animate/angular-animate.js",
                         "./bower_components/angular-bootstrap/ui-bootstrap-tpls.js",

@@ -92,8 +92,8 @@ class ProductsController extends Controller {
             );  
             $result = $sendResult != false;
             $msg = ($result) 
-                ? Lang::get('Gracias por contactarse con nosotros. Nos comunicaremos con usted a la brevedad.') 
-                : Lang::get('Ha ocurrido un error. Por favor, vuelva a intentarlo más tarde.');
+                ? Lang::get('alerts.products.ask.success') 
+                : Lang::get('alerts.products.ask.error');
         } else {       
             $errors = $validator->errors()->all();
             $result = false;

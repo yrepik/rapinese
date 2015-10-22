@@ -15,30 +15,30 @@
 		@if ($data['result_count']['total'] > 0)
 			<div ng-controller="ProductSearchResultsController" ng-init='init(<?php echo $data_json; ?>)'>
 				<p class="well well-sm">
-					Mostrando {{ $data['result_count']['from'] }}-{{ $data['result_count']['to'] }} de <strong>{{ $data['result_count']['total'] }}</strong> resultados.
+					@lang('wells.products.search.results', ['from' => $data['result_count']['from'], 'to' => $data['result_count']['to'], 'total' => $data['result_count']['total']])
 				</p>		
 
 				<div id="product-results">
 					@foreach ($data['results'] as $item)			
 						<div class="row row-no-sidemargin">
-							<div class="col-md-2 text-center">
+							<div class="col-md-2 col-sm-3 text-center">
 								@if (count($item->images))
-									<img class="img-responsive cursor-pointer" src="/images/products/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" ng-click="openModal($event, <?php echo $loop->index; ?>)" />
+									<img class="img-responsive cursor-pointer" src="/images/products/sm/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" ng-click="openModal($event, <?php echo $loop->index; ?>)" />
 								@else
 									<img class="img-responsive" src="/images/products/noImage.jpg" alt="{{ $item->descripcion_es }}" />
 								@endif
 							</div>
-							<div class="col-md-5">			
+							<div class="col-md-5 col-sm-4">			
 								<div class="product-code">{{ $item->code }}</div>
 								<div class="product-name">{{ $item->name_es }}</div>
 								<div><span class="label label-{{ @$item->material->class }}">{{ @$item->material->name_es }}</span></div>
 							</div>
-							<div class="col-md-2 product-price">			
+							<div class="col-md-2 col-sm-1 product-price">			
 								ARS {{ number_format($item->price_ars, 2) }}
 							</div>
-							<div class="col-md-3 text-center">
+							<div class="col-md-3 col-sm-4 text-center">
 								<button class="btn btn-success" ng-click="openQueryModal($event, <?php echo $loop->index; ?>)">
-									@lang('Consultar por este producto')
+									@lang('buttons.products.ask')
 								</button>
 							</div>
 						</div>
@@ -54,7 +54,7 @@
 		@else
 
 			<p class="alert alert-danger">
-				@lang('Lo sentimos, su búsqueda no produjo resultados.')
+				@lang('alerts.products.search.no_results')
 			</p>
 
 		@endif

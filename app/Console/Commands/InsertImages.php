@@ -31,25 +31,37 @@ class InsertImages extends Command {
 		if ($handle = opendir($dir)) {
 			$count = 0;
 		    while (false !== ($entry = readdir($handle))) {
-		        if ($entry != "." && $entry != ".." && $entry != "noImage.jpg") {
+		        if (!in_array($entry, [".", "..", "lg", "sm", "noImage.jpg"])) {
+
+
 		            $arr = explode('_', $entry);
 		            $code = $arr[0];
 		            $record = DB::table('product_image')->where('filename', $entry)->first();
 		            if (!$record) {
 
+		            	$fixedEntry = str_replace('JPG', 'jpg', $entry);
+
 						$img = Image::make($dir . '/' . $entry);
-						$img->resize(1280, null, function($constraint) {
+						$img->resize(158, null, function($constraint) {
+						    $constraint->aspectRatio();
+						});
+						$img->save($dir . '/sm/' . $fixedEntry);		            	
+
+						$img = Image::make($dir . '/' . $entry);
+						$img->resize(640, null, function($constraint) {
 						    $constraint->aspectRatio();
 						});
 						/*$watermark = Image::make($publicDir . '/images/logo.png');
 						$watermark->opacity(50);
 						$img->insert($watermark, 'center');*/
-						$img->save($dir . '/' . str_replace('JPG', 'jpg', $entry));
+						$img->save($dir . '/lg/' . $fixedEntry);
 
-		            	DB::table('product_image')->insert(['product_code' => $code, 'filename' => $entry]);
+						unlink($entry);
+
+		            	DB::table('product_image')->insert(['product_code' => $code, 'filename' => $fixedEntry]);
 		            	$this->info($entry . ' INSERTED');
 		            	$count++;
-		            }	            
+		            }  
 		        }
 		    }
 		    closedir($handle);
