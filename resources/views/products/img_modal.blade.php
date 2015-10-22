@@ -17,7 +17,7 @@
 					</li>
 				</ul>
 				<div class="product-price mt20">
-					ARS <big>%%item.price_ars%%</big>
+					{{ config('app.currency') }} <big>%%item.price_ars%%</big>
 				</div>
 				<div class="text-center mt20">
 					<button class="btn btn-success btn-block" ng-click="openQueryModal($event, item)">

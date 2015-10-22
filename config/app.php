@@ -203,4 +203,6 @@ return [
 
 	],
 
+	'currency' => 'ARS'
+
 ];

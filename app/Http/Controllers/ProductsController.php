@@ -66,9 +66,9 @@ class ProductsController extends Controller {
             'name' => 'required|max:100',
             'email' => 'required|email|max:100'
         ], [
-            'name.required' => Lang::get('El campo Nombre y apellido es requerido.'),
-            'email.required' => Lang::get('El campo E-mail es requerido.'),
-            'email.email' => Lang::get('El campo E-mail no responde a un formato válido de e-mail.')
+            'name.required' => trans('El campo Nombre y apellido es requerido.'),
+            'email.required' => trans('El campo E-mail es requerido.'),
+            'email.email' => trans('El campo E-mail no responde a un formato válido de e-mail.')
         ]);
 
         if ($validator->passes()) {
@@ -92,8 +92,8 @@ class ProductsController extends Controller {
             );  
             $result = $sendResult != false;
             $msg = ($result) 
-                ? Lang::get('alerts.products.ask.success') 
-                : Lang::get('alerts.products.ask.error');
+                ? trans('alerts.products.ask.success') 
+                : trans('alerts.products.ask.error');
         } else {       
             $errors = $validator->errors()->all();
             $result = false;

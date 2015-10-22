@@ -34,7 +34,7 @@
 								<div><span class="label label-{{ @$item->material->class }}">{{ @$item->material->name_es }}</span></div>
 							</div>
 							<div class="col-md-2 col-sm-1 product-price">			
-								ARS {{ number_format($item->price_ars, 2) }}
+								{{ config('app.currency') }} {{ number_format($item->price_ars, 2) }}
 							</div>
 							<div class="col-md-3 col-sm-4 text-center">
 								<button class="btn btn-success" ng-click="openQueryModal($event, <?php echo $loop->index; ?>)">

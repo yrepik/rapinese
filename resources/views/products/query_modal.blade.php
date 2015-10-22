@@ -20,21 +20,21 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							{!! Form::label('name', Lang::get('labels.products.ask.name')) !!}
+							{!! Form::label('name', trans('labels.products.ask.name')) !!}
 							{!! Form::text('name', null, ['class' => 'form-control', 'ng-model' => 'name', 'ng-disabled' => 'sending']) !!}
 						</div>
 						<div class="form-group">
-							{!! Form::label('email', Lang::get('labels.products.ask.email')) !!}
+							{!! Form::label('email', trans('labels.products.ask.email')) !!}
 							{!! Form::email('email', null, ['class' => 'form-control', 'ng-model' => 'email', 'ng-disabled' => 'sending']) !!}
 						</div>
 						<div class="form-group">
-							{!! Form::label('tel', Lang::get('labels.products.ask.tel')) !!}
+							{!! Form::label('tel', trans('labels.products.ask.tel')) !!}
 							{!! Form::text('tel', null, ['class' => 'form-control', 'ng-model' => 'tel', 'ng-disabled' => 'sending']) !!}
 						</div>
 					</div> 
 					<div class="col-md-6">
 						<div class="form-group">
-							{!! Form::label('comments', Lang::get('labels.products.ask.comments')) !!}
+							{!! Form::label('comments', trans('labels.products.ask.comments')) !!}
 							{!! Form::textarea('comments', null, ['class' => 'form-control', 'ng-model' => 'comments', 'ng-disabled' => 'sending']) !!}
 						</div>
 					</div>
