@@ -23,9 +23,12 @@
 						<div class="row row-no-sidemargin">
 							<div class="col-md-2 col-sm-3 text-center">
 								@if (count($item->images))
-									<img class="img-responsive cursor-pointer" src="/images/products/sm/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" ng-click="openModal($event, <?php echo $loop->index; ?>)" />
+									<a href="#" ng-click="openModal($event, <?php echo $loop->index; ?>)" class="img">
+            							<span class="product-hover"><i class="fa fa-4x fa-search-plus"></i></span>
+										<img class="img-responsive" src="/images/products/sm/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" />
+									</a>									
 								@else
-									<img class="img-responsive" src="/images/products/noImage.jpg" alt="{{ $item->descripcion_es }}" />
+									<img class="img-responsive" src="/images/products/noImage.jpg" alt="{{ $item->name_es }}" />
 								@endif
 							</div>
 							<div class="col-md-5 col-sm-4">			
