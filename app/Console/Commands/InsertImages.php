@@ -56,7 +56,7 @@ class InsertImages extends Command {
 						$img->insert($watermark, 'center');*/
 						$img->save($dir . '/lg/' . $fixedEntry);
 
-						unlink($entry);
+						unlink($dir . '/' . $entry);
 
 		            	DB::table('product_image')->insert(['product_code' => $code, 'filename' => $fixedEntry]);
 		            	$this->info($entry . ' INSERTED');

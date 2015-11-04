@@ -126,7 +126,7 @@ module.exports = function(grunt) {
         if (arg == "clean") {
             grunt.file.delete("./bower_components");
         }
-        grunt.task.run("exec:bower_install", "copy:fonts", "cssmin");
+        grunt.task.run("exec:bower_install", "copy:fonts", "cssmin", "less", "uglify");
     });  
 
 };

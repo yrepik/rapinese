@@ -28,7 +28,7 @@
 										<img class="img-responsive" src="/images/products/sm/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" />
 									</a>									
 								@else
-									<img class="img-responsive" src="/images/products/noImage.jpg" alt="{{ $item->name_es }}" />
+									<img class="img-responsive" style="max-width: 50px;" src="/images/products/City-No-Camera-icon.png" alt="{{ $item->name_es }}" />
 								@endif
 							</div>
 							<div class="col-md-5 col-sm-4">			

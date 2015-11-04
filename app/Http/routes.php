@@ -26,6 +26,11 @@ Route::get('/', function()
 	return View::make('home');
 });
 
+Route::get('/clients', function()
+{
+	return View::make('under_construction');
+});
+
 Route::get('/products/{brand_alias}/{category_alias}', ['as' => 'product-search-results', 'uses' => 'ProductsController@getSearchResults']);
 
 Route::controller('home', 'HomeController');
