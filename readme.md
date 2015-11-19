@@ -9,6 +9,5 @@ Copy `.env.example` file as `.env` and edit the values for the configuration var
 
 Then:
 
-    $ composer install
     $ npm install
     $ grunt install

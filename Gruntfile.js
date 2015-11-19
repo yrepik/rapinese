@@ -105,6 +105,9 @@ module.exports = function(grunt) {
             }
         },
         exec: {
+            composer_install: {
+                command: "composer install"
+            },		
             bower_install: {
                 command: "bower install"
             },
@@ -126,7 +129,7 @@ module.exports = function(grunt) {
         if (arg == "clean") {
             grunt.file.delete("./bower_components");
         }
-        grunt.task.run("exec:bower_install", "copy:fonts", "cssmin", "less", "uglify");
+        grunt.task.run("exec:composer_install", "exec:bower_install", "copy:fonts", "cssmin", "less", "uglify");
     });  
 
 };
