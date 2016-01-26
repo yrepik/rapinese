@@ -31,12 +31,12 @@
 									<img class="img-responsive" style="max-width: 50px;" src="/images/products/City-No-Camera-icon.png" alt="{{ $item->name_es }}" />
 								@endif
 							</div>
-							<div class="col-md-5 col-sm-4">			
-								<div class="product-code">{{ $item->code }}</div>
+							<div class="col-md-6 col-sm-4">			
+								<div class="product-code"><strong>{{ $item->code }}</strong></div>
 								<div class="product-name">{{ $item->name_es }}</div>
-								<div><span class="label label-{{ @$item->material->class }}">{{ @$item->material->name_es }}</span></div>
+								<div><span>{{ @$item->material->name_es }}</span></div>
 							</div>
-							<div class="col-md-2 col-sm-1 product-price">			
+							<div class="col-md-1 col-sm-1 product-price">			
 								{{ config('app.currency') }} {{ number_format($item->price_ars, 2) }}
 							</div>
 							<div class="col-md-3 col-sm-4 text-center">
