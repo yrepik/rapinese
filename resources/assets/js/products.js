@@ -19,6 +19,10 @@ productsModule.controller('ProductSearchFormController', function($scope) {
 	$scope.brand;
 	$scope.category;
 	
+	$scope.brandOrCategoryNotSelected = function() {
+		return $scope.brand == '' || $scope.category == '';
+	};
+
 });
 
 productsModule.controller('ProductSearchResultsController', function($scope, $uibModal) {

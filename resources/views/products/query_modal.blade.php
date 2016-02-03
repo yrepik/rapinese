@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="product-query-modal">
 	<div class="modal-header">
 		<button ng-click="close()" type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-		<h3>@lang('headers.products.ask') %%item.name_es%%</h3>
+		<h3>@lang('headers.products.ask')<br />%%item.name_es%%</h3>
 	</div>
 	<div class="modal-body">
 		<div ng-show="sending"></div>

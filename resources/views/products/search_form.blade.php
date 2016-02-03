@@ -25,5 +25,15 @@
 			]) 
 		!!}
 	</div>
-	<button type="submit" class="btn btn-default" ng-disabled="brand == '' || category == ''"><span class="glyphicon glyphicon-search"></span> @lang('buttons.products.search')</button>
+	<div class="form-group" 		
+		uib-tooltip="@lang('Seleccione marca y rubro.')" 
+		tooltip-placement="bottom"
+		tooltip-enable="brandOrCategoryNotSelected()">
+		<button 
+			type="submit" 
+			class="btn btn-default" 
+			ng-disabled="brandOrCategoryNotSelected()">
+			<span class="glyphicon glyphicon-search"></span> @lang('buttons.products.search')
+		</button>
+	</div>
 {!! Form::close() !!}
