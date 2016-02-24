@@ -1,4 +1,4 @@
-{!! Form::open(['action' => ['ProductsController@getSearchRedirect'], 'role' => 'form', 'method' => 'get', 'class' => 'form-inline mb20', 'ng-controller' => 'ProductSearchFormController']) !!}
+{!! Form::open(['action' => ['ProductsController@getSearchRedirect'], 'role' => 'form', 'method' => 'get', 'class' => 'form-inline hidden-print mb20', 'ng-controller' => 'ProductSearchFormController']) !!}
 	<div class="form-group">
 		{!! Form::select(
 			'brand_alias', 

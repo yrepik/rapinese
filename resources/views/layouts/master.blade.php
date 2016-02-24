@@ -66,7 +66,7 @@
 				<img src="http://www.silvaflex.com/img/brands.jpg" class="img-responsive" />
 			</div>-->
 			
-            <footer>                
+            <footer class="hidden-print">                
 				<small>Rapinese SRL - 1965-{{ date('Y') }}.</small>				
             </footer> 
 			
