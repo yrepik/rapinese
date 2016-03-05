@@ -8,6 +8,11 @@
 	<div ng-app="products">
 
 		@include('products/search_form')
+
+		<ol class="breadcrumb visible-print-block">
+			<li>{{ $brand->name }}</li>
+	  		<li>{{ $category->name_es }}</li>	  		
+		</ol>		
 		
 		@include('products/img_modal')
 		@include('products/query_modal')
@@ -40,7 +45,7 @@
 								{{ config('app.currency') }} {{ number_format($item->price_ars, 2) }}
 							</div>
 							<div class="col-md-3 col-sm-4 text-center">
-								<button class="btn btn-success" ng-click="openQueryModal($event, <?php echo $loop->index; ?>)">
+								<button class="btn btn-success hidden-print" ng-click="openQueryModal($event, <?php echo $loop->index; ?>)">
 									@lang('buttons.products.ask')
 								</button>
 							</div>
@@ -48,7 +53,7 @@
 					@endforeach		
 				</div>
 				
-				<div class="text-center">
+				<div class="hidden-print text-center">
 					{!! $data['results']->render() !!}
 				</div>			
 							
