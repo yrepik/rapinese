@@ -23,12 +23,12 @@ Route::controllers([
 
 Route::get('/', function()
 {
-	return View::make('home');
+	return view('home');
 });
 
 Route::get('/clients', function()
 {
-	return View::make('under_construction');
+	return view('under_construction');
 });
 
 Route::get('/products/{brand_alias}/{category_alias}', ['as' => 'product-search-results', 'uses' => 'ProductsController@getSearchResults']);
