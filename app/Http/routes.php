@@ -15,10 +15,10 @@
 
 Route::get('home', 'HomeController@index');*/
 
-Route::controllers([
+/*Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
-]);
+]);*/
 
 
 Route::get('/', function()
@@ -31,7 +31,10 @@ Route::get('/clients', function()
 	return view('under_construction');
 });
 
-Route::get('/products/{brand_alias}/{category_alias}', ['as' => 'product-search-results', 'uses' => 'ProductsController@getSearchResults']);
+Route::get('/products/{brand_alias}/{category_alias}', [
+    'as' => 'product-search-results', 
+    'uses' => 'ProductsController@getSearchResults'
+]);
 
 Route::controller('home', 'HomeController');
 Route::controller('products', 'ProductsController');

@@ -24,11 +24,11 @@
 				</p>		
 
 				<div id="product-results">
-					@foreach ($data['results'] as $item)			
+					@foreach ($data['results'] as $index => $item)			
 						<div class="row row-no-sidemargin">
 							<div class="col-md-2 col-sm-3 text-center">
 								@if (count($item->images))
-									<a href="#" ng-click="openModal($event, <?php echo $loop->index; ?>)" class="img">
+									<a href="#" ng-click="openModal($event, <?php echo $index; ?>)" class="img">
             							<span class="product-hover"><i class="fa fa-4x fa-search-plus"></i></span>
 										<img class="img-responsive" src="/images/products/sm/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" />
 									</a>									
@@ -45,7 +45,7 @@
 								{{ config('app.currency') }} {{ number_format($item->price_ars, 2) }}
 							</div>
 							<div class="col-md-3 col-sm-4 text-center">
-								<button class="btn btn-success hidden-print" ng-click="openQueryModal($event, <?php echo $loop->index; ?>)">
+								<button class="btn btn-success hidden-print" ng-click="openQueryModal($event, <?php echo $index; ?>)">
 									@lang('buttons.products.ask')
 								</button>
 							</div>

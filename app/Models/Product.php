@@ -3,6 +3,13 @@
 class Product extends Eloquent {
 
     protected $table = 'product'; 
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+    */
+    public $incrementing = false;
     
     public function brand() {
         return $this->belongsTo('Brand', 'brand_id');
