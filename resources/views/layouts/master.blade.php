@@ -39,9 +39,9 @@
 				<div class="navbar-collapse collapse" style="height: 1px;">
 					<ul class="nav navbar-nav">
 						<li><a href="{{ URL::to('/') }}">@lang('nav.company')</a></li>
-						<li><a href="{{ URL::to('/products') }}">@lang('nav.products')</a></li>
+						<li><a href="{{ route('products') }}">@lang('nav.products')</a></li>
 						<li><a href="{{ URL::to('/files/lista-de-precios.xls') }}" donwload><i class="glyphicon glyphicon-download-alt"></i> @lang('nav.pricelist')</a></li>
-						<li><a href="{{ URL::to('/clients') }}">@lang('nav.clients')</a></li>
+						<li><a href="{{ route('clients') }}">@lang('nav.clients')</a></li>
 					</ul>	
 					<ul class="nav navbar-nav navbar-right hidden">
 						<li class="dropdown">                             

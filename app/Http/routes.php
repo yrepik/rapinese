@@ -11,32 +11,17 @@
 |
 */
 
-/*Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');*/
-
-/*Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);*/
-
-
 Route::get('/', function()
 {
 	return view('home');
 });
-
-Route::get('/clients', function()
-{
-	return view('under_construction');
-});
-
+Route::get('/products', ['as' => 'products', 'uses' => 'ProductsController@getIndex']);
+Route::get('/products/search-redirect', ['uses' => 'ProductsController@getSearchRedirect']);
 Route::get('/products/{brand_alias}/{category_alias}', [
     'as' => 'product-search-results', 
     'uses' => 'ProductsController@getSearchResults'
 ]);
-
-Route::controller('home', 'HomeController');
-Route::controller('products', 'ProductsController');
-
-//Route::get('login', array('uses' => 'AuthController@getLogin'));
+Route::get('/clients', ['as' => 'clients', function()
+{
+	return view('under_construction');
+}]);
