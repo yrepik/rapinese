@@ -1,4 +1,5 @@
-<?php namespace App\Http\Controllers;
+<?php 
+namespace App\Http\Controllers;
 
 use Brand;
 use ProductCategory;
@@ -8,21 +9,24 @@ use Validator;
 use Mail;
 use Lang;
 
-class ProductsController extends Controller {
+class ProductsController extends Controller
+{
 	
-    public function getIndex() {
+    public function getIndex()
+    {
         return view('products/index', ['selected_brand' => null, 'selected_category' => null]);
     }
 
-    public function getSearchRedirect() {
+    public function getSearchRedirect()
+    {
         return redirect()->route(
             'product-search-results', 
             ['brand_alias' => Request::input('brand_alias'), 'category_alias' => Request::input('category_alias')]
         );
     }
 
-    public function getSearchResults($brandAlias, $categoryAlias, $page = 1) {    
-    
+    public function getSearchResults($brandAlias, $categoryAlias, $page = 1)
+    {
         $brand = Brand::where('alias', $brandAlias)->first();
         $category = ProductCategory::where('alias_es', $categoryAlias)->first();
 
@@ -57,7 +61,8 @@ class ProductsController extends Controller {
         ]);   
     }
 
-    public function postSendQuery() {
+    public function postSendQuery()
+    {
         $result = null;
         $msg = null;
         $errors = [];

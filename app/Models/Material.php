@@ -1,13 +1,14 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Material extends Eloquent {
-
-    //use SoftDeletingTrait;
+class Material extends Model
+{
 
     protected $table = 'material'; 	
 	
-    public function products() {
+    public function products()
+    {
         return $this->hasMany('Product');
     }  
 
