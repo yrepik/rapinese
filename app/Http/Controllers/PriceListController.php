@@ -68,7 +68,7 @@ class PriceListController extends Controller
     public function getDownload($tokenVal)
     {
         $token = new PriceListDownloadToken();
-        $valid = $token->isValid($tokenVal)->count() > 0;
+        $valid = $token->isValid($tokenVal);
         if (!$valid) {
             abort(404);
         }

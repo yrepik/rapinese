@@ -16,16 +16,16 @@ class PriceListDownloadToken extends Model
         return ['created_at'];
     }
 
-    public function coco($token)
+    public function isValid($token)
     {
-        return $this->isValid($token)->count() > 0;
+        return $this->byValueAndDaysOld($token, 2)->count() > 0;
     }
 
-    public function scopeIsValid($query, $token)
+    public function scopeByValueAndDaysOld($query, $token, $days)
     {
         return $query
             ->where('value', $token)
-            ->whereDate('created_at', '>=', Carbon::today()->subDays(2)->toDateString());
+            ->whereDate('created_at', '>=', Carbon::today()->subDays($days)->toDateString());
     } 
 
 }
