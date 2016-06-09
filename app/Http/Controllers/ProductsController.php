@@ -1,10 +1,10 @@
-<?php 
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 
 use Brand;
 use ProductCategory;
 use Product;
-use Request;
 use Validator;
 use Mail;
 use Lang;
@@ -17,11 +17,11 @@ class ProductsController extends Controller
         return view('products/index', ['selected_brand' => null, 'selected_category' => null]);
     }
 
-    public function getSearchRedirect()
+    public function getSearchRedirect(Request $request)
     {
         return redirect()->route(
             'product-search-results', 
-            ['brand_alias' => Request::input('brand_alias'), 'category_alias' => Request::input('category_alias')]
+            ['brand_alias' => $request->input('brand_alias'), 'category_alias' => $request->input('category_alias')]
         );
     }
 
@@ -61,7 +61,7 @@ class ProductsController extends Controller
         ]);   
     }
 
-    public function postSendQuery()
+    public function postSendQuery(Request $request)
     {
         $result = null;
         $msg = null;
@@ -80,16 +80,16 @@ class ProductsController extends Controller
             $sendResult = Mail::send(
                 'emails.product_query', 
                 [
-                    'name' => Request::input('name'), 
-                    'email' => Request::input('email'),
-                    'tel' => Request::input('tel'),
-                    'comments' => Request::input('comments'),
-                    'product_code' => Request::input('itemCod'),
-                    'product_description' => Request::input('itemDescrip')
+                    'name' => $request->input('name'), 
+                    'email' => $request->input('email'),
+                    'tel' => $request->input('tel'),
+                    'comments' => $request->input('comments'),
+                    'product_code' => $request->input('itemCod'),
+                    'product_description' => $request->input('itemDescrip')
                 ], 
                 function($message) {
                     $message
-                        ->from(Request::input('email'), Request::input('name'))
+                        ->from($request->input('email'), $request->input('name'))
                         ->to('rapinese@rapinese.com.ar')
                         ->bcc('german.medaglia@gmail.com')
                         ->subject('Consulta desde la web');

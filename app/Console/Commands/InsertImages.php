@@ -28,7 +28,7 @@ class InsertImages extends Command {
 	{
 		ini_set('memory_limit', '-1');
 		$force = $this->option('f');
-		$publicDir = App::environment('local') ? 'public' : 'public_html';
+		$publicDir = env('PUBLIC_DIR');
 		$dir = $publicDir . '/images/products';
 		if ($handle = opendir($dir)) {
 			$count = 0;

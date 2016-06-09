@@ -35,6 +35,11 @@ Route::group(['middleware' => ['web']], function() {
         'uses' => 'ProductsController@getSearchResults'
     ]);
     Route::post('/products/send-query', ['uses' => 'ProductsController@postSendQuery']);
+    Route::get('/price-list', ['as' => 'price-list', 'uses' => 'PriceListController@getIndex']);
+    Route::post('/price-list', ['uses' => 'PriceListController@postIndex']);
+    Route::get('/price-list/token-sent', ['as' => 'price-list-token-sent', 'uses' => 'PriceListController@getTokenSent']);
+    Route::get('/price-list/download/{token}', ['as' => 'price-list-download', 'uses' => 'PriceListController@getDownload'])
+        ->where('token', '[A-Za-z0-9]+');
 });
 
 Route::get('/clients', ['as' => 'clients', function()
