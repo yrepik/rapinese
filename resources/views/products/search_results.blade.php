@@ -33,7 +33,7 @@
 										<img class="img-responsive" src="/images/products/sm/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" />
 									</a>									
 								@else
-									<img class="img-responsive" style="max-width: 50px;" src="/images/products/City-No-Camera-icon.png" alt="{{ $item->name_es }}" />
+									<span class="rapinese-icon rapinese-icon-no-photo"  style="font-size: 70px;"></span>
 								@endif
 							</div>
 							<div class="col-md-6 col-sm-4">			
@@ -45,9 +45,16 @@
 								{{ config('app.currency') }} {{ number_format($item->price_ars, 2) }}
 							</div>
 							<div class="col-md-3 col-sm-4 text-center">
-								<button class="btn btn-success hidden-print" ng-click="openQueryModal($event, <?php echo $index; ?>)">
-									@lang('buttons.products.ask')
-								</button>
+								<!--<p>
+									<button class="btn btn-success hidden-print" ng-click="openQueryModal($event, <?php echo $index; ?>)">
+										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('Agregar al carrito')
+									</button>
+								</p>-->
+								<p>
+									<button class="btn btn-success hidden-print" ng-click="openQueryModal($event, <?php echo $index; ?>)">
+										<span class="glyphicon glyphicon-question-sign"></span> @lang('buttons.products.ask')
+									</button>
+								</p>
 							</div>
 						</div>
 					@endforeach		
