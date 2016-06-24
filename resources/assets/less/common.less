@@ -197,3 +197,40 @@ footer {
         content: "";
     }
 }
+
+
+@font-face {
+    font-family: 'car-icons';
+    src: url('../fonts/car-icons.eot?6wnxlc');
+    src: url('../fonts/car-icons.eot?6wnxlc#iefix') format('embedded-opentype'),
+        url('../fonts/car-icons.ttf?6wnxlc') format('truetype'),
+        url('../fonts/car-icons.woff?6wnxlc') format('woff'),
+        url('../fonts/car-icons.svg?6wnxlc#car-icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="car-icon-"], [class*=" car-icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'car-icons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.car-icon-car-insurance:before {
+    content: "\e900";
+}
+.car-icon-icon:before {
+    content: "\e901";
+}
+.car-icon-vehicle-repair:before {
+    content: "\e902";
+}

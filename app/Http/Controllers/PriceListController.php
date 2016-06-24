@@ -31,13 +31,16 @@ class PriceListController extends Controller
                 $sendResult = Mail::send(
                     'emails.price_list_download_token', 
                     [
-                        'token' => $token->value
+                        'token' => $token->value,
+                        'first_name' => $request->input('first_name'),
+                        'last_name' => $request->input('last_name')
                     ], 
                     function($message) use ($request) {
                         $message
-                            ->from($request->input('email')/*, $request->input('name')*/)
-                            ->to('german.medaglia@gmail.com' /*'rapinese@rapinese.com.ar'*/)
+                            ->from('german.medaglia@gmail.com', 'Rapinese SRL')
+                            ->to('german.medaglia@gmail.com'/*$request->input('email')*/)
                             ->bcc('german.medaglia@gmail.com')
+                            /*->bcc('rapinese@rapinese.com.ar')*/
                             ->subject('Lista de precios');
                     }
                 );  
@@ -48,7 +51,7 @@ class PriceListController extends Controller
 
                 return redirect()
                     ->route('price-list-token-sent')
-                    ->with(['token' => $token->value, 'token_sent' => true]);
+                    ->with(['email' => $request->input('email'), 'token_sent' => true]);
             } else {
 
             }
@@ -62,7 +65,7 @@ class PriceListController extends Controller
         if (!$request->session()->get('token_sent')) {
             return redirect()->route('price-list');
         }        
-        return view('price_list/token_sent', ['token' => $request->session()->get('token')]);
+        return view('price_list/token_sent', ['email' => $request->session()->get('email')]);
     }
 
     public function getDownload($tokenVal)

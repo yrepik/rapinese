@@ -3,7 +3,7 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-3 text-center">
-			<img src="/images/404.png" class="img-responsive" style="max-height: 200px;" />
+            <span class="car-icon car-icon-car-insurance" style="font-size: 260px;"></span>
 		</div>
 		<div class="col-md-9">
     		<h1>@yield('message')</h1>

@@ -27,5 +27,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule
+            ->command('ii')
+            /*->dailyAt('23:28')*/
+            ->everyMinute()
+            ->sendOutputTo(base_path() . '/files/cron.txt')
+            ->emailOutputTo('german.medaglia@gmail.com');
     }
 }
