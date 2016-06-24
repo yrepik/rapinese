@@ -158,6 +158,7 @@ return [
 
 		Collective\Html\HtmlServiceProvider::class,
 		Intervention\Image\ImageServiceProvider::class,
+        SantiGraviano\LaravelMercadoPago\Providers\MercadoPagoServiceProvider::class,
 
     ],
 
@@ -207,6 +208,8 @@ return [
 
 		'Form'		=> Collective\Html\FormFacade::class, 
 		'HTML'		=> Collective\Html\HtmlFacade::class,
+
+        'MP' => SantiGraviano\LaravelMercadoPago\Facades\MP::class,
     ],
 
     'currency' => 'ARS',

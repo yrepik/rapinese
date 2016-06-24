@@ -8,7 +8,7 @@
 		"laravel/framework": "5.2.*",
 		"laravelcollective/html": "5.*",
         "intervention/image": "dev-master",
-        "mercadopago/sdk": "0.5.2"
+        "santigraviano/laravel-mercadopago": "dev-master"
 	},
 	"require-dev": {
         "fzaninotto/faker": "~1.4",
