@@ -67,7 +67,7 @@ class ProductsController extends Controller
         $msg = null;
         $errors = [];
 
-        $validator = Validator::make(Request::all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:100',
             'email' => 'required|email|max:100'
         ], [
