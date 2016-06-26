@@ -67,7 +67,7 @@ class CartController extends Controller
         ];
 
         $preference = (Cart::count()) ? MP::create_preference($preferenceData) : null;
-
+        $request->session()->put('preference_id', $preference['response']['id']);
         return redirect()->to($preference['response']['init_point']);
     }
 
