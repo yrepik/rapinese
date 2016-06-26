@@ -20,10 +20,15 @@
 					{{ config('app.currency') }} <big>%%item.price_ars%%</big>
 				</div>
 				<div class="text-center mt20">
-					<button class="btn btn-success btn-block" ng-click="openQueryModal($event, item)">
-						@lang('buttons.products.ask')
-					</button>
+					<a class="btn btn-success btn-block hidden-print" href="{{ route('cart-add', '%%item.code%%') }}">
+						<span class="glyphicon glyphicon-shopping-cart"></span> @lang('Comprar')
+					</a>
 				</div>				
+				<div class="text-center mt20">
+					<button class="btn btn-default btn-block hidden-print" ng-click="openQueryModal($event, item)">
+						<span class="glyphicon glyphicon-question-sign"></span> @lang('buttons.products.ask')
+					</button>
+				</div>
 			</div>
 		</div>		
 	</div>

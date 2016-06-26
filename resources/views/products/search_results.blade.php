@@ -47,7 +47,7 @@
 							<div class="col-md-3 col-sm-4 text-center">
 								<p>
 									<a class="btn btn-success btn-block hidden-print" href="{{ route('cart-add', $item->code) }}">
-										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('Agregar al carrito')
+										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('Comprar')
 									</a>
 								</p>
 								<p>

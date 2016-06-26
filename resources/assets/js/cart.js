@@ -9,9 +9,8 @@ cartModule.controller('CartController', function($scope, $confirm, $window) {
 
         if (angular.isUndefined(href)) {
             target = target.closest('a');
-        }
-
-        href = target.attr('href');
+            href = target.attr('href');
+        }        
 
         $confirm({title: 'Confirmar', ok: 'Confirmar', cancel: 'Cancelar'}, {template: '<div class="modal-header"><h3 class="modal-title">%%data.title%%</h3></div>' +
             '<div class="modal-body">' + target.data('text') + '</div>' +

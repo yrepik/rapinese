@@ -35,17 +35,22 @@ Route::group(['middleware' => ['web']], function() {
         'uses' => 'ProductsController@getSearchResults'
     ]);
     Route::post('/products/send-query', ['uses' => 'ProductsController@postSendQuery']);
+    
     Route::get('/price-list', ['as' => 'price-list', 'uses' => 'PriceListController@getIndex']);
     Route::post('/price-list', ['uses' => 'PriceListController@postIndex']);
     Route::get('/price-list/token-sent', ['as' => 'price-list-token-sent', 'uses' => 'PriceListController@getTokenSent']);
     Route::get('/price-list/download/{token}', ['as' => 'price-list-download', 'uses' => 'PriceListController@getDownload'])
         ->where('token', '[A-Za-z0-9]+');
+    
     Route::get('/cart', ['as' => 'cart', 'uses' => 'CartController@getIndex']);
     Route::get('/cart/add/{code}', ['as' => 'cart-add', 'uses' => 'CartController@getAdd']);
     Route::get('/cart/remove/{rowId}', ['as' => 'cart-remove', 'uses' => 'CartController@getRemove']);
     Route::get('/cart/empty', ['as' => 'cart-empty', 'uses' => 'CartController@getEmpty']);
     Route::post('/cart/submit-order', ['as' => 'cart-submit-order', 'uses' => 'CartController@postSubmitOrder']);
     Route::get('/cart/calculate-shipping/{zipCode}/{dimensions}/{total}', ['as' => 'cart-calculate-shipping', 'uses' => 'CartController@getCalculateShipping']);
+
+    Route::get('/checkout/{result}', ['as' => 'checkout', 'uses' => 'CheckoutController@getIndex'])
+        ->where('result', '(success|failure|pending)');;
 });
 
 Route::get('/clients', ['as' => 'clients', function()

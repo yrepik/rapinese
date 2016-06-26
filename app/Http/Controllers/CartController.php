@@ -38,11 +38,11 @@ class CartController extends Controller
 
         $preferenceData = [
             'items' => [],
-            /*'back_urls': [
-                'success' => route('checkout-success'),
-                'failure' => route('checkout-failure'),
-                'pending' => route('checkout-pending')
-            ],*/
+            'back_urls' => [
+                'success' => route('checkout' , 'success'),
+                'failure' => route('checkout', 'failure'),
+                'pending' => route('checkout', 'pending')
+            ],
             'shipments' => [
                 'mode' => 'me2',
                 'dimensions' => '30x30x30,500',
@@ -52,18 +52,18 @@ class CartController extends Controller
 
         $itemNames = [];
         foreach ($content as $item) {
-            $itemNames[] = $item->name;
+            $name = $item->name;
+            if ($item->qty > 1) {
+                $name .= ' (' . $item->qty .')';
+            } 
+            $itemNames[] = $name;
         }
 
         $preferenceData['items'][] = [
-            //'id' => $item->id,
-            //'category_id' => 'phones',
             'title' => implode(' + ', $itemNames),
-            //'description' => 'Sarasa',//implode(' + ', array_get($content->toArray(), 'name')),
-            //'picture_url' => $item->options->img,
-            'quantity' => 1,//$item->qty,
+            'quantity' => 1, //$item->qty,
             'currency_id' => config('app.currency'),
-            'unit_price' => $total2//$item->price
+            'unit_price' => $total2 //$item->price
         ];
 
         $preference = (Cart::count()) ? MP::create_preference($preferenceData) : null;
@@ -101,7 +101,7 @@ class CartController extends Controller
     public function getEmpty()
     {        
         Cart::destroy();
-        return redirect()->route('cart');
+        return redirect()->route('cart')->with(['cart_emptied' => true]);
     }     
 
     public function getUpdate($code, $qty)
