@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "784a515ee203653cbae032f5306240a4",
-    "content-hash": "227684576f05f2fd14658504cd10678c",
+    "hash": "c30c14f6d25af72fd2e8c9c53d99dfe9",
+    "content-hash": "6ec669e03972c1f5be685b899feb67bb",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -160,6 +160,56 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "gloudemans/shoppingcart",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Crinsane/LaravelShoppingcart.git",
+                "reference": "1c4e6c6abe79fbddd0391246dec4b43aa67c4b34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Crinsane/LaravelShoppingcart/zipball/1c4e6c6abe79fbddd0391246dec4b43aa67c4b34",
+                "reference": "1c4e6c6abe79fbddd0391246dec4b43aa67c4b34",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/events": "5.1.*|5.2.*",
+                "illuminate/session": "5.1.*|5.2.*",
+                "illuminate/support": "5.1.*|5.2.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.0",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "gloudemans/notify": "Simple flash notifications for Laravel"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gloudemans\\Shoppingcart\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Gloudemans",
+                    "email": "info@robgloudemans.nl"
+                }
+            ],
+            "description": "Laravel Shoppingcart",
+            "keywords": [
+                "laravel",
+                "shoppingcart"
+            ],
+            "time": "2016-06-23 12:51:47"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -3419,7 +3469,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "intervention/image": 20,
-        "santigraviano/laravel-mercadopago": 20
+        "santigraviano/laravel-mercadopago": 20,
+        "gloudemans/shoppingcart": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

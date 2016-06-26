@@ -8,7 +8,8 @@
 		"laravel/framework": "5.2.*",
 		"laravelcollective/html": "5.*",
         "intervention/image": "dev-master",
-        "santigraviano/laravel-mercadopago": "dev-master"
+        "santigraviano/laravel-mercadopago": "dev-master",
+        "gloudemans/shoppingcart": "dev-master" 
 	},
 	"require-dev": {
         "fzaninotto/faker": "~1.4",

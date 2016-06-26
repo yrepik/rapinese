@@ -25,6 +25,21 @@ module.exports = function(grunt) {
                     "./resources/assets/js/home.js"
                 ],
                 dest: "./public/js/home.js"
+            },
+            products: {
+                files: {
+                    "./public/js/products.js": [
+                        //"./bower_components/bootstrap/js/modal.js",
+                        "./resources/assets/js/products.js"
+                    ]
+                }
+            },            
+            cart: {
+                src: [
+                    "./bower_components/angular-confirm/angular-confirm.js",
+                    "./resources/assets/js/cart.js"
+                ],
+                dest: "./public/js/cart.js"
             }            
         }, 
         uglify: {
@@ -59,7 +74,14 @@ module.exports = function(grunt) {
                         "./resources/assets/js/products.js"
                     ]
                 }
-            }
+            },
+            cart: {
+                src: [
+                    "./bower_components/angular-confirm-modal/angular-confirm.js",
+                    "./resources/assets/js/cart.js"
+                ],
+                dest: "./public/js/cart.js"
+            }             
         },  
         cssmin: {
             options: {
@@ -94,7 +116,11 @@ module.exports = function(grunt) {
             uglifyProducts: {
                 files: "./resources/assets/js/products.js",
                 tasks: ["uglify:products"]
-            }                              
+            },
+            uglifyCart: {
+                files: "./resources/assets/js/cart.js",
+                tasks: ["uglify:cart"]
+            }
         },
         copy: {
             fonts: {

@@ -4,7 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 
-    protected $table = 'product'; 
+    protected $table = 'product';
+
+    protected $primaryKey = 'code'; 
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -50,8 +52,13 @@ class Product extends Model
             ->paginate($itemsPerPage);
     }
     
-    /*public function getImageCountAttribute() {
-        return $this->images()->count();
-    }*/   
+    public function getFormattedPriceArsAttribute() {
+        return number_format($this->price_ars, 2, ',', '.');
+    }
+
+    public function hasImg()
+    {
+        return count($this->images) > 0;
+    }
 
 }

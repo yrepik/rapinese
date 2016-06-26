@@ -42,16 +42,16 @@
 								<div><span>{{ @$item->material->name_es }}</span></div>
 							</div>
 							<div class="col-md-1 col-sm-1 product-price">			
-								{{ config('app.currency') }} {{ number_format($item->price_ars, 2) }}
+								{{ config('app.currency') }} {{ $item->formatted_price_ars }}
 							</div>
 							<div class="col-md-3 col-sm-4 text-center">
-								<!--<p>
-									<button class="btn btn-success hidden-print" ng-click="openQueryModal($event, <?php echo $index; ?>)">
-										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('Agregar al carrito')
-									</button>
-								</p>-->
 								<p>
-									<button class="btn btn-success hidden-print" ng-click="openQueryModal($event, <?php echo $index; ?>)">
+									<a class="btn btn-success btn-block hidden-print" href="{{ route('cart-add', $item->code) }}">
+										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('Agregar al carrito')
+									</a>
+								</p>
+								<p>
+									<button class="btn btn-default btn-block hidden-print" ng-click="openQueryModal($event, <?php echo $index; ?>)">
 										<span class="glyphicon glyphicon-question-sign"></span> @lang('buttons.products.ask')
 									</button>
 								</p>
