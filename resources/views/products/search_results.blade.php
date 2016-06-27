@@ -33,7 +33,7 @@
 										<img class="img-responsive" src="/images/products/sm/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" />
 									</a>									
 								@else
-									<span class="rapinese-icon rapinese-icon-no-photo"  style="font-size: 70px;"></span>
+									<span class="rapinese-icon rapinese-icon-no-photo" style="font-size: 70px;"></span>
 								@endif
 							</div>
 							<div class="col-md-6 col-sm-4">			
@@ -42,7 +42,7 @@
 								<div><span>{{ @$item->material->name_es }}</span></div>
 							</div>
 							<div class="col-md-1 col-sm-1 product-price">			
-								{{ config('app.currency') }} {{ $item->formatted_price_ars }}
+								{{ $item->formatted_price_ars }}
 							</div>
 							<div class="col-md-3 col-sm-4 text-center">
 								<p>

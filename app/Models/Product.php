@@ -53,7 +53,7 @@ class Product extends Model
     }
     
     public function getFormattedPriceArsAttribute() {
-        return number_format($this->price_ars, 2, ',', '.');
+        return config('app.currency') . ' ' . number_format($this->price_ars, 2, ',', '.');
     }
 
     public function hasImg()

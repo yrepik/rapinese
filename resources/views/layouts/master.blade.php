@@ -22,8 +22,8 @@
 				</div>	
 				<address class="col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 hidden-xs text-right">
 					<strong>Rapinese SRL</strong><br />
-					<span class="glyphicon glyphicon-envelope"></span> rapinese@rapinese.com.ar<br />			
-					<span class="glyphicon glyphicon-earphone"></span> +54 11 4764-5079 / 4768-3166
+					<span class="glyphicon glyphicon-envelope"></span> {{ config('app.contact_email') }}<br />
+					<span class="glyphicon glyphicon-earphone"></span> {{ config('app.contact_phones') }}
 				</address>
 			</header>
 			
@@ -40,7 +40,8 @@
 					<ul class="nav navbar-nav">
 						<li><a href="{{ URL::to('/') }}">@lang('nav.company')</a></li>
 						<li><a href="{{ route('products') }}">@lang('nav.products')</a></li>
-						<li><a href="{{ route('price-list') }}">@lang('nav.pricelist')</a></li>
+						<!--<li><a href="{{ route('price-list') }}">@lang('nav.pricelist')</a></li>-->
+                        <li><a href="{{ route('cart') }}">@lang('Carrito de compras')</a></li>
 						<li><a href="{{ route('clients') }}">@lang('nav.clients')</a></li>
 					</ul>	
 					<ul class="nav navbar-nav navbar-right hidden">
@@ -67,7 +68,11 @@
 			</div>-->
 			
             <footer class="hidden-print">                
-				<small>Rapinese SRL - 1965-{{ date('Y') }}.</small>				
+				<small>
+                    <span class="glyphicon glyphicon glyphicon-copyright-mark"></span> Rapinese SRL - 1965-{{ date('Y') }} 
+                    <span class="glyphicon glyphicon-envelope ml20"></span> {{ config('app.contact_email') }} 
+                    <span class="glyphicon glyphicon-earphone ml20"></span> {{ config('app.contact_phones') }}
+                </small>
             </footer> 
 			
         </div>
