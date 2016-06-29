@@ -3,5 +3,7 @@
 return [
 	'products.search.no_results' => 'Lo sentimos, su búsqueda no produjo ningún resultado.',	
 	'products.ask.success' => 'Gracias por contactarse con nosotros. Nos comunicaremos con usted a la brevedad.',
-	'products.ask.failure' => 'Ha ocurrido un error. Por favor, vuelva a intentarlo más tarde.'
+	'products.ask.failure' => 'Ha ocurrido un error. Por favor, vuelva a intentarlo más tarde.',
+    'cart.no_items' => 'No hay ítems en su carrito de compras. <a href="' . route('products') . '">Agregar</a>.',
+    'cart.shipping_cost_not_included' => '<strong>Importante:</strong> El costo del envío no está incluído, se le informará en el siguiente paso.'
 ];

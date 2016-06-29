@@ -6,7 +6,7 @@
 
 @section('content')
 	<div ng-app="products">
-		<h1>@lang('Buscador de productos')</h1>
+		<h1>@lang('headers.products')</h1>
 		@include('products/search_form')
 
 		<ol class="breadcrumb visible-print-block">
@@ -47,7 +47,7 @@
 							<div class="col-md-3 col-sm-4 text-center">
 								<p>
 									<a class="btn btn-success btn-block hidden-print" href="{{ route('cart-add', $item->code) }}">
-										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('Comprar')
+										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('buttons.products.buy')
 									</a>
 								</p>
 								<p>

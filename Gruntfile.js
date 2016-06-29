@@ -1,5 +1,16 @@
 module.exports = function(grunt) {
 
+    var baseJsFiles = [
+        "./bower_components/jquery/jquery.js",
+        "./bower_components/bootstrap/js/alert.js",
+        "./bower_components/bootstrap/js/collapse.js",
+        "./bower_components/angular/angular.js",
+        "./bower_components/angular-i18n/angular-locale_es-ar.js",
+        "./bower_components/angular-animate/angular-animate.js",                  
+        "./bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+        "./resources/assets/js/app.js"
+    ];
+
     grunt.initConfig({
         less: {
             dist: {
@@ -9,15 +20,7 @@ module.exports = function(grunt) {
         },
         concat: {
             base: {
-                src: [
-                    "./bower_components/jquery/jquery.js",
-                    "./bower_components/bootstrap/js/alert.js",
-                    "./bower_components/bootstrap/js/collapse.js",
-                    "./bower_components/angular/angular.js",
-                    "./bower_components/angular-animate/angular-animate.js",                  
-                    "./bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
-                    "./resources/assets/js/app.js"
-                ],
+                src: baseJsFiles,
                 dest: "./public/js/base.js"
             },
             home: {
@@ -48,15 +51,7 @@ module.exports = function(grunt) {
             },
             base: {
                 files: {
-                    "./public/js/base.js": [
-                        "./bower_components/jquery/jquery.js",
-                        "./bower_components/bootstrap/js/alert.js",
-                        "./bower_components/bootstrap/js/collapse.js",
-                        "./bower_components/angular/angular.js",
-                        "./bower_components/angular-animate/angular-animate.js",
-                        "./bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
-                        "./resources/assets/js/app.js"
-                    ]
+                    "./public/js/base.js": baseJsFiles
                 }
             },
             home: {

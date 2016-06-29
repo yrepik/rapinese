@@ -21,7 +21,7 @@
 					<img src="/images/logo2.png" class="img-responsive" />
 				</div>	
 				<address class="col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 hidden-xs text-right">
-					<strong>Rapinese SRL</strong><br />
+					<strong>{{ config('app.company_name') }}</strong><br />
 					<span class="glyphicon glyphicon-envelope"></span> {{ config('app.contact_email') }}<br />
 					<span class="glyphicon glyphicon-earphone"></span> {{ config('app.contact_phones') }}
 				</address>
@@ -41,7 +41,7 @@
 						<li><a href="{{ URL::to('/') }}">@lang('nav.company')</a></li>
 						<li><a href="{{ route('products') }}">@lang('nav.products')</a></li>
 						<!--<li><a href="{{ route('price-list') }}">@lang('nav.pricelist')</a></li>-->
-                        <li><a href="{{ route('cart') }}">@lang('Carrito de compras')</a></li>
+                        <li><a href="{{ route('cart') }}">@lang('nav.cart')</a></li>
 						<li><a href="{{ route('clients') }}">@lang('nav.clients')</a></li>
 					</ul>	
 					<ul class="nav navbar-nav navbar-right hidden">
@@ -63,13 +63,9 @@
                 @yield('content') 
             </div>
 			
-			<!--<div id="brands" class="text-center hidden-xs hidden-sm hidden-md">
-				<img src="http://www.silvaflex.com/img/brands.jpg" class="img-responsive" />
-			</div>-->
-			
             <footer class="hidden-print">                
 				<small>
-                    <span class="glyphicon glyphicon glyphicon-copyright-mark"></span> Rapinese SRL - 1965-{{ date('Y') }} 
+                    <span class="glyphicon glyphicon glyphicon-copyright-mark"></span> {{ config('app.company_name') }} - 1965-{{ date('Y') }} 
                     <span class="glyphicon glyphicon-envelope ml20"></span> {{ config('app.contact_email') }} 
                     <span class="glyphicon glyphicon-earphone ml20"></span> {{ config('app.contact_phones') }}
                 </small>

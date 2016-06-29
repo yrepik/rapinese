@@ -17,7 +17,7 @@
 					</li>
 				</ul>
 				<div class="product-price mt20">
-					{{ config('app.currency') }} <big>%%item.price_ars%%</big>
+					{{ config('app.currency') }} <big>%%item.price_ars | number:2%%</big>
 				</div>
 				<div class="text-center mt20">
 					<a class="btn btn-success btn-block hidden-print" href="{{ route('cart-add', '%%item.code%%') }}">

@@ -12,7 +12,7 @@ cartModule.controller('CartController', function($scope, $confirm, $window) {
             href = target.attr('href');
         }        
 
-        $confirm({title: 'Confirmar', ok: 'Confirmar', cancel: 'Cancelar'}, {template: '<div class="modal-header"><h3 class="modal-title">%%data.title%%</h3></div>' +
+        $confirm({title: target.data('title'), ok: target.data('ok'), cancel: target.data('cancel')}, {template: '<div class="modal-header"><h3 class="modal-title">%%data.title%%</h3></div>' +
             '<div class="modal-body">' + target.data('text') + '</div>' +
             '<div class="modal-footer">' +
             '<button class="btn btn-danger" ng-click="ok()">%%data.ok%%</button>' +

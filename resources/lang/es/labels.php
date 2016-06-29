@@ -6,5 +6,8 @@ return [
 	'products.ask.name' => 'Nombre y apellido',
 	'products.ask.email' => 'E-mail',
 	'products.ask.tel' => 'Teléfono (opcional)',
-	'products.ask.comments' => 'Comentarios (opcional)'
+	'products.ask.comments' => 'Comentarios (opcional)',
+    'cart.subtotal' => 'Subtotal :currency:',
+    'cart.tax' => 'IVA :currency:',
+    'cart.total' => 'Total :currency:'
 ];

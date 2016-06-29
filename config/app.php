@@ -215,6 +215,7 @@ return [
     ],
 
     'currency' => 'ARS',
+    'company_name' => 'Rapinese SRL',
     'contact_email' => 'rapinese@rapinese.com.ar',
     'contact_phones' => '+54 11 4764-5079 / 4768-3166'
 

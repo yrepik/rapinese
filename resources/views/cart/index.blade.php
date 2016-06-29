@@ -1,12 +1,16 @@
 @extends('layouts.master')
 
+@section('title')
+    @lang('Carrito de compras')
+@stop
+
 @section('content')
     <div id="cart" ng-app="cart" ng-controller="CartController">
-        <h1>Carrito de compras</h1>
+        <h1>@lang('headers.cart')</h1>
 
         @if (!count($content))
             <div class="alert alert-warning">
-                No hay ítems en su carrito de compras. <a href="{{ route('products') }}">Agregar</a>.
+                @lang('alerts.cart.no_items')
             </div>    
         @else
             {!! Form::open(['action' => ['CartController@postSubmitOrder'], 'role' => 'form', 'method' => 'post', 'class' => 'hidden-print mb20']) !!}
@@ -31,8 +35,13 @@
                             x{{ $item->qty }}
                         </div>
                         <div class="col-md-1 col-sm-2 text-center">
-                            <a href="{{ route('cart-remove', $item->rowId) }}" ng-click="confirm($event)" data-text="@lang('Confirma que desea eliminar el ítem ' . $item->name  . '?')">
-                                <span class="glyphicon glyphicon-remove" uib-tooltip="@lang('Remover ítem del carrito')" tooltip-placement="top"></span>
+                            <a href="{{ route('cart-remove', $item->rowId) }}" 
+                                ng-click="confirm($event)" 
+                                data-title="@lang('headers.modal.confirm')" 
+                                data-ok="@lang('buttons.confirm')" 
+                                data-cancel="@lang('buttons.cancel')" 
+                                data-text="@lang('Confirma que desea eliminar el ítem ' . $item->name  . '?')">
+                                <span class="glyphicon glyphicon-remove" uib-tooltip="@lang('tooltips.cart.remove_item')" tooltip-placement="top"></span>
                             </a>
                         </div>
                     </div>  
@@ -40,43 +49,18 @@
                 <div class="row row-no-sidemargin">
                     <div class="col-md-offset-5 col-md-4 text-right">         
                         <dl class="dl-horizontal">
-                            <dt>Subtotal:</dt>
-                            <dd>{{ config('app.currency') }} {{ $subtotal }}</dd>
-                            <dt>IVA:</dt>
-                            <dd>{{ config('app.currency') }} {{ $tax }}</dd>
-                            <dt>Total:</dt>
-                            <dd>{{ config('app.currency') }} {{ $total }}</dd>
+                            <dt>@lang('labels.cart.subtotal', ['currency' => config('app.currency')])</dt>
+                            <dd>{{ $subtotal }}</dd>
+                            <dt>@lang('labels.cart.tax', ['currency' => config('app.currency')])</dt>
+                            <dd>{{ $tax }}</dd>
+                            <dt>@lang('labels.cart.total', ['currency' => config('app.currency')])</dt>
+                            <dd>{{ $total }}</dd>
                         </dl>
                     </div>
                 </div> 
 
-                <!--<div class="row row-no-sidemargin">
-                    <div class="col-md-8 col-sm-7 text-right">         
-                        <strong>Subtotal:</strong>
-                    </div>
-                    <div class="col-md-4 col-sm-5 product-price">           
-                        {{ config('app.currency') }} {{ $subtotal }}
-                    </div>
-                </div> 
-
-                <div class="row row-no-sidemargin">
-                    <div class="col-md-8 col-sm-7 text-right">         
-                        <strong>IVA:</strong>
-                    </div>
-                    <div class="col-md-4 col-sm-5 product-price">           
-                        {{ config('app.currency') }} {{ $tax }}
-                    </div>
-                </div>      
-                <div class="row row-no-sidemargin mb20">
-                    <div class="col-md-8 col-sm-7 text-right">         
-                        <strong>Total:</strong>
-                    </div>
-                    <div class="col-md-4 col-sm-5 product-price">           
-                        {{ config('app.currency') }} {{ $total }}
-                    </div>
-                </div>-->
                 <div class="alert alert-warning mb20">
-                    <strong>Importante:</strong> El costo del envío no está incluído, se le informará en el siguiente paso.
+                    @lang('alerts.cart.shipping_cost_not_included')
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -85,10 +69,18 @@
                     <div class="col-md-8">
                         <ul class="list-inline text-right">
                             <li>
-                                <a href="{{ route('cart-empty') }}" ng-click="confirm($event)" data-text="Confirma que desea eliminar todos los ítems del carrito?" class="btn btn-lg btn-danger">Vaciar carrito</a>
+                                <a href="{{ route('cart-empty') }}" 
+                                    ng-click="confirm($event)" 
+                                    data-title="@lang('headers.modal.confirm')" 
+                                    data-ok="@lang('buttons.confirm')" 
+                                    data-cancel="@lang('buttons.cancel')" 
+                                    data-text="Confirma que desea eliminar todos los ítems del carrito?" 
+                                    class="btn btn-lg btn-danger">
+                                    @lang('buttons.cart.empty')
+                                </a>
                             </li>
-                            <li><a href="{{ route('products') }}" class="btn btn-lg btn-default">Continuar comprando</a></li>
-                            <li><button type="submit" class="btn btn-lg btn-success">Proceder con el pago</button></li>
+                            <li><a href="{{ route('products') }}" class="btn btn-lg btn-default">@lang('buttons.cart.continue_shopping')</a></li>
+                            <li><button type="submit" class="btn btn-lg btn-success">@lang('buttons.cart.proceed_to_checkout')</button></li>
                         </ul>
                     </div>
                 </div>

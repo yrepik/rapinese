@@ -26,7 +26,7 @@
 		!!}
 	</div>
 	<div class="form-group" 		
-		uib-tooltip="@lang('Seleccione marca y rubro.')" 
+		uib-tooltip="@lang('tooltips.products.select_brand_and_category')" 
 		tooltip-placement="bottom"
 		tooltip-enable="brandOrCategoryNotSelected()">
 		<button 
