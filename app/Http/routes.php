@@ -35,22 +35,29 @@ Route::group(['middleware' => ['web']], function() {
         'uses' => 'ProductsController@getSearchResults'
     ]);
     Route::post('/products/send-query', ['uses' => 'ProductsController@postSendQuery']);
-    
-    Route::get('/price-list', ['as' => 'price-list', 'uses' => 'PriceListController@getIndex']);
-    Route::post('/price-list', ['uses' => 'PriceListController@postIndex']);
-    Route::get('/price-list/token-sent', ['as' => 'price-list-token-sent', 'uses' => 'PriceListController@getTokenSent']);
-    Route::get('/price-list/download/{token}', ['as' => 'price-list-download', 'uses' => 'PriceListController@getDownload'])
-        ->where('token', '[A-Za-z0-9]+');
-    
+       
     Route::get('/cart', ['as' => 'cart', 'uses' => 'CartController@getIndex']);
-    Route::get('/cart/add/{code}', ['as' => 'cart-add', 'uses' => 'CartController@getAdd']);
+    Route::get('/cart/add/{code}', ['as' => 'cart-add', 'uses' => 'CartController@getAdd'])
+        ->where('code', '[A-Z\.0-9]+');
     Route::get('/cart/remove/{rowId}', ['as' => 'cart-remove', 'uses' => 'CartController@getRemove']);
     Route::get('/cart/empty', ['as' => 'cart-empty', 'uses' => 'CartController@getEmpty']);
     Route::post('/cart/submit-order', ['as' => 'cart-submit-order', 'uses' => 'CartController@postSubmitOrder']);
     Route::get('/cart/calculate-shipping/{zipCode}/{dimensions}/{total}', ['as' => 'cart-calculate-shipping', 'uses' => 'CartController@getCalculateShipping']);
 
     Route::get('/checkout/{result}', ['as' => 'checkout', 'uses' => 'CheckoutController@getIndex'])
-        ->where('result', '(success|failure|pending)');;
+        ->where('result', '(success|failure|pending)');
+
+    Route::get('/auth/login', ['as' => 'auth-login', 'uses' => 'Auth\AuthController@getLogin']);
+    Route::post('/auth/login', 'Auth\AuthController@postLogin');    
+    Route::get('/auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']); 
+    Route::get('/auth/register', ['as' => 'auth-register', 'uses' => 'Auth\AuthController@getRegister']); 
+    Route::post('/auth/register', 'Auth\AuthController@postRegister'); 
+    Route::get('/auth/registration-successful', ['as' => 'auth-registration-successful', 'uses' => 'Auth\AuthController@getRegistrationSuccessful']); 
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/price-list', ['as' => 'price-list', 'uses' => 'PriceListController@getIndex']);
+        Route::get('/price-list/download', ['as' => 'price-list-download', 'uses' => 'PriceListController@getDownload']);
+    });
 });
 
 Route::get('/clients', ['as' => 'clients', function()

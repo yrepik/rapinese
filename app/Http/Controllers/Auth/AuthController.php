@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Session;
+
 class AuthController extends Controller
 {
     /*
@@ -28,7 +32,9 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    //protected $redirectTo = '/';
+
+    protected $redirectAfterLogout = '/auth/login';
 
     /**
      * Create a new authentication controller instance.
@@ -37,7 +43,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'getLogout']);
     }
 
     /**
@@ -69,4 +75,36 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function getLogin()
+    {
+        $showWarning = false;
+        if (!empty(Session::get('url.intended'))) {
+            $showWarning = true;
+        }
+        //return $this->showLoginForm();
+        return view('auth.login', ['show_warning' => $showWarning]);
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();        
+        return redirect($this->redirectAfterLogout)->with('success_msg', trans('Sesión finalizada exitosamente.'));
+    }
+
+    public function getRegister()
+    {
+        return view('auth.register');
+    }
+
+    public function postRegister(Request $request)
+    {
+        return redirect()->route('auth-registration-successful')->with(['registration_successful' => true]);
+    }
+
+    public function getRegistrationSuccessful()
+    {
+
+    }
+
 }

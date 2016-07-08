@@ -75,6 +75,12 @@ class CartController extends Controller
     {        
         $product = Product::find($code);
 
+        if (empty($product)) {
+            return redirect()->route('products');
+        }
+
+        Cart::destroy();
+
         $options = [];
 
         if ($product->hasImg()) {

@@ -9,5 +9,8 @@ return [
 	'products.ask.comments' => 'Comentarios (opcional)',
     'cart.subtotal' => 'Subtotal :currency:',
     'cart.tax' => 'IVA :currency:',
-    'cart.total' => 'Total :currency:'
+    'cart.total' => 'Total :currency:',
+    'auth.email' => 'Correo electrónico',
+    'auth.password' => 'Contrasena',
+    'auth.remember' => 'Recordarme en esta máquina'
 ];

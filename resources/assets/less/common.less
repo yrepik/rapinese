@@ -65,7 +65,12 @@ span.mandatory {
 .list-inline > li {padding: 5px;}
 
 
-a {outline: none !important;}
+a, .btn, .close {
+    outline: none !important;
+    &:focus {
+        outline: none !important;
+    }
+}
 textarea {outline: 0; resize: none;}
 
 th {

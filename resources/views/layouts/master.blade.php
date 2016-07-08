@@ -41,7 +41,7 @@
 						<li><a href="{{ URL::to('/') }}">@lang('nav.company')</a></li>
 						<li><a href="{{ route('products') }}">@lang('nav.products')</a></li>
 						<!--<li><a href="{{ route('price-list') }}">@lang('nav.pricelist')</a></li>-->
-                        <li><a href="{{ route('cart') }}">@lang('nav.cart')</a></li>
+                        <!--<li><a href="{{ route('cart') }}">@lang('nav.cart')</a></li>-->
 						<li><a href="{{ route('clients') }}">@lang('nav.clients')</a></li>
 					</ul>	
 					<ul class="nav navbar-nav navbar-right hidden">

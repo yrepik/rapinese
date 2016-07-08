@@ -20,10 +20,10 @@
                             @if (count($item->options->img))
                                 <img src="{{ $item->options->img }}" class="img-responsive" />                                   
                             @else
-                                <span class="rapinese-icon rapinese-icon-no-photo"  style="font-size: 70px;"></span>
+                                <span class="rapinese-icon rapinese-icon-no-photo" style="font-size: 70px;"></span>
                             @endif
                         </div>
-                        <div class="col-md-6 col-sm-4">         
+                        <div class="col-md-9 col-sm-8">         
                             <div class="product-code"><strong>{{ $item->id }}</strong></div>
                             <div class="product-name">{{ $item->name }}</div>
                             <!--<div><span>{{ @$item->material->name_es }}</span></div>-->
@@ -31,23 +31,23 @@
                         <div class="col-md-1 col-sm-1 text-right product-price">           
                             {{ config('app.currency') }} {{ number_format($item->price, 2, ',', '.') }}
                         </div>
-                        <div class="col-md-2 col-sm-2 text-center">
+                        <!--<div class="col-md-2 col-sm-2 text-center">
                             x{{ $item->qty }}
                         </div>
                         <div class="col-md-1 col-sm-2 text-center">
                             <a href="{{ route('cart-remove', $item->rowId) }}" 
                                 ng-click="confirm($event)" 
-                                data-title="@lang('headers.modal.confirm')" 
+                                data-title="@lang('headers.modal.confirmation')" 
                                 data-ok="@lang('buttons.confirm')" 
                                 data-cancel="@lang('buttons.cancel')" 
                                 data-text="@lang('Confirma que desea eliminar el ítem ' . $item->name  . '?')">
                                 <span class="glyphicon glyphicon-remove" uib-tooltip="@lang('tooltips.cart.remove_item')" tooltip-placement="top"></span>
                             </a>
-                        </div>
+                        </div>-->
                     </div>  
                 @endforeach
                 <div class="row row-no-sidemargin">
-                    <div class="col-md-offset-5 col-md-4 text-right">         
+                    <div class="col-md-offset-8 col-md-4 text-right">         
                         <dl class="dl-horizontal">
                             <dt>@lang('labels.cart.subtotal', ['currency' => config('app.currency')])</dt>
                             <dd>{{ $subtotal }}</dd>
@@ -68,10 +68,10 @@
                     </div>
                     <div class="col-md-8">
                         <ul class="list-inline text-right">
-                            <li>
+                            <!--<li>
                                 <a href="{{ route('cart-empty') }}" 
                                     ng-click="confirm($event)" 
-                                    data-title="@lang('headers.modal.confirm')" 
+                                    data-title="@lang('headers.modal.confirmation')" 
                                     data-ok="@lang('buttons.confirm')" 
                                     data-cancel="@lang('buttons.cancel')" 
                                     data-text="Confirma que desea eliminar todos los ítems del carrito?" 
@@ -79,7 +79,7 @@
                                     @lang('buttons.cart.empty')
                                 </a>
                             </li>
-                            <li><a href="{{ route('products') }}" class="btn btn-lg btn-default">@lang('buttons.cart.continue_shopping')</a></li>
+                            <li><a href="{{ route('products') }}" class="btn btn-lg btn-default">@lang('buttons.cart.continue_shopping')</a></li>-->
                             <li><button type="submit" class="btn btn-lg btn-success">@lang('buttons.cart.proceed_to_checkout')</button></li>
                         </ul>
                     </div>
