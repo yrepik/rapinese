@@ -64,7 +64,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="images/mercadopago-vertical-logo-95x88.png" class="img-responsive" />
+                        <small class="mr20">@lang('texts.cart.mercado_pago')</small> 
+                        <img src="images/logo-mercadopago.png" style="width: 96px;" />
                     </div>
                     <div class="col-md-8">
                         <ul class="list-inline text-right">
