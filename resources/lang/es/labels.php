@@ -12,5 +12,7 @@ return [
     'cart.total' => 'Total :currency:',
     'auth.email' => 'Correo electrónico',
     'auth.password' => 'Contrasena',
-    'auth.remember' => 'Recordarme en esta máquina'
+    'auth.remember' => 'Recordarme en esta máquina',
+    'code' => 'Código',
+    'material' => 'Material'
 ];
