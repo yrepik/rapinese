@@ -63,7 +63,8 @@ class CartController extends Controller
             'title' => implode(' + ', $itemNames),
             'quantity' => 1, //$item->qty,
             'currency_id' => config('app.currency'),
-            'unit_price' => $total2 //$item->price
+            'unit_price' => $total2, //$item->price
+            'picture_url' => $content->first()->options['img'],
         ];
 
         $preference = (Cart::count()) ? MP::create_preference($preferenceData) : null;
@@ -76,13 +77,13 @@ class CartController extends Controller
         $product = Product::find($code);
 
         if (empty($product)) {
-            return redirect()->route('products');
+            return abort(404);
         }
 
         Cart::destroy();
 
         $options = [];
-
+        //$options['dimensions'] = $product->category()->dimensions;
         if ($product->hasImg()) {
             $options['img'] = asset('images/products/sm/' . $product->images[0]->filename);
         }
@@ -115,12 +116,17 @@ class CartController extends Controller
 
     }
 
-    public function getCalculateShipping($zipCode, $dimensions, $total)
+    public function getCalculateShipping($zipCode)
     {
+        $content = Cart::content();
+        $item = $content[0];
+        $dimensions = $item->options['dimensions'];
+        $itemPrice = $item->price + Cart::tax();
+
         $response = MP::get('/shipping_options', [
             'dimensions' => $dimensions,
             'zip_code' => $zipCode,
-            'item_price' => $total
+            'item_price' => $itemPrice
         ]);
         return response()->json($response);
     }
