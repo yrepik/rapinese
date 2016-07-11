@@ -63,12 +63,12 @@
                 @yield('content') 
             </div>
 			
-            <footer class="hidden-print">                
-				<small>
-                    <span class="glyphicon glyphicon glyphicon-copyright-mark"></span> {{ config('app.company_name') }} - 1965-{{ date('Y') }} 
-                    <span class="glyphicon glyphicon-envelope ml20"></span> {{ config('app.contact_email') }} 
-                    <span class="glyphicon glyphicon-earphone ml20"></span> {{ config('app.contact_phones') }}
-                </small>
+            <footer class="hidden-print text-center">                
+                <ul class="list-inline">
+                    <li><small><span class="glyphicon glyphicon glyphicon-copyright-mark"></span> {{ config('app.company_name') }} - 1965-{{ date('Y') }}</small></li>
+                    <li><small><span class="glyphicon glyphicon-envelope ml20"></span> {{ config('app.contact_email') }}</small></li>
+                    <li><small><span class="glyphicon glyphicon-earphone ml20"></span> {{ config('app.contact_phones') }}</small></li>
+                </ul>
             </footer> 
 			
         </div>

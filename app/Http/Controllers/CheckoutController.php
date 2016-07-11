@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Lang;
 use Cart;
 
 class CheckoutController extends Controller
@@ -14,21 +13,27 @@ class CheckoutController extends Controller
             && $request->session()->get('preference_id') == $request->input('preference_id');
 
         if (!$cond) {
+            //dd($request->session()->get('preference_id'));
             abort(404);
         }
+
+        //$request->session()->get('preference_id')
         
         switch ($result) {
             case 'success':
-                $text = Lang::get('La operación fue exitosa.');
+                $text = trans('alerts.chekcout.success');
                 $cssClass = 'success';
                 Cart::destroy();
                 break;
             case 'failure':
-                $text = Lang::get('Se ha producido un error con el pago.');
-                $cssClass = 'danger';
-                break;
+                if ($request->input('payment_type') == 'null') {
+                    return redirect()->route('cart');
+                }
+                return redirect()->route('cart')->with([
+                    'checkout_failure_msg' => trans('alerts.checkout.failure')
+                ]);
             case 'pending':
-                $text = Lang::get('El pago está pendiente.');
+                $text = trans('alerts.checkout.pending');
                 $cssClass = 'warning';
                 Cart::destroy();
                 break;

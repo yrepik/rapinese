@@ -36,10 +36,12 @@
 									<span class="rapinese-icon rapinese-icon-no-photo" style="font-size: 70px;"></span>
 								@endif
 							</div>
-							<div class="col-md-6 col-sm-4">			
-								<div class="product-code"><strong>{{ $item->code }}</strong></div>
-								<div class="product-name">{{ $item->name_es }}</div>
-								<div><span>{{ @$item->material->name_es }}</span></div>
+							<div class="col-md-6 col-sm-4">										
+								<div class="product-name mb20">{{ $item->name_es }}</div>
+								<div><strong>@lang('labels.code')</strong> {{ $item->code }}</div>
+								@if (!empty($item->material->name_es))
+									<div><strong>@lang('labels.material')</strong> {{ $item->material->name_es }}</div>
+								@endif									
 							</div>
 							<div class="col-md-1 col-sm-1 product-price">			
 								{{ $item->formatted_price_ars }}

@@ -13,6 +13,14 @@
                 @lang('alerts.cart.no_items')
             </div>    
         @else
+
+            @if (session('checkout_failure_msg'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    @lang('alerts.checkout.failure')
+                </div>
+            @endif
+
             {!! Form::open(['action' => ['CartController@postSubmitOrder'], 'role' => 'form', 'method' => 'post', 'class' => 'hidden-print mb20']) !!}
                 @foreach ($content as $item)
                     <div class="row row-no-sidemargin item">
@@ -23,10 +31,9 @@
                                 <span class="rapinese-icon rapinese-icon-no-photo" style="font-size: 70px;"></span>
                             @endif
                         </div>
-                        <div class="col-md-9 col-sm-8">         
-                            <div class="product-code"><strong>{{ $item->id }}</strong></div>
+                        <div class="col-md-9 col-sm-8">                                     
                             <div class="product-name">{{ $item->name }}</div>
-                            <!--<div><span>{{ @$item->material->name_es }}</span></div>-->
+                            <div><strong>@lang('labels.code')</strong> {{ $item->id }}</div>
                         </div>
                         <div class="col-md-1 col-sm-1 text-right product-price">           
                             {{ config('app.currency') }} {{ number_format($item->price, 2, ',', '.') }}
