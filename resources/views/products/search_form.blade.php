@@ -2,7 +2,7 @@
 	<div class="form-group">
 		{!! Form::select(
 			'brand_alias', 
-			['' => trans('labels.products.search.brand')] + Brand::orderBy('order')->lists('name', 'alias')->all(),
+			['' => trans('labels.products.search.brand')] + $brands,
 			$selected_brand, 
 			[                    
 				'id' => 'brand',
@@ -15,7 +15,7 @@
 	<div class="form-group">
 		{!! Form::select(
 			'category_alias', 
-			['' => trans('labels.products.search.category')] + ProductCategory::orderBy('name_es')->where('status', 1)->lists('name_es', 'alias_es')->all(),
+			['' => trans('labels.products.search.category')] + $categories,
 			$selected_category, 
 			[                    
 				'id' => 'category',

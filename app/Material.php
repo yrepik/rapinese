@@ -1,15 +1,15 @@
 <?php
+namespace App;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Brand extends Model
+class Material extends Model
 {
-
-    protected $table = 'brand'; 	
 	
     public function products()
     {
-        return $this->hasMany('Product');
+        return $this->hasMany('App\Product');
     }  
 
 }

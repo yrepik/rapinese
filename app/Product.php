@@ -1,10 +1,10 @@
 <?php
+namespace App;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
-    protected $table = 'product';
 
     protected $primaryKey = 'code'; 
 
@@ -17,22 +17,22 @@ class Product extends Model
     
     public function brand()
     {
-        return $this->belongsTo('Brand', 'brand_id');
+        return $this->belongsTo('App\Brand', 'brand_id');
     } 	
 	
     public function category()
     {
-        return $this->belongsTo('ProductCategory', 'product_category_id');
+        return $this->belongsTo('App\ProductCategory', 'product_category_id');
     } 	
 	
     public function material()
     {
-        return $this->belongsTo('Material', 'material_id');
+        return $this->belongsTo('App\Material', 'material_id');
     } 	
 	
     public function images()
     {
-        return $this->hasMany('ProductImage', 'product_code', 'code');
+        return $this->hasMany('App\ProductImage', 'product_code', 'code');
     }
 	
     public function scopeForBrandAndCategory($query, $brandId, $categoryId)

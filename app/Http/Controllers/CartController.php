@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 
 use Cart;
 use MP;
-use Product;
+use App\Product;
 
 class CartController extends Controller
 {
@@ -30,14 +30,24 @@ class CartController extends Controller
         $total = Cart::total(2, ',', '.');
         $tax = Cart::tax(2, ',', '.');
 
-        $total2 = 0.00;
+        /*$total2 = 0.00;
         foreach ($content as $item) {
             $total2 += $item->price;
         }
-        $total2 += $tax;
+        $total2 += $tax;*/
+
+        /*$itemNames = [];
+        foreach ($content as $item) {
+            $name = $item->name;
+            if ($item->qty > 1) {
+                $name .= ' (' . $item->qty .')';
+            } 
+            $itemNames[] = $name;
+        }*/
+
+        $item = $content->first();        
 
         $preferenceData = [
-            'items' => [],
             'back_urls' => [
                 'success' => route('checkout' , 'success'),
                 'failure' => route('checkout', 'failure'),
@@ -47,27 +57,21 @@ class CartController extends Controller
                 'mode' => 'me2',
                 'dimensions' => '30x30x30,500',
                 //'default_shipping_method' => (int) $request->input('shipping_method')
+            ],
+            'items' => [
+                [
+                    'title' => $item->name, //implode(' + ', $itemNames),
+                    'quantity' => 1, //$item->qty,
+                    'currency_id' => config('app.currency'),
+                    'unit_price' => $item->price + $tax, //$total2,
+                    'picture_url' => array_key_exists('img', $item->options) 
+                        ? $item->options['img']
+                        : null,
+                ]
             ]
         ];
 
-        $itemNames = [];
-        foreach ($content as $item) {
-            $name = $item->name;
-            if ($item->qty > 1) {
-                $name .= ' (' . $item->qty .')';
-            } 
-            $itemNames[] = $name;
-        }
-
-        $preferenceData['items'][] = [
-            'title' => implode(' + ', $itemNames),
-            'quantity' => 1, //$item->qty,
-            'currency_id' => config('app.currency'),
-            'unit_price' => $total2, //$item->price
-            'picture_url' => $content->first()->options['img'],
-        ];
-
-        $preference = (Cart::count()) ? MP::create_preference($preferenceData) : null;
+        $preference = MP::create_preference($preferenceData);
         $request->session()->put('preference_id', $preference['response']['id']);
         return redirect()->to($preference['response']['init_point']);
     }

@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 
-use Brand;
-use ProductCategory;
-use Product;
+use App\Brand;
+use App\ProductCategory;
+use App\Product;
 use Validator;
 use Mail;
 use Lang;
@@ -14,7 +14,12 @@ class ProductsController extends Controller
 	
     public function getIndex()
     {
-        return view('products/index', ['selected_brand' => null, 'selected_category' => null]);
+        return view('products/index', [
+            'brands' => Brand::optionsForSelect(),
+            'categories' => ProductCategory::optionsForSelect(),
+            'selected_brand' => null, 
+            'selected_category' => null
+        ]);
     }
 
     public function getSearchRedirect(Request $request)
@@ -54,6 +59,8 @@ class ProductsController extends Controller
         return view('products/search_results', [
             'data' => $data, 
             'data_json' => $items->toJson(),
+            'brands' => Brand::optionsForSelect(),
+            'categories' => ProductCategory::optionsForSelect(),            
             'selected_brand' => $brandAlias, 
             'selected_category' => $categoryAlias,
             'brand' => $brand,
