@@ -18,7 +18,7 @@ class CreateProductCategoriesTable extends Migration
             $table->string('name_en', 80);
             $table->string('name_pt', 80);
             $table->string('alias_es', 80)->unique();
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
         });
     }
 

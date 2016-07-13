@@ -153,7 +153,6 @@ module.exports = function(grunt) {
             "exec:composer_install", 
             //"exec:artisan_migrate",
             "exec:bower_install", 
-            "copy:env",
             "copy:fonts", 
             "cssmin", 
             "less", 
