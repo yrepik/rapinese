@@ -32,7 +32,6 @@ module.exports = function(grunt) {
             products: {
                 files: {
                     "./public/js/products.js": [
-                        //"./bower_components/bootstrap/js/modal.js",
                         "./resources/assets/js/products.js"
                     ]
                 }
@@ -57,7 +56,6 @@ module.exports = function(grunt) {
             home: {
                 files: {
                     "./public/js/home.js": [
-                        //"./bower_components/bootstrap/js/carousel.js",
                         "./resources/assets/js/home.js"
                     ]
                 }
@@ -65,7 +63,6 @@ module.exports = function(grunt) {
             products: {
                 files: {
                     "./public/js/products.js": [
-                        //"./bower_components/bootstrap/js/modal.js",
                         "./resources/assets/js/products.js"
                     ]
                 }
@@ -118,6 +115,11 @@ module.exports = function(grunt) {
             }
         },
         copy: {
+            env: {
+                files: [
+                    {src: ['.env.example'], dest: '.envi'}
+                ]
+            },   
             fonts: {
                 files: [
                     {expand: true, flatten: true, src: ['bower_components/bootstrap/dist/fonts/*'], dest: 'public/fonts/'},
@@ -132,7 +134,7 @@ module.exports = function(grunt) {
             bower_install: {
                 command: "bower install"
             },
-            migrate: {
+            artisan_migrate: {
                 command: "php artisan migrate"
             }            
         }      
@@ -147,10 +149,16 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.registerTask("install", function(arg) {
-        if (arg == "clean") {
-            grunt.file.delete("./bower_components");
-        }
-        grunt.task.run("exec:composer_install", "exec:bower_install", "copy:fonts", "cssmin", "less", "uglify");
+        grunt.task.run(
+            "exec:composer_install", 
+            //"exec:artisan_migrate",
+            "exec:bower_install", 
+            "copy:env",
+            "copy:fonts", 
+            "cssmin", 
+            "less", 
+            "uglify"
+        );
     });  
 
 };

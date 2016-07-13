@@ -20,21 +20,21 @@ class CreateProductsTable extends Migration
                 ->references('id')->on('brands')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->integer('product_category_id')->unsigned();
+            $table->integer('product_category_id')->unsigned()->nullable();
             $table->foreign('product_category_id')
                 ->references('id')->on('product_categories')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->integer('material_id')->unsigned();
+            $table->integer('material_id')->unsigned()->nullable();
             $table->foreign('material_id')
                 ->references('id')->on('materials')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');            
             $table->string('name_es', 70);
-            $table->string('name_en', 70);
-            $table->string('name_pt', 70);
+            $table->string('name_en', 70)->nullable();
+            $table->string('name_pt', 70)->nullable();
             $table->double('price_ars', 6, 2);
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
         });
     }
 

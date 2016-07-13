@@ -3,8 +3,8 @@
 /bower_components
 /public/css
 /public/js
-/public/images/products/lg
-/public/images/products/sm
+/public/images/products/lg/*
+/public/images/products/sm/*
 /public/fonts/FontAwesome.otf
 /public/fonts/fontawesome-webfont.eot
 /public/fonts/fontawesome-webfont.svg
