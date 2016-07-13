@@ -14,7 +14,10 @@ class Brand extends Model
 
     public function scopeOptionsForSelect($query)
     {
-        return $query->orderBy('order')->lists('name', 'alias')->all();
+        return $query
+            ->orderBy('order')
+            ->lists('name', 'alias')
+            ->all();
     }
 
 }

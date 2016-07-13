@@ -16,7 +16,11 @@ class ProductCategory extends Model
 
     public function scopeOptionsForSelect($query)
     {
-        return $query->orderBy('name_es')->lists('name_es', 'alias_es')->all();
+        return $query
+            ->orderBy('name_es')
+            ->where('status', 1)
+            ->lists('name_es', 'alias_es')
+            ->all();
     }    
 
 }
