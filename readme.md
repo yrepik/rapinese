@@ -1,6 +1,6 @@
 # Setup guide
 
-Install NPM dependencies
+Install NPM dependencies:
 ```sh
 $ npm install
 ```
