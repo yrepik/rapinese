@@ -13,7 +13,7 @@ class CreateMaterialsTable extends Migration
     public function up()
     {
         Schema::create('materials', function (Blueprint $table) {
-            $table->integer('id')->unsigned()->primary()->increments();
+            $table->increments('id');
             $table->string('name_es', 30);
             $table->string('name_en', 30)->nullable();
             $table->string('name_pt', 30)->nullable();

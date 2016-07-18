@@ -13,10 +13,10 @@ class CreateBrandsTable extends Migration
     public function up()
     {
         Schema::create('brands', function (Blueprint $table) {
-            $table->integer('id')->unsigned()->primary()->increments();
+            $table->increments('id');
             $table->string('name', 30);
             $table->string('alias', 30)->unique();
-            $table->tinyInteger('order')->unique();
+            $table->tinyInteger('order')->unsigned()->unique();
         });
     }
 
