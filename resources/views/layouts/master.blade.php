@@ -20,11 +20,13 @@
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<img src="/images/logo2.png" class="img-responsive" />
 				</div>	
-				<address class="col-sm-6 col-sm-offset-2 col-md-5 col-md-offset-3 hidden-xs text-right">
-					<strong>{{ config('app.company_name') }}</strong><br />
-					<span class="glyphicon glyphicon-envelope"></span> {{ config('app.contact_email') }}<br />
-					<span class="glyphicon glyphicon-earphone"></span> {{ config('app.contact_phones') }}
-				</address>
+				<div class="col-sm-8 col-md-8 hidden-xs" style="padding-top: 20px;">
+                    <ul class="list-inline text-center">
+                        <li><span class="glyphicon glyphicon-copyright-mark"></span> {{ config('app.company_name') }}</li>
+                        <li><span class="glyphicon glyphicon-envelope"></span> {{ config('app.contact_email') }}</li>
+                        <li><span class="glyphicon glyphicon-earphone"></span> {{ config('app.contact_phones') }}</li>
+                    </ul>
+				</div>
 			</header>
 			
 			<nav class="navbar navbar-inverse" role="navigation">
@@ -38,13 +40,13 @@
 				</div>
 				<div class="navbar-collapse collapse" style="height: 1px;">
 					<ul class="nav navbar-nav">
-						<li><a href="{{ URL::to('/') }}">@lang('nav.company')</a></li>
+						<li><a href="{{ route('home') }}">@lang('nav.company')</a></li>
 						<li><a href="{{ route('products') }}">@lang('nav.products')</a></li>
 						<!--<li><a href="{{ route('price-list') }}">@lang('nav.pricelist')</a></li>-->
                         <!--<li><a href="{{ route('cart') }}">@lang('nav.cart')</a></li>-->
 						<li><a href="{{ route('clients') }}">@lang('nav.clients')</a></li>
 					</ul>	
-					<ul class="nav navbar-nav navbar-right hidden">
+					<!--<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">                             
 							<a data-toggle="dropdown" class="dropdown-toggle" href="">								
 								@lang('Idioma') <span class="caret"></span>
@@ -55,7 +57,7 @@
 								<li><a href="http://gifwall-admin.mundonick-q.mtvi.com/account/change-lang/pt">Portugueis</a></li>
 							</ul>                                
 						</li>
-					</ul>					
+					</ul>-->
 				</div>
 			</nav>			
 			

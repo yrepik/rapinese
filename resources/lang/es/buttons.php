@@ -3,6 +3,7 @@
 return [
 	'products.search' => 'Buscar',
     'products.buy' => 'Comprar',
+    'products.add_to_cart' => 'Agregar al carrito',
 	'products.ask' => 'Consultar por este producto',
 	'products.ask.send' => 'Enviar consulta',
     'cart.empty' => 'Vaciar carrito',

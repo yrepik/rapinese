@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', ['as' => 'home', function()
 {
 	return view('home');
-});
+}]);
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +36,14 @@ Route::group(['middleware' => ['web']], function() {
     ]);
     Route::post('/products/send-query', ['uses' => 'ProductsController@postSendQuery']);
        
-    Route::get('/cart', ['as' => 'cart', 'uses' => 'CartController@getIndex']);
+    Route::get('/cart', ['as' => 'cart', 'uses' => 'CartController@getIndex']);    
     Route::get('/cart/add/{code}', ['as' => 'cart-add', 'uses' => 'CartController@getAdd'])
-        ->where('code', '[A-Z\.0-9]+');
+        ->where('code', '[A-Z\.0-9]+');    
+    Route::group(['middleware' => ['ajax']], function() {
+        Route::get('/cart/add-ajax/{code}', ['as' => 'cart-add-ajax', 'uses' => 'CartController@getAddAjax'])
+            ->where('code', '[A-Z\.0-9]+');
+        Route::get('/cart/cart-ajax', ['as' => 'cart-ajax', 'uses' => 'CartController@getCartAjax']);        
+    });    
     Route::get('/cart/remove/{rowId}', ['as' => 'cart-remove', 'uses' => 'CartController@getRemove']);
     Route::get('/cart/empty', ['as' => 'cart-empty', 'uses' => 'CartController@getEmpty']);
     Route::post('/cart/submit-order', ['as' => 'cart-submit-order', 'uses' => 'CartController@postSubmitOrder']);
@@ -58,9 +63,23 @@ Route::group(['middleware' => ['web']], function() {
         Route::get('/price-list', ['as' => 'price-list', 'uses' => 'PriceListController@getIndex']);
         Route::get('/price-list/download', ['as' => 'price-list-download', 'uses' => 'PriceListController@getDownload']);
     });
-});
 
-Route::get('/clients', ['as' => 'clients', function()
-{
-	return view('under_construction');
-}]);
+    Route::get('/clients', ['as' => 'clients', function()
+    {
+        return view('under_construction');
+    }]);    
+
+    Route::get('/admin/auth/login', 'Admin\Auth\AuthController@getLogin');       
+    Route::post('/admin/auth/login', 'Admin\Auth\AuthController@postLogin');    
+    Route::get('/admin/auth/logout', ['as' => 'logout', 'uses' => 'Admin\Auth\AuthController@getLogout']);
+
+    Route::group([
+        'namespace' => 'Admin',
+        'middleware' => 'auth:admin,/admin/auth/login',
+        'prefix' => 'admin'
+    ], function() {
+        Route::get('/', ['as' => 'welcome', function() {
+            return view('admin.welcome');
+        }]);
+    });    
+});

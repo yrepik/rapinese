@@ -25,13 +25,26 @@ productsModule.controller('ProductSearchFormController', function($scope) {
 
 });
 
-productsModule.controller('ProductSearchResultsController', function($scope, $uibModal) {
-	$scope.items = [];
+productsModule.controller('CartController', function($scope, $http) {
 
-	$scope.init = function($json) {
-		$scope.items = $json.data;
+	$scope.cart = null;
+
+	$scope.init = function($cart) {
+		$scope.cart = $cart;
 	};
-	
+
+});
+
+productsModule.controller('ProductSearchResultsController', function($scope, $uibModal, $http) {
+	$scope.items = [];
+	$scope.cart = [];
+	$scope.addingToCart = false;
+
+	$scope.init = function($json, $cart) {
+		$scope.items = $json.data;
+		$scope.cart = $cart;	
+	};
+
 	$scope.openModal = function($event, $index) {
 		$event.preventDefault();
 		var modalInstance = $uibModal.open({
@@ -64,10 +77,54 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 				}			
 			}
 		});
-	};	
+	};
+
+	$scope.addToCart = function($event, $index) {
+		$event.preventDefault();
+		$scope.addingToCart = true;
+		$http.get('/cart/add-ajax/' + $scope.items[$index].code)
+			.success(function(data, status, headers, config) {
+				$http.get('/cart/cart-ajax')
+					.success(function(data, status, headers, config) {
+						$scope.cart = data;
+						$scope.addingToCart = false;
+		  				$scope.openCartModal($index);
+			  	}).error(function(data, status, headers, config) {
+			  	}).finally(function(data, status, headers, config) {
+			  	});
+	  	}).error(function(data, status, headers, config) {
+	  	}).finally(function(data, status, headers, config) {
+	  		//$scope.sending = false;
+	  	});		
+	};
+
+	$scope.openCartModal = function($index) {
+		var modalInstance = $uibModal.open({
+			templateUrl: 'cart-modal',
+			controller: 'CartModalController',
+			size: 'lg',
+			windowClass: 'right',
+			resolve: {
+				cart: function() {
+					return $scope.cart;
+				}			
+			}
+		});
+	};
+
 });
 
-productsModule.controller('QueryModalController', function($scope, $http, $modalInstance, item) {
+productsModule.controller('CartModalController', function($scope, $uibModalInstance, cart) {
+
+	$scope.cart = cart;
+
+	$scope.close = function() {
+		$uibModalInstance.dismiss('cancel');	 
+	};
+
+});
+
+productsModule.controller('QueryModalController', function($scope, $http, $uibModalInstance, item) {
 	$scope.item = item;
 	$scope.sending = false;
 
@@ -81,7 +138,7 @@ productsModule.controller('QueryModalController', function($scope, $http, $modal
 	$scope.errors = [];
 
 	$scope.close = function() {
-		$modalInstance.dismiss('cancel');	 
+		$uibModalInstance.dismiss('cancel');	 
 	};
 
 	$scope.sendForm = function($event) {
@@ -105,14 +162,14 @@ productsModule.controller('QueryModalController', function($scope, $http, $modal
 	};
 });
 
-productsModule.controller('ProductModalController', function($scope, $uibModal, $modalInstance, item, itemIndex, items) {
+productsModule.controller('ProductModalController', function($scope, $uibModal, $uibModalInstance, item, itemIndex, items) {
 	$scope.item = item;
 	$scope.imgIndex = 0;
 	$scope.productIndex = itemIndex;
 	//$scope.items = items;
 
 	$scope.close = function() {
-		$modalInstance.dismiss('cancel');    
+		$uibModalInstance.dismiss('cancel');    
 	};
 
 	$scope.showImage = function($index) {

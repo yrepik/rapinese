@@ -166,6 +166,13 @@ span.mandatory {
     cursor: progress;
 }
 
+.cursor-wait {
+    cursor: wait;
+    > * {
+        pointer-events: none;
+    }
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
@@ -202,7 +209,7 @@ span.mandatory {
 					opacity: 0.7;
 				}
 			}			
-			@media (min-width: @screen-desktop) {
+			@media (min-width: @screen-md-min) {
 				&:hover {
 					.product-hover {				
 						display: block;
@@ -220,7 +227,7 @@ span.mandatory {
 		    top: 50%;
 		    z-index: 99;
 		}		
-		@media (max-width: @screen-tablet) {
+		@media (max-width: @screen-sm-min) {
 			.col-md-6.col-sm-4,
 			.product-price {
 				margin:	10px 0;
@@ -240,7 +247,7 @@ span.mandatory {
 	}	
 }
 
-@media (max-width: @screen-desktop) {
+@media (max-width: @screen-md-min) {
 	.modal-content {
 		.col-md-4 {
 			margin: 10px 0;

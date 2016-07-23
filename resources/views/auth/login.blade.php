@@ -57,6 +57,6 @@
                 <a href="">@lang('Registrarme')</a>
             </div>
         </div>        
-    </form>
+    {!! Form::close() !!}
 
 @stop

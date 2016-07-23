@@ -21,6 +21,8 @@ cartModule.controller('CartController', function($scope, $confirm, $window) {
         }).then(function() {
             $window.location.href = href;
         });
-    }
+    };
+
+    
 
 });

@@ -7,7 +7,6 @@ use App\ProductCategory;
 use App\Product;
 use Validator;
 use Mail;
-use Lang;
 
 class ProductsController extends Controller
 {
