@@ -20,28 +20,28 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							{!! Form::label('name', trans('labels.products.ask.name')) !!}
+							{!! Form::label('name', trans('labels.name')) !!}
 							{!! Form::text('name', null, ['class' => 'form-control', 'ng-model' => 'name', 'ng-disabled' => 'sending']) !!}
 						</div>
 						<div class="form-group">
-							{!! Form::label('email', trans('labels.products.ask.email')) !!}
+							{!! Form::label('email', trans('labels.email')) !!}
 							{!! Form::email('email', null, ['class' => 'form-control', 'ng-model' => 'email', 'ng-disabled' => 'sending']) !!}
 						</div>
 						<div class="form-group">
-							{!! Form::label('tel', trans('labels.products.ask.tel')) !!}
+							{!! Form::label('tel', trans('labels.tel')) !!}
 							{!! Form::text('tel', null, ['class' => 'form-control', 'ng-model' => 'tel', 'ng-disabled' => 'sending']) !!}
 						</div>
 					</div> 
 					<div class="col-md-6">
 						<div class="form-group">
-							{!! Form::label('comments', trans('labels.products.ask.comments')) !!}
+							{!! Form::label('comments', trans('labels.comments')) !!}
 							{!! Form::textarea('comments', null, ['class' => 'form-control', 'ng-model' => 'comments', 'ng-disabled' => 'sending']) !!}
 						</div>
 					</div>
 				</div>
 				<div class="text-center">
 					<button type="submit" class="btn btn-large btn-info" ng-disabled="sending">
-						@lang('buttons.products.ask.send')
+						@lang('buttons.send_query')
 					</button>
 					<i ng-show="sending" class="fa fa-spinner fa-pulse fa-4"></i>
 				</div>

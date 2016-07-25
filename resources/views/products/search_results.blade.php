@@ -7,18 +7,19 @@
 @section('content')
 	<div ng-app="products">
 		<h1>@lang('headers.products')</h1>
-		@include('products/search_form')
+		@include('products.search_form')
 
 		<ol class="breadcrumb visible-print-block">
 			<li>{{ $brand->name }}</li>
 	  		<li>{{ $category->name_es }}</li>	  		
 		</ol>		
 		
-		@include('products/img_modal')
-		@include('products/query_modal')
+		@include('products.img_modal')
+		@include('products.query_modal')		
+		@include('products.cart_modal')
 
 		@if ($data['result_count']['total'] > 0)
-			<div ng-controller="ProductSearchResultsController" ng-init='init(<?php echo $data_json; ?>)'>
+			<div ng-controller="ProductSearchResultsController" ng-init='init({{ $data_json }})' wait wait-watch="addingToCart">
 				<p class="well well-sm">
 					@lang('wells.products.search.results', ['from' => $data['result_count']['from'], 'to' => $data['result_count']['to'], 'total' => $data['result_count']['total']])
 				</p>		
@@ -48,13 +49,19 @@
 							</div>
 							<div class="col-md-3 col-sm-4 text-center">
 								<p>
-									<a class="btn btn-success btn-block hidden-print" href="{{ route('cart-add', $item->code) }}">
-										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('buttons.products.buy')
+									<a class="btn btn-success btn-block hidden-print hidden-xs hidden-sm" 
+										ng-click="addToCart($event, {{ $index }})" 
+										href="{{ route('cart-add-ajax', $item->code) }}" 
+										data-cart-path="{{ route('cart-ajax') }}">
+										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('buttons.add_to_cart')
 									</a>
+									<a class="btn btn-success btn-block hidden-md hidden-lg hidden-print" href="{{ route('cart-add', $item->code) }}">
+										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('buttons.add_to_cart')
+									</a>									
 								</p>
 								<p>
 									<button class="btn btn-default btn-block hidden-print" ng-click="openQueryModal($event, <?php echo $index; ?>)">
-										<span class="glyphicon glyphicon-question-sign"></span> @lang('buttons.products.ask')
+										<span class="glyphicon glyphicon-question-sign"></span> @lang('buttons.ask')
 									</button>
 								</p>
 							</div>
@@ -64,14 +71,16 @@
 				
 				<div class="hidden-print text-center">
 					{!! $data['results']->render() !!}
-				</div>			
+				</div>
+
+				
 							
 			</div>
 
 		@else
 
 			<p class="alert alert-danger">
-				@lang('alerts.products.search.no_results')
+				@lang('alerts.search_no_results')
 			</p>
 
 		@endif

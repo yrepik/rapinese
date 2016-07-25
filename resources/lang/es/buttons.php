@@ -1,15 +1,16 @@
 <?php
 
 return [
-	'products.search' => 'Buscar',
-    'products.buy' => 'Comprar',
-    'products.add_to_cart' => 'Agregar al carrito',
-	'products.ask' => 'Consultar por este producto',
-	'products.ask.send' => 'Enviar consulta',
-    'cart.empty' => 'Vaciar carrito',
-    'cart.continue_shopping' => 'Seguir comprando',
-    'cart.proceed_to_checkout' => 'Proceder con el pago',
-    'auth.login' => 'Ingresar',
+	'search' => 'Buscar',
+    'buy' => 'Comprar',
+    'add_to_cart' => 'Agregar al carrito',
+	'ask' => 'Consultar por este producto',
+	'send_query' => 'Enviar consulta',
+    'edit_cart' => 'Editar carrito',
+    'empty_cart' => 'Vaciar carrito',
+    'continue_shopping' => 'Seguir comprando',
+    'proceed_to_checkout' => 'Proceder con el pago',
+    'login' => 'Ingresar',
     'confirm' => 'Confirmar',
     'cancel' => 'Cancelar'
 ];

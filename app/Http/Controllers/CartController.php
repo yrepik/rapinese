@@ -30,22 +30,22 @@ class CartController extends Controller
         $total = Cart::total(2, ',', '.');
         $tax = Cart::tax(2, ',', '.');
 
-        /*$total2 = 0.00;
+        $total2 = 0.00;
         foreach ($content as $item) {
             $total2 += $item->price;
         }
-        $total2 += $tax;*/
+        $total2 += $tax;
 
-        /*$itemNames = [];
+        $itemNames = [];
         foreach ($content as $item) {
             $name = $item->name;
             if ($item->qty > 1) {
                 $name .= ' (' . $item->qty .')';
             } 
             $itemNames[] = $name;
-        }*/
+        }
 
-        $item = $content->first();        
+        //$item = $content->first();        
 
         $preferenceData = [
             'back_urls' => [
@@ -54,19 +54,19 @@ class CartController extends Controller
                 'pending' => route('checkout', 'pending')
             ],
             'shipments' => [
-                'mode' => 'me2',
+                'mode' => $request->input('shipment') == 'oca' ? 'me2' : null,
                 'dimensions' => '30x30x30,500',
                 //'default_shipping_method' => (int) $request->input('shipping_method')
             ],
             'items' => [
                 [
-                    'title' => $item->name, //implode(' + ', $itemNames),
+                    'title' => /*$item->name,*/ implode(' + ', $itemNames),
                     'quantity' => 1, //$item->qty,
                     'currency_id' => config('app.currency'),
-                    'unit_price' => $item->price + $tax, //$total2,
-                    'picture_url' => array_key_exists('img', $item->options) 
+                    'unit_price' => /*$item->price + $tax,*/ $total2,
+                    'picture_url' => /*array_key_exists('img', $item->options) 
                         ? $item->options['img']
-                        : null,
+                        : null*/null
                 ]
             ]
         ];
@@ -84,8 +84,6 @@ class CartController extends Controller
             return abort(404);
         }
 
-        Cart::destroy();
-
         $options = [];
         //$options['dimensions'] = $product->category()->dimensions;
         if ($product->hasImg()) {
@@ -102,6 +100,44 @@ class CartController extends Controller
 
         return redirect()->route('cart');
     }
+
+    public function getAddAjax(Request $request, $code)
+    {
+
+        $product = Product::find($code);
+
+        if (empty($product)) {
+            return abort(404);
+        }
+
+        $options = [];
+        //$options['dimensions'] = $product->category()->dimensions;
+        if ($product->hasImg()) {
+            $options['img'] = asset('images/products/sm/' . $product->images[0]->filename);
+        }
+
+        Cart::add([
+            'id' => $product->code, 
+            'name' => $product->name_es, 
+            'qty' => 1, 
+            'price' => $product->price_ars,
+            'options' => $options
+        ]);
+
+        return response()->json([
+            'content' => Cart::content()
+        ]);
+    } 
+
+    public function getCartAjax()
+    {
+        return response()->json([
+            'content' => Cart::content(),
+            'subtotal' => Cart::subtotal(2, ',', '.'),
+            'tax' => Cart::tax(2, ',', '.'),
+            'total' => Cart::total(2, ',', '.')
+        ]);
+    }   
 
     public function getRemove($rowId)
     {        

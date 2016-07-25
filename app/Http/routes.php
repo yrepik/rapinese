@@ -28,26 +28,26 @@ Route::get('/', ['as' => 'home', function()
 */
 
 Route::group(['middleware' => ['web']], function() {  
-    Route::get('/products', ['as' => 'products', 'uses' => 'ProductsController@getIndex']);
-    Route::get('/products/search-redirect', ['uses' => 'ProductsController@getSearchRedirect']);
-    Route::get('/products/{brand_alias}/{category_alias}', [
+    Route::get('/productos', ['as' => 'products', 'uses' => 'ProductsController@getIndex']);
+    Route::get('/productos/search-redirect', ['uses' => 'ProductsController@getSearchRedirect']);
+    Route::get('/productos/{brand_alias}/{category_alias}', [
         'as' => 'product-search-results', 
         'uses' => 'ProductsController@getSearchResults'
     ]);
     Route::post('/products/send-query', ['uses' => 'ProductsController@postSendQuery']);
        
-    Route::get('/cart', ['as' => 'cart', 'uses' => 'CartController@getIndex']);    
-    Route::get('/cart/add/{code}', ['as' => 'cart-add', 'uses' => 'CartController@getAdd'])
+    Route::get('/carrito', ['as' => 'cart', 'uses' => 'CartController@getIndex']);    
+    Route::get('/carrito/agregar/{code}', ['as' => 'cart-add', 'uses' => 'CartController@getAdd'])
         ->where('code', '[A-Z\.0-9]+');    
     Route::group(['middleware' => ['ajax']], function() {
-        Route::get('/cart/add-ajax/{code}', ['as' => 'cart-add-ajax', 'uses' => 'CartController@getAddAjax'])
+        Route::get('/carrito/agregar-ajax/{code}', ['as' => 'cart-add-ajax', 'uses' => 'CartController@getAddAjax'])
             ->where('code', '[A-Z\.0-9]+');
-        Route::get('/cart/cart-ajax', ['as' => 'cart-ajax', 'uses' => 'CartController@getCartAjax']);        
+        Route::get('/carrito/carrito-ajax', ['as' => 'cart-ajax', 'uses' => 'CartController@getCartAjax']);        
     });    
-    Route::get('/cart/remove/{rowId}', ['as' => 'cart-remove', 'uses' => 'CartController@getRemove']);
-    Route::get('/cart/empty', ['as' => 'cart-empty', 'uses' => 'CartController@getEmpty']);
-    Route::post('/cart/submit-order', ['as' => 'cart-submit-order', 'uses' => 'CartController@postSubmitOrder']);
-    Route::get('/cart/calculate-shipping/{zipCode}/{dimensions}/{total}', ['as' => 'cart-calculate-shipping', 'uses' => 'CartController@getCalculateShipping']);
+    Route::get('/carrito/quitar/{rowId}', ['as' => 'cart-remove', 'uses' => 'CartController@getRemove']);
+    Route::get('/carrito/vaciar', ['as' => 'cart-empty', 'uses' => 'CartController@getEmpty']);
+    Route::post('/carrito/enviar-orden', ['as' => 'cart-submit-order', 'uses' => 'CartController@postSubmitOrder']);
+    Route::get('/carrito/calcular-envio/{zipCode}/{dimensions}/{total}', ['as' => 'cart-calculate-shipping', 'uses' => 'CartController@getCalculateShipping']);
 
     Route::get('/checkout/{result}', ['as' => 'checkout', 'uses' => 'CheckoutController@getIndex'])
         ->where('result', '(success|failure|pending)');
@@ -60,8 +60,8 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/auth/registration-successful', ['as' => 'auth-registration-successful', 'uses' => 'Auth\AuthController@getRegistrationSuccessful']); 
 
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/price-list', ['as' => 'price-list', 'uses' => 'PriceListController@getIndex']);
-        Route::get('/price-list/download', ['as' => 'price-list-download', 'uses' => 'PriceListController@getDownload']);
+        Route::get('/lista-de-precios', ['as' => 'price-list', 'uses' => 'PriceListController@getIndex']);
+        Route::get('/lista-de-precios/descargar', ['as' => 'price-list-download', 'uses' => 'PriceListController@getDownload']);
     });
 
     Route::get('/clients', ['as' => 'clients', function()

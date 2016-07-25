@@ -21,12 +21,12 @@
 				</div>
 				<div class="text-center mt20">
 					<a class="btn btn-success btn-block hidden-print" href="{{ route('cart-add', '%%item.code%%') }}">
-						<span class="glyphicon glyphicon-shopping-cart"></span> @lang('Comprar')
+						<span class="glyphicon glyphicon-shopping-cart"></span> @lang('buttons.buy')
 					</a>
 				</div>				
 				<div class="text-center mt20">
 					<button class="btn btn-default btn-block hidden-print" ng-click="openQueryModal($event, item)">
-						<span class="glyphicon glyphicon-question-sign"></span> @lang('buttons.products.ask')
+						<span class="glyphicon glyphicon-question-sign"></span> @lang('buttons.ask')
 					</button>
 				</div>
 			</div>

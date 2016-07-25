@@ -2,6 +2,8 @@ var cartModule = angular.module('cart', ['app', 'angular-confirm']);
 
 cartModule.controller('CartController', function($scope, $confirm, $window) {
 
+    $scope.shipment = 'oca';
+
     $scope.confirm = function($event) {
         $event.preventDefault();
         var target = angular.element($event.target);        

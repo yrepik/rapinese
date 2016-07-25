@@ -82,9 +82,10 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 	$scope.addToCart = function($event, $index) {
 		$event.preventDefault();
 		$scope.addingToCart = true;
-		$http.get('/cart/add-ajax/' + $scope.items[$index].code)
+		var element = angular.element($event.target);
+		$http.get(element.attr('href'))
 			.success(function(data, status, headers, config) {
-				$http.get('/cart/cart-ajax')
+				$http.get(element.data('cart-path'))
 					.success(function(data, status, headers, config) {
 						$scope.cart = data;
 						$scope.addingToCart = false;
@@ -94,7 +95,6 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 			  	});
 	  	}).error(function(data, status, headers, config) {
 	  	}).finally(function(data, status, headers, config) {
-	  		//$scope.sending = false;
 	  	});		
 	};
 

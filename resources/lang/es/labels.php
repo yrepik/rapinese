@@ -1,18 +1,19 @@
 <?php
 
 return [
-	'products.search.brand' => 'Seleccione una marca',
-	'products.search.category' => 'Seleccione un rubro',
-	'products.ask.name' => 'Nombre y apellido',
-	'products.ask.email' => 'E-mail',
-	'products.ask.tel' => 'Teléfono (opcional)',
-	'products.ask.comments' => 'Comentarios (opcional)',
-    'cart.subtotal' => 'Subtotal :currency',
-    'cart.tax' => 'IVA :currency',
-    'cart.total' => 'Total :currency',
-    'auth.email' => 'Correo electrónico',
-    'auth.password' => 'Contrasena',
-    'auth.remember' => 'Recordarme en esta máquina',
+	'select_brand' => 'Seleccione una marca',
+	'select_category' => 'Seleccione un rubro',
+	'name' => 'Nombre y apellido',
+	'email' => 'Correo electrónico',
+	'tel' => 'Teléfono (opcional)',
+	'comments' => 'Comentarios (opcional)',
+    'subtotal' => 'Subtotal :currency',
+    'tax' => 'IVA :currency',
+    'total' => 'Total :currency',    
+    'password' => 'Contrasena',
+    'remember' => 'Recordarme en esta máquina',
     'code' => 'Código',
-    'material' => 'Material'
+    'material' => 'Material',
+    'price' => 'Precio :currency',
+    'quantity' => 'Cantidad'
 ];

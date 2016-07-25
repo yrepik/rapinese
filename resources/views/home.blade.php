@@ -16,25 +16,25 @@
 			<div class="col-xs-6 col-sm-6 col-md-3">
 				<div class="text-center"><i class="fa fa-4x fa-graduation-cap"></i></div>
 				<h3 class="text-center">@lang('headers.home.career')</h3>
-				<p>@lang('texts.home.career.1')</p>
-				<p>@lang('texts.home.career.2')</p>
+				<p>@lang('texts.career_1')</p>
+				<p>@lang('texts.career_2')</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-3">
 				<div class="text-center"><i class="fa fa-4x fa-check"></i></div>
 				<h3 class="text-center">@lang('headers.home.quality')</h3>
-				<p>@lang('texts.home.quality')</p>
+				<p>@lang('texts.quality')</p>
 			</div>
 			<div class="clearfix visible-xs-block visible-sm-block hidden-md hidden-lg"></div>			
 			<div class="col-xs-6 col-sm-6 col-md-3">
 				<div class="text-center"><i class="fa fa-4x fa-refresh"></i></div>
 				<h3 class="text-center">@lang('headers.home.stock')</h3>
-				<p>@lang('texts.home.stock.1')</p>
-				<p>@lang('texts.home.stock.2')</p>
+				<p>@lang('texts.stock_1')</p>
+				<p>@lang('texts.stock_2')</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-3">
 				<div class="text-center"><i class="fa fa-4x fa-globe"></i></div>
 				<h3 class="text-center">@lang('headers.home.exportations')</h3>
-				<p>@lang('texts.home.exportations')</p>
+				<p>@lang('texts.exportations')</p>
 			</ul>
 			</div>									
 		</div>

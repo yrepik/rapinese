@@ -13,7 +13,7 @@ class ProductsController extends Controller
 	
     public function getIndex()
     {
-        return view('products/index', [
+        return view('products.index', [
             'brands' => Brand::optionsForSelect(),
             'categories' => ProductCategory::optionsForSelect(),
             'selected_brand' => null, 
@@ -55,7 +55,7 @@ class ProductsController extends Controller
             ],
             'results' => $items
         ];
-        return view('products/search_results', [
+        return view('products.search_results', [
             'data' => $data, 
             'data_json' => $items->toJson(),
             'brands' => Brand::optionsForSelect(),
@@ -103,8 +103,8 @@ class ProductsController extends Controller
             );  
             $result = $sendResult != false;
             $msg = ($result) 
-                ? trans('alerts.products.ask.success') 
-                : trans('alerts.products.ask.error');
+                ? trans('alerts.ask_success') 
+                : trans('alerts.send_failure');
         } else {       
             $errors = $validator->errors()->all();
             $result = false;

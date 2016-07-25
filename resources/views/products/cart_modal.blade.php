@@ -5,14 +5,40 @@
     </div>
     <div class="modal-body">
         {!! Form::open(['action' => ['CartController@postSubmitOrder'], 'role' => 'form', 'method' => 'post']) !!}
-            <p ng-repeat="item in cart.content">
-                %%item.name%% (x%%item.qty%%)
-            </p>
-            <ul class="list-inline text-center">
-                <li><a href="{{ route('cart') }}">@lang('buttons.edit_cart')</a></li>
+            <table class="table table-striped">
+                <tr>
+                    <th>@lang('Descripción')</th>
+                    <th class="text-center">@lang('labels.price', ['currency' => config('app.currency')])</th>
+                    <th class="text-center">@lang('labels.quantity')</th>
+                </tr>
+                <tr ng-repeat="item in cart.content">
+                    <td>%%item.name%%</td>
+                    <td class="text-right">%%item.price | number:2%%</td>
+                    <td class="text-center">%%item.qty%%</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>@lang('labels.subtotal', ['currency' => config('app.currency')])</strong></td>
+                    <td class="text-right">%%cart.subtotal%%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>@lang('labels.tax', ['currency' => config('app.currency')])</strong></td>
+                    <td class="text-right">%%cart.tax%%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>@lang('labels.total', ['currency' => config('app.currency')])</strong></td>
+                    <td class="text-right">%%cart.total%%</td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <ul class="list-inline text-center mt20">
+                <li><a href="" class="btn btn-default" ng-click="close()">@lang('buttons.continue_shopping')</a></li>
+                <li><a href="{{ route('cart') }}" class="btn btn-primary">@lang('buttons.edit_cart')</a></li>
                 <li>
-                    <button type="submit" class="btn btn-lg btn-success">
-                        @lang('buttons.cart.proceed_to_checkout')
+                    <button type="submit" class="btn btn-success">
+                        @lang('buttons.proceed_to_checkout')
                     </button>
                 </li>
             </ul>

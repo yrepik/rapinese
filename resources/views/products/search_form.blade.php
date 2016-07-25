@@ -2,7 +2,7 @@
 	<div class="form-group">
 		{!! Form::select(
 			'brand_alias', 
-			['' => trans('labels.products.search.brand')] + $brands,
+			['' => trans('labels.select_brand')] + $brands,
 			$selected_brand, 
 			[                    
 				'id' => 'brand',
@@ -15,7 +15,7 @@
 	<div class="form-group">
 		{!! Form::select(
 			'category_alias', 
-			['' => trans('labels.products.search.category')] + $categories,
+			['' => trans('labels.select_category')] + $categories,
 			$selected_category, 
 			[                    
 				'id' => 'category',
@@ -33,7 +33,7 @@
 			type="submit" 
 			class="btn btn-default" 
 			ng-disabled="brandOrCategoryNotSelected()">
-			<span class="glyphicon glyphicon-search"></span> @lang('buttons.products.search')
+			<span class="glyphicon glyphicon-search"></span> @lang('buttons.search')
 		</button>
 	</div>
 {!! Form::close() !!}
