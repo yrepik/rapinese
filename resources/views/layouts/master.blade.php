@@ -20,11 +20,11 @@
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<img src="/images/logo2.png" class="img-responsive" />
 				</div>	
-				<div class="col-sm-8 col-md-8 hidden-xs" style="padding-top: 20px;">
+				<div class="col-sm-8 col-md-8 hidden-sm hidden-xs" style="padding-top: 20px;">
                     <ul class="list-inline text-center">
-                        <li><span class="glyphicon glyphicon-copyright-mark"></span> {{ config('app.company_name') }}</li>
-                        <li><span class="glyphicon glyphicon-envelope"></span> {{ config('app.contact_email') }}</li>
-                        <li><span class="glyphicon glyphicon-earphone"></span> {{ config('app.contact_phones') }}</li>
+                        <li><small><span class="glyphicon glyphicon-copyright-mark"></span> {{ config('app.company_name') }}</small></li>
+                        <li><small><span class="glyphicon glyphicon-envelope"></span> {{ config('app.contact_email') }}</small></li>
+                        <li><small><span class="glyphicon glyphicon-earphone"></span> {{ config('app.contact_phones') }}</small></li>
                     </ul>
 				</div>
 			</header>

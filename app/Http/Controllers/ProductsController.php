@@ -34,6 +34,10 @@ class ProductsController extends Controller
         $brand = Brand::where('alias', $brandAlias)->first();
         $category = ProductCategory::where('alias_es', $categoryAlias)->first();
 
+        if (!$brand || !$category) {
+            return abort(404);
+        }
+
         $itemsPerPage = 20;
         
         $items = Product::search($brand->id, $category->id, $itemsPerPage);

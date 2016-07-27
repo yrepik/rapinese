@@ -47,7 +47,7 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/carrito/quitar/{rowId}', ['as' => 'cart-remove', 'uses' => 'CartController@getRemove']);
     Route::get('/carrito/vaciar', ['as' => 'cart-empty', 'uses' => 'CartController@getEmpty']);
     Route::post('/carrito/enviar-orden', ['as' => 'cart-submit-order', 'uses' => 'CartController@postSubmitOrder']);
-    Route::get('/carrito/calcular-envio/{zipCode}/{dimensions}/{total}', ['as' => 'cart-calculate-shipping', 'uses' => 'CartController@getCalculateShipping']);
+    Route::post('/carrito/calcular-envio', ['as' => 'cart-calculate-shipping', 'uses' => 'CartController@postCalculateShipping']);
 
     Route::get('/checkout/{result}', ['as' => 'checkout', 'uses' => 'CheckoutController@getIndex'])
         ->where('result', '(success|failure|pending)');

@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div id="cart" ng-app="cart" ng-controller="CartController">
+    <div id="cart" ng-app="cart" ng-controller="CartController" ng-init="init({{ $content }}, {{ $count }}, '{{ $subtotal }}', '{{ $tax }}', '{{ $total }}')" ng-cloak>
         <h1>@lang('headers.cart')</h1>
 
         @if (!count($content))
@@ -24,24 +24,25 @@
             {!! Form::open(['action' => ['CartController@postSubmitOrder'], 'role' => 'form', 'method' => 'post', 'class' => 'hidden-print mb20']) !!}
                 @foreach ($content as $item)
                     <div class="row row-no-sidemargin item">
-                        <div class="col-md-2 col-sm-3 text-center">
+                        <div class="col-md-2 col-sm-3 col-xs-5 text-center">
                             @if (count($item->options->img))
-                                <img src="{{ $item->options->img }}" class="img-responsive" />                                   
+                                <img src="{{ $item->options->img }}" class="img-responsive" />                        
                             @else
                                 <span class="rapinese-icon rapinese-icon-no-photo" style="font-size: 70px;"></span>
                             @endif
                         </div>
-                        <div class="col-md-6 col-sm-4">                                     
-                            <div class="product-name">{{ $item->name }}</div>
+                        <div class="col-md-6 col-sm-4 col-xs-7">               
+                            <div>{{ $item->name }}</div>
                             <div><strong>@lang('labels.code')</strong> {{ $item->id }}</div>
                         </div>
-                        <div class="col-md-1 col-sm-1 text-right product-price">           
+                        <div class="clearfix visible-xs"></div>
+                        <div class="col-md-1 col-sm-2 col-xs-4 text-right">           
                             {{ config('app.currency') }} {{ number_format($item->price, 2, ',', '.') }}
                         </div>
-                        <div class="col-md-2 col-sm-2 text-center">
+                        <div class="col-md-2 col-sm-1 col-xs-4 text-center">
                             x{{ $item->qty }}
                         </div>
-                        <div class="col-md-1 col-sm-2 text-center">
+                        <div class="col-md-1 col-sm-2 col-xs-4 text-center">
                             <a href="{{ route('cart-remove', $item->rowId) }}" 
                                 class="remove-item" 
                                 ng-click="confirm($event)" 
@@ -54,42 +55,73 @@
                         </div>
                     </div>  
                 @endforeach
-                <div class="row row-no-sidemargin">
-                    <div class="col-md-offset-6 col-md-3 text-right">         
+                <div id="totals" class="row row-no-sidemargin">
+                    <div class="col-lg-offset-6 col-lg-3 col-md-offset-5 col-md-4 col-sm-offset-4 col-sm-5 col-xs-offset-7 text-right">         
                         <dl class="dl-horizontal">
                             <dt>@lang('labels.subtotal', ['currency' => config('app.currency')])</dt>
-                            <dd>{{ $subtotal }}</dd>
+                            <dd>%%subtotal%%</dd>
                             <dt>@lang('labels.tax', ['currency' => config('app.currency')])</dt>
-                            <dd>{{ $tax }}</dd>
+                            <dd>%%tax%%</dd>
                             <dt>@lang('labels.total', ['currency' => config('app.currency')])</dt>
-                            <dd>{{ $total }}</dd>
+                            <dd>%%total%%</dd>
                         </dl>
                     </div>
                 </div> 
 
-                <div class="row">
-                    <div class="col-md-4">
+                <div class="row mb20">
+                    <div class="col-md-4 col-sm-6 mb20-sm">
                         <div class="radio">
-                            <label><input type="radio" name="shipment" value="oca" ng-model="shipment">Enviar vía OCA</label>
+                            <label ng-class="{'text-muted': shippingDisabled}">
+                                <input type="radio" name="shipment" value="oca" ng-model="shipment" ng-disabled="shippingDisabled">
+                                Enviar vía OCA
+                            </label>
                         </div>
                         <div class="radio">
                             <label><input type="radio" name="shipment" value="pickup" ng-model="shipment">Retiro personalmente (zona Villa Ballester)</label>
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="alert alert-warning" ng-show="shipment == 'oca'">
-                            @lang('alerts.shipping_cost_not_included')
+                    <div class="col-md-4 col-sm-6 mb20-sm" ng-show="shipment == 'oca'">
+                        <h4>Costo de envío</h4>
+                        <div class="input-group">
+                            <input type="text" 
+                                class="form-control text-right" 
+                                placeholder="Código postal" 
+                                maxlength="8" 
+                                ng-model="zipCode"
+                                ng-keypress="sarasa($event)" />
+                            <span class="input-group-btn">
+                                <button id="calc-shipping-cost" 
+                                    class="btn btn-default" 
+                                    type="button" 
+                                    data-request-path="{{ route('cart-calculate-shipping') }}" 
+                                    ng-click="getShippingOptions()" 
+                                    ng-disabled="calculateShippingCostDisabled()">
+                                    <span ng-show="!calculatingShippingCost">Calcular</span>
+                                    <span ng-show="calculatingShippingCost">Calculando...</span>
+                                </button>
+                            </span>
+                        </div> 
+                        <div class="radio" ng-repeat="shippingOption in shippingOptions">
+                            <label>
+                                <input type="radio" name="shippingMethod" value="%%shippingOption.shipping_method_id%%" ng-model="shipingMethod">
+                                <span class="fa fa-truck"></span>  %%shippingOption.name%%: %%shippingOption.currency_id%% %%shippingOption.cost%%
+                            </label>
                         </div>
+                        <div class="alert alert-danger mt20" ng-show="shippingCostCalcFailed">
+                            Se ha producido un error.
+                        </div>
+                    </div>
+                    <div class="col-md-4" ng-show="shipment == 'oca'">
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div id="mp" class="col-md-4 mb20-sm text-center-sm">
                         <small class="mr20">@lang('texts.processed_by')</small> 
                         <img src="images/logo-mercadopago.png" style="width: 96px;" />
                     </div>
-                    <div class="col-md-8">
-                        <ul class="list-inline text-right">
+                    <div id="cta" class="col-md-8 text-right text-center-sm">
+                        <ul class="list-inline">
                             <li>
                                 <a href="{{ route('cart-empty') }}" 
                                     ng-click="confirm($event)" 

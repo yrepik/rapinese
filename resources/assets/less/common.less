@@ -1,4 +1,8 @@
 @import (reference) "/bower_components/bootstrap/less/variables";
+@import (reference) "/bower_components/bootstrap/less/mixins";
+@import (reference) "/bower_components/bootstrap/less/type";
+
+@light-grey: #efefef;
 
 h1 {
     margin-bottom: 40px;
@@ -154,6 +158,18 @@ span.mandatory {
     margin-bottom: 20px;
 }
 
+.mb20-sm {
+    @media (max-width: @screen-md-min) {
+        .mb20;
+    }
+}
+
+.text-center-sm {
+    @media (max-width: @screen-md-min) {
+        .text-center;
+    }
+}
+
 .text-uppercase {
     text-transform: uppercase;
 }
@@ -238,19 +254,33 @@ span.mandatory {
 
 #cart {
 	.row {
-        padding: 10px;
-        margin-bottom: 10px; 
+        padding: 13px;
         &.item {		  
-            border-bottom: 1px solid #e9e9e9; 
-            height: 115px;
+            border-bottom: 1px solid #e9e9e9;
             img {
                 height: 80px;
             }
+            [class^=col-] {
+                @media (max-width: @screen-sm-min) {
+                    .mb20;
+                }
+            }            
         }
         .remove-item {
-            background-color: #efefef;
+            background-color: @light-grey;
             padding: 10px;
             border-radius: 34px;
+        }
+        &#totals {
+            padding-top: 0;
+            [class^=col-] {
+                background-color: @light-grey;
+                border-radius: 0 0 10px 10px;
+                dl.dl-horizontal {
+                    margin-bottom: 0;
+                    padding: 10px 0;
+                }
+            }
         }
 	}	
 }

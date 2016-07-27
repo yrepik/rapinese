@@ -12,12 +12,13 @@ class CartController extends Controller
     public function getIndex()
     {
         $content = Cart::content();
-        $subtotal = Cart::subtotal(2, ',', '.');
-        $tax = Cart::tax(2, ',', '.');
-        $total = Cart::total(2, ',', '.');
+        $subtotal = Cart::subtotal(2, '.', false);
+        $tax = Cart::tax(2, '.', false);
+        $total = Cart::total(2, '.', false);
 
-        return view('cart/index', [
+        return view('cart/index', [            
             'content' => $content,
+            'count' => Cart::count(),
             'subtotal' => $subtotal,
             'tax' => $tax,
             'total' => $total
@@ -26,6 +27,7 @@ class CartController extends Controller
 
     public function postSubmitOrder(Request $request)
     {
+        //dd($request->all());
         $content = Cart::content();
         $total = Cart::total(2, ',', '.');
         $tax = Cart::tax(2, ',', '.');
@@ -45,7 +47,11 @@ class CartController extends Controller
             $itemNames[] = $name;
         }
 
-        //$item = $content->first();        
+        //$item = $content->first();
+
+        $shippingMethod = ($request->has('shippingMethod'))
+            ? (int) $request->input('shippingMethod')
+            : null;
 
         $preferenceData = [
             'back_urls' => [
@@ -56,12 +62,13 @@ class CartController extends Controller
             'shipments' => [
                 'mode' => $request->input('shipment') == 'oca' ? 'me2' : null,
                 'dimensions' => '30x30x30,500',
-                //'default_shipping_method' => (int) $request->input('shipping_method')
+                'default_shipping_method' => $shippingMethod
             ],
             'items' => [
                 [
                     'title' => /*$item->name,*/ implode(' + ', $itemNames),
                     'quantity' => 1, //$item->qty,
+                    'category_id' => 'automotive',
                     'currency_id' => config('app.currency'),
                     'unit_price' => /*$item->price + $tax,*/ $total2,
                     'picture_url' => /*array_key_exists('img', $item->options) 
@@ -133,9 +140,9 @@ class CartController extends Controller
     {
         return response()->json([
             'content' => Cart::content(),
-            'subtotal' => Cart::subtotal(2, ',', '.'),
-            'tax' => Cart::tax(2, ',', '.'),
-            'total' => Cart::total(2, ',', '.')
+            'subtotal' => Cart::subtotal(2, '.', false),
+            'tax' => Cart::tax(2, '.', false),
+            'total' => Cart::total(2, '.', false)
         ]);
     }   
 
@@ -156,16 +163,22 @@ class CartController extends Controller
 
     }
 
-    public function getCalculateShipping($zipCode)
+    public function postCalculateShipping(Request $request)
     {
         $content = Cart::content();
-        $item = $content[0];
-        $dimensions = $item->options['dimensions'];
-        $itemPrice = $item->price + Cart::tax();
+        $tax = Cart::tax(2, ',', '.');
+        $item = $content->first();
+        $dimensions = '10x70x30,2000'; //$item->options['dimensions'];
+
+        $itemPrice = 0.00;
+        foreach ($content as $item) {
+            $itemPrice += $item->price;
+        }
+        $itemPrice += $tax;
 
         $response = MP::get('/shipping_options', [
             'dimensions' => $dimensions,
-            'zip_code' => $zipCode,
+            'zip_code' => $request->input('zipCode'),
             'item_price' => $itemPrice
         ]);
         return response()->json($response);

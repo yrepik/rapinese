@@ -18,29 +18,29 @@
                 </tr>
                 <tr>
                     <td class="text-right"><strong>@lang('labels.subtotal', ['currency' => config('app.currency')])</strong></td>
-                    <td class="text-right">%%cart.subtotal%%</td>
+                    <td class="text-right">%%cart.subtotal | number:2%%</td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="text-right"><strong>@lang('labels.tax', ['currency' => config('app.currency')])</strong></td>
-                    <td class="text-right">%%cart.tax%%</td>
+                    <td class="text-right">%%cart.tax | number:2%%</td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="text-right"><strong>@lang('labels.total', ['currency' => config('app.currency')])</strong></td>
-                    <td class="text-right">%%cart.total%%</td>
+                    <td class="text-right">%%cart.total | number:2%%</td>
                     <td></td>
                 </tr>
             </table>
 
             <ul class="list-inline text-center mt20">
-                <li><a href="" class="btn btn-default" ng-click="close()">@lang('buttons.continue_shopping')</a></li>
+                <li><button class="btn btn-default" type="button" ng-click="close()">@lang('buttons.continue_shopping')</button></li>
                 <li><a href="{{ route('cart') }}" class="btn btn-primary">@lang('buttons.edit_cart')</a></li>
-                <li>
+                <!--<li>
                     <button type="submit" class="btn btn-success">
                         @lang('buttons.proceed_to_checkout')
                     </button>
-                </li>
+                </li>-->
             </ul>
         {!! Form::close() !!}
     </div>

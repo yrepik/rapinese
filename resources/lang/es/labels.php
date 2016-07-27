@@ -4,6 +4,7 @@ return [
 	'select_brand' => 'Seleccione una marca',
 	'select_category' => 'Seleccione un rubro',
 	'name' => 'Nombre y apellido',
+    'username' => 'Usuario',
 	'email' => 'Correo electrónico',
 	'tel' => 'Teléfono (opcional)',
 	'comments' => 'Comentarios (opcional)',
