@@ -39,6 +39,7 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 	$scope.items = [];
 	$scope.cart = [];
 	$scope.addingToCart = false;
+	$scope.addingToCartIndex = null;
 
 	$scope.init = function($json, $cart) {
 		$scope.items = $json.data;
@@ -79,16 +80,17 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 		});
 	};
 
-	$scope.addToCart = function($event, $index) {
+	$scope.addToCart = function($event, $index, url, cartUrl) {
 		$event.preventDefault();
 		$scope.addingToCart = true;
-		var element = angular.element($event.target);
-		$http.get(element.attr('href'))
+		$scope.addingToCartIndex = $index;
+		$http.get(url)
 			.success(function(data, status, headers, config) {
-				$http.get(element.data('cart-path'))
+				$http.get(cartUrl)
 					.success(function(data, status, headers, config) {
 						$scope.cart = data;
 						$scope.addingToCart = false;
+						$scope.addingToCartIndex = null;
 		  				$scope.openCartModal($index);
 			  	}).error(function(data, status, headers, config) {
 			  	}).finally(function(data, status, headers, config) {

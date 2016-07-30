@@ -11,7 +11,9 @@
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Oswald:300,400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-        @yield('styles')	
+        @yield('styles')
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     </head>
     <body>       
 
@@ -21,21 +23,19 @@
 					<img src="/images/logo2.png" class="img-responsive" />
 				</div>	
 				<div class="col-sm-8 col-md-8 hidden-sm hidden-xs" style="padding-top: 20px;">
-                    <ul class="list-inline text-center">
-                        <li><small><span class="glyphicon glyphicon-copyright-mark"></span> {{ config('app.company_name') }}</small></li>
-                        <li><small><span class="glyphicon glyphicon-envelope"></span> {{ config('app.contact_email') }}</small></li>
-                        <li><small><span class="glyphicon glyphicon-earphone"></span> {{ config('app.contact_phones') }}</small></li>
-                    </ul>
+                    @include('contact_info')
 				</div>
 			</header>
 			
 			<nav class="navbar navbar-inverse" role="navigation">
+                <ul class="list-unstyled pull-left visible-xs" style="padding: 6px 0 6px 20px; color: white; margin-bottom: 0;">
+                    <li><small><span class="glyphicon glyphicon-envelope"></span> {{ config('app.contact_email') }}</small></li>
+                    <li><small><span class="glyphicon glyphicon-earphone"></span> {{ config('app.contact_phones') }}</small></li>
+                </ul>            
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
+						<strong>MEN&Uacute;</strong> <span class="fa fa-bars"></span>
 					</button>
 				</div>
 				<div class="navbar-collapse collapse" style="height: 1px;">
@@ -44,7 +44,7 @@
 						<li><a href="{{ route('products') }}">@lang('nav.products')</a></li>
 						<!--<li><a href="{{ route('price-list') }}">@lang('nav.pricelist')</a></li>-->
                         <li><a href="{{ route('cart') }}">@lang('nav.cart')</a></li>
-						<li><a href="{{ route('clients') }}">@lang('nav.clients')</a></li>
+						<!--<li><a href="{{ route('clients') }}">@lang('nav.clients')</a></li>-->
 					</ul>	
 					<!--<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">                             
@@ -66,11 +66,7 @@
             </div>
 			
             <footer class="hidden-print text-center">                
-                <ul class="list-inline">
-                    <li><small><span class="glyphicon glyphicon glyphicon-copyright-mark"></span> {{ config('app.company_name') }} - 1965-{{ date('Y') }}</small></li>
-                    <li><small><span class="glyphicon glyphicon-envelope ml20"></span> {{ config('app.contact_email') }}</small></li>
-                    <li><small><span class="glyphicon glyphicon-earphone ml20"></span> {{ config('app.contact_phones') }}</small></li>
-                </ul>
+                @include('contact_info')
             </footer> 
 			
         </div>

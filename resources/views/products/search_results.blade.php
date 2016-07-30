@@ -19,7 +19,7 @@
 		@include('products.cart_modal')
 
 		@if ($data['result_count']['total'] > 0)
-			<div ng-controller="ProductSearchResultsController" ng-init='init({{ $data_json }})' wait wait-watch="addingToCart">
+			<div ng-controller="ProductSearchResultsController" ng-init='init({{ $data_json }})' ng-cloak wait wait-watch="addingToCart">
 				<p class="well well-sm">
 					@lang('wells.products.search.results', ['from' => $data['result_count']['from'], 'to' => $data['result_count']['to'], 'total' => $data['result_count']['total']])
 				</p>		
@@ -27,34 +27,40 @@
 				<div id="product-results">
 					@foreach ($data['results'] as $index => $item)			
 						<div class="row row-no-sidemargin">
-							<div class="col-md-2 col-sm-3 text-center">
+							<div class="col-md-2 col-sm-3 col-xs-4 text-center">
 								@if (count($item->images))
 									<a href="#" ng-click="openModal($event, <?php echo $index; ?>)" class="img">
             							<span class="product-hover"><i class="fa fa-4x fa-search-plus"></i></span>
 										<img class="img-responsive" src="/images/products/sm/{{ $item->images[0]->filename }}" alt="{{ $item->descripcion_es }}" />
 									</a>									
 								@else
-									<span class="rapinese-icon rapinese-icon-no-photo" style="font-size: 70px;"></span>
+									<span class="fa-stack fa-3x">
+										<span class="fa fa-camera fa-stack-1x"></span>
+										<span class="fa fa-ban fa-stack-2x text-danger"></span>
+									</span>
 								@endif
 							</div>
-							<div class="col-md-6 col-sm-4">										
+							<div class="col-md-5 col-sm-4 col-xs-8 mb20-sm">										
 								<div class="product-name mb20">{{ $item->name_es }}</div>
 								<div><strong>@lang('labels.code')</strong> {{ $item->code }}</div>
 								@if (!empty($item->material->name_es))
 									<div><strong>@lang('labels.material')</strong> {{ $item->material->name_es }}</div>
 								@endif									
 							</div>
-							<div class="col-md-1 col-sm-1 product-price">			
+							<div class="clearfix visible-xs"></div>
+							<div class="col-md-2 col-sm-2 col-xs-4 text-right text-center-sm product-price">			
 								{{ $item->formatted_price_ars }}
 							</div>
-							<div class="col-md-3 col-sm-4 text-center">
+							<div class="col-md-3 col-sm-3 col-xs-8 text-center">
 								<p>
-									<a class="btn btn-success btn-block hidden-print hidden-xs hidden-sm" 
-										ng-click="addToCart($event, {{ $index }})" 
-										href="{{ route('cart-add-ajax', $item->code) }}" 
-										data-cart-path="{{ route('cart-ajax') }}">
-										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('buttons.add_to_cart')
-									</a>
+									<button type="button" 
+										class="btn btn-success btn-block hidden-print hidden-xs hidden-sm" 
+										ng-click="addToCart($event, {{ $index }}, '{{ route('cart-add-ajax', $item->code) }}', '{{ route('cart-ajax') }}')" 
+										ng-disabled="addingToCartIndex == {{ $index }}">
+										<span class="glyphicon glyphicon-shopping-cart"></span> 
+										<span ng-show="addingToCartIndex != {{ $index }}">@lang('buttons.add_to_cart')</span>
+										<span ng-show="addingToCartIndex == {{ $index }}">@lang('Agregando...')</span>
+									</button>
 									<a class="btn btn-success btn-block hidden-md hidden-lg hidden-print" href="{{ route('cart-add', $item->code) }}">
 										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('buttons.add_to_cart')
 									</a>									

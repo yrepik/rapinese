@@ -28,7 +28,10 @@
                             @if (count($item->options->img))
                                 <img src="{{ $item->options->img }}" class="img-responsive" />                        
                             @else
-                                <span class="rapinese-icon rapinese-icon-no-photo" style="font-size: 70px;"></span>
+                                <span class="fa-stack fa-3x">
+                                    <span class="fa fa-camera fa-stack-1x"></span>
+                                    <span class="fa fa-ban fa-stack-2x text-danger"></span>
+                                </span>
                             @endif
                         </div>
                         <div class="col-md-6 col-sm-4 col-xs-7">               
@@ -73,7 +76,7 @@
                         <div class="radio">
                             <label ng-class="{'text-muted': shippingDisabled}">
                                 <input type="radio" name="shipment" value="oca" ng-model="shipment" ng-disabled="shippingDisabled">
-                                Enviar vía OCA
+                                Enviar vía OCA (hasta 3 unidades)
                             </label>
                         </div>
                         <div class="radio">

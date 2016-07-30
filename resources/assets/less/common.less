@@ -16,7 +16,15 @@ header {
 }
 
 footer {
-    margin-top: 20px;
+    margin: 20px 0 40px 0;
+    border-top: 1px solid #eee; 
+    color: #999; 
+    background-color: #e9e9e9;
+    padding: 10px; 
+    border-radius: 6px;
+    ul {
+        margin-bottom: 0;
+    }
 }
 
 .modal-content {
@@ -81,6 +89,10 @@ textarea {
                 border-top-color: #999;
             };
         }
+    }
+    .navbar-toggle {
+        border-color: white;
+        color: white;
     }
 }
 
@@ -242,12 +254,6 @@ span.mandatory {
 		    margin-top: -30px;
 		    top: 50%;
 		    z-index: 99;
-		}		
-		@media (max-width: @screen-sm-min) {
-			.col-md-6.col-sm-4,
-			.product-price {
-				margin:	10px 0;
-			}
 		}
 	}	
 }
@@ -310,16 +316,6 @@ span.mandatory {
 
 #brands {
 	padding: 20px;
-}
-
-footer {
-	margin-top: 20px; 
-	border-top: 1px solid #eee; 
-	color: #999; 
-	background-color: #e9e9e9; 
-	margin-bottom: 0; 
-	padding: 10px; 
-	border-radius: 6px 6px 0 0;
 }
 
 @media print {
