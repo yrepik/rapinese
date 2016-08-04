@@ -21,7 +21,7 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function getSearchRedirect(Request $request)
+    public function postSearchRedirect(Request $request)
     {
         return redirect()->route(
             'product-search-results', 
@@ -40,7 +40,8 @@ class ProductsController extends Controller
 
         $itemsPerPage = 20;
         
-        $items = Product::search($brand->id, $category->id, $itemsPerPage);
+        $items = Product::search($brand->id, $category->id)
+            ->paginate($itemsPerPage);
             
         $total = $items->total();
         $from = ($total > 0)

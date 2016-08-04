@@ -24,7 +24,7 @@
             {!! Form::open(['action' => ['CartController@postSubmitOrder'], 'role' => 'form', 'method' => 'post', 'class' => 'hidden-print mb20']) !!}
                 @foreach ($content as $item)
                     <div class="row row-no-sidemargin item">
-                        <div class="col-md-2 col-sm-3 col-xs-5 text-center">
+                        <div class="col-md-2 col-sm-3 col-xs-5 col-xxs-12 text-center">
                             @if (count($item->options->img))
                                 <img src="{{ $item->options->img }}" class="img-responsive" />                        
                             @else
@@ -34,7 +34,7 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="col-md-6 col-sm-4 col-xs-7">               
+                        <div class="col-md-6 col-sm-4 col-xs-7 col-xxs-12">               
                             <div>{{ $item->name }}</div>
                             <div><strong>@lang('labels.code')</strong> {{ $item->id }}</div>
                         </div>

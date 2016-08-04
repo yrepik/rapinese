@@ -2,11 +2,6 @@
 
 class PriceListController extends Controller
 {
-    
-    public function getIndex()
-    {
-        return view('price_list/index');
-    }
 
     public function getDownload()
     {

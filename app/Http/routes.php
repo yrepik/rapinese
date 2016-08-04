@@ -31,7 +31,7 @@ Route::group(['middleware' => ['web']], function() {
         }]);
 
         Route::get('/productos', ['as' => 'products', 'uses' => 'ProductsController@getIndex']);
-        Route::get('/productos/search-redirect', ['uses' => 'ProductsController@getSearchRedirect']);
+        Route::post('/productos/search-redirect', ['uses' => 'ProductsController@postSearchRedirect']);
         Route::get('/productos/{brand_alias}/{category_alias}', [
             'as' => 'product-search-results', 
             'uses' => 'ProductsController@getSearchResults'

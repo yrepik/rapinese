@@ -1,24 +1,11 @@
 var productsModule = angular.module('products', ['app']);
 
 productsModule.controller('ProductSearchFormController', function($scope) {
-
 	$scope.brand;
-	$scope.category;
-	
+	$scope.category;	
 	$scope.brandOrCategoryNotSelected = function() {
 		return $scope.brand == '' || $scope.category == '';
 	};
-
-});
-
-productsModule.controller('CartController', function($scope, $http) {
-
-	$scope.cart = null;
-
-	$scope.init = function($cart) {
-		$scope.cart = $cart;
-	};
-
 });
 
 productsModule.controller('ProductSearchResultsController', function($scope, $uibModal, $http) {
@@ -103,13 +90,10 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 });
 
 productsModule.controller('CartModalController', function($scope, $uibModalInstance, cart) {
-
 	$scope.cart = cart;
-
 	$scope.close = function() {
 		$uibModalInstance.dismiss('cancel');	 
 	};
-
 });
 
 productsModule.controller('QueryModalController', function($scope, $http, $uibModalInstance, item) {

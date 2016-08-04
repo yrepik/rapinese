@@ -1,4 +1,4 @@
-{!! Form::open(['action' => ['ProductsController@getSearchRedirect'], 'role' => 'form', 'method' => 'get', 'class' => 'row hidden-print mb20', 'ng-controller' => 'ProductSearchFormController', 'ng-cloak']) !!}
+{!! Form::open(['action' => ['ProductsController@postSearchRedirect'], 'role' => 'form', 'method' => 'post', 'class' => 'row hidden-print mb20', 'ng-controller' => 'ProductSearchFormController', 'ng-cloak']) !!}
 	<div class="col-md-3 col-sm-4">
 		<div class="form-group">
 			{!! Form::select(

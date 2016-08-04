@@ -42,14 +42,27 @@ class Product extends Model
 			->where('product_category_id', $categoryId);
     }
 
-    public function scopeSearch($query, $brandId, $categoryId, $itemsPerPage)
+    public function scopeByName($query, $name)
     {
+        $pieces = explode(' ', $name);
+        $like = '%' . implode('%', $pieces) . '%';
         return $query
+            ->where('name_es', 'LIKE', $like);
+    }    
+
+    public function scopeSearch($query, $brandId, $categoryId, $name = null)
+    {
+        $query
             ->with('material')
             ->with('images')
-            ->forBrandAndCategory($brandId, $categoryId)
-            ->orderBy('name_es', 'asc')
-            ->paginate($itemsPerPage);
+            ->forBrandAndCategory($brandId, $categoryId);
+
+        if ($name != null) {
+            $query->byName($name);
+        }            
+
+        $query->orderBy('name_es', 'asc');
+        return $query;
     }
     
     public function getFormattedPriceArsAttribute() {
