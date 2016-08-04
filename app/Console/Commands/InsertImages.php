@@ -31,14 +31,15 @@ class InsertImages extends Command {
 		$publicDir = env('PUBLIC_DIR');
 		$dir = $publicDir . '/images/products';
 		if ($handle = opendir($dir)) {
+			$table = (new \App\ProductImage)->getTable();
 			$count = 0;
 		    while (false !== ($entry = readdir($handle))) {
 
-		        if (!in_array($entry, ['.', '..', 'lg', 'sm', 'City-No-Camera-icon.png'])) {
+		        if (!in_array($entry, ['.', '..', 'lg', 'sm'])) {
 
 		            $arr = explode('_', $entry);
 		            $code = $arr[0];
-		            $record = DB::table('product_image')->where('filename', $entry)->first();
+		            $record = DB::table($table)->where('filename', $entry)->first();
 		            if (!$record || $force) {
 		            	$fixedEntry = str_replace('JPG', 'jpg', $entry);
 
@@ -66,7 +67,7 @@ class InsertImages extends Command {
 						unlink($dir . '/' . $entry);
 
 						if (!$force) {
-			            	$insert = DB::table('product_image')->insert([
+			            	$insert = DB::table($table)->insert([
 			            		'product_code' => $code, 
 			            		'filename' => $fixedEntry
 		            		]);

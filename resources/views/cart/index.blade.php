@@ -48,11 +48,12 @@
                         <div class="col-md-1 col-sm-2 col-xs-4 text-center">
                             <a href="{{ route('cart-remove', $item->rowId) }}" 
                                 class="remove-item" 
-                                ng-click="confirm($event)" 
-                                data-title="@lang('headers.modal.confirmation')" 
-                                data-ok="@lang('buttons.confirm')" 
-                                data-cancel="@lang('buttons.cancel')" 
-                                data-text="@lang('Confirma que desea eliminar el ítem ' . $item->name  . '?')">
+                                prompt 
+                                prompt-title="@lang('headers.modal.confirmation')" 
+                                prompt-ok="@lang('buttons.confirm')" 
+                                prompt-cancel="@lang('buttons.cancel')" 
+                                prompt-text="@lang('Confirma que desea eliminar el ítem ' . $item->name  . '?')" 
+                                prompt-confirm-url="{{ route('cart-remove', $item->rowId) }}">
                                 <span class="glyphicon glyphicon-remove" uib-tooltip="@lang('tooltips.cart.remove_item')" tooltip-placement="top"></span>
                             </a>
                         </div>
@@ -127,11 +128,12 @@
                         <ul class="list-inline">
                             <li>
                                 <a href="{{ route('cart-empty') }}" 
-                                    ng-click="confirm($event)" 
-                                    data-title="@lang('headers.modal.confirmation')" 
-                                    data-ok="@lang('buttons.confirm')" 
-                                    data-cancel="@lang('buttons.cancel')" 
-                                    data-text="Confirma que desea eliminar todos los ítems del carrito?" 
+                                    promt  
+                                    prompt-title="@lang('headers.modal.confirmation')" 
+                                    prompt-ok="@lang('buttons.confirm')" 
+                                    prompt-cancel="@lang('buttons.cancel')" 
+                                    prompt-text="Confirma que desea eliminar todos los ítems del carrito?" 
+                                    prompt-confirm-url="{{ route('cart-empty') }}"
                                     class="btn btn-lg btn-danger">
                                     @lang('buttons.empty_cart')
                                 </a>

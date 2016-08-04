@@ -27,7 +27,7 @@
 				<div id="product-results">
 					@foreach ($data['results'] as $index => $item)			
 						<div class="row row-no-sidemargin">
-							<div class="col-md-2 col-sm-3 col-xs-4 text-center">
+							<div class="col-md-2 col-sm-3 col-xs-4 col-xxs-12 text-center mb20-sm">
 								@if (count($item->images))
 									<a href="#" ng-click="openModal($event, <?php echo $index; ?>)" class="img">
             							<span class="product-hover"><i class="fa fa-4x fa-search-plus"></i></span>
@@ -40,7 +40,7 @@
 									</span>
 								@endif
 							</div>
-							<div class="col-md-5 col-sm-4 col-xs-8 mb20-sm">										
+							<div class="col-md-5 col-sm-4 col-xs-8 col-xxs-12 mb20-sm">										
 								<div class="product-name mb20">{{ $item->name_es }}</div>
 								<div><strong>@lang('labels.code')</strong> {{ $item->code }}</div>
 								@if (!empty($item->material->name_es))
@@ -48,20 +48,20 @@
 								@endif									
 							</div>
 							<div class="clearfix visible-xs"></div>
-							<div class="col-md-2 col-sm-2 col-xs-4 text-right text-center-sm product-price">			
+							<div class="col-md-2 col-sm-2 col-xs-4 col-xxs-12 text-center mb20-sm product-price">			
 								{{ $item->formatted_price_ars }}
 							</div>
-							<div class="col-md-3 col-sm-3 col-xs-8 text-center">
+							<div class="col-md-3 col-sm-3 col-xs-8 col-xxs-12 text-center">
 								<p>
 									<button type="button" 
-										class="btn btn-success btn-block hidden-print hidden-xs hidden-sm" 
+										class="btn btn-success btn-block hidden-print visible-md visible-lg" 
 										ng-click="addToCart($event, {{ $index }}, '{{ route('cart-add-ajax', $item->code) }}', '{{ route('cart-ajax') }}')" 
 										ng-disabled="addingToCartIndex == {{ $index }}">
 										<span class="glyphicon glyphicon-shopping-cart"></span> 
 										<span ng-show="addingToCartIndex != {{ $index }}">@lang('buttons.add_to_cart')</span>
 										<span ng-show="addingToCartIndex == {{ $index }}">@lang('Agregando...')</span>
 									</button>
-									<a class="btn btn-success btn-block hidden-md hidden-lg hidden-print" href="{{ route('cart-add', $item->code) }}">
+									<a class="btn btn-success btn-block visible-xs visible-sm hidden-print" href="{{ route('cart-add', $item->code) }}">
 										<span class="glyphicon glyphicon-shopping-cart"></span> @lang('buttons.add_to_cart')
 									</a>									
 								</p>

@@ -117,7 +117,7 @@ module.exports = function(grunt) {
         copy: {
             env: {
                 files: [
-                    {src: ['.env.example'], dest: '.envi'}
+                    {src: ['.env.example'], dest: '.env'}
                 ]
             },   
             fonts: {

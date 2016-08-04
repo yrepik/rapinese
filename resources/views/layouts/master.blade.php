@@ -22,13 +22,13 @@
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<img src="/images/logo2.png" class="img-responsive" />
 				</div>	
-				<div class="col-sm-8 col-md-8 hidden-sm hidden-xs" style="padding-top: 20px;">
+				<div class="col-sm-8 col-md-8 visible-md visible-lg text-center" style="padding-top: 20px; color: grey;">
                     @include('contact_info')
 				</div>
 			</header>
 			
 			<nav class="navbar navbar-inverse" role="navigation">
-                <ul class="list-unstyled pull-left visible-xs" style="padding: 6px 0 6px 20px; color: white; margin-bottom: 0;">
+                <ul class="list-unstyled pull-left hidden-xxs visible-xs" style="padding: 6px 0 6px 20px; color: white; margin-bottom: 0;">
                     <li><small><span class="glyphicon glyphicon-envelope"></span> {{ config('app.contact_email') }}</small></li>
                     <li><small><span class="glyphicon glyphicon-earphone"></span> {{ config('app.contact_phones') }}</small></li>
                 </ul>            
@@ -43,7 +43,7 @@
 						<li><a href="{{ route('home') }}">@lang('nav.company')</a></li>
 						<li><a href="{{ route('products') }}">@lang('nav.products')</a></li>
 						<!--<li><a href="{{ route('price-list') }}">@lang('nav.pricelist')</a></li>-->
-                        <li><a href="{{ route('cart') }}">@lang('nav.cart')</a></li>
+                        <li><a href="{{ route('cart') }}">@lang('nav.cart') <!--({{ request('cart_count') }})--></a></li>
 						<!--<li><a href="{{ route('clients') }}">@lang('nav.clients')</a></li>-->
 					</ul>	
 					<!--<ul class="nav navbar-nav navbar-right">

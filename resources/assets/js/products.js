@@ -1,19 +1,5 @@
 var productsModule = angular.module('products', ['app']);
 
-productsModule.directive('ngInitial', function($parse) {
-    return {
-        restrict: 'A',
-        compile: function($element, $attrs) {
-            var initialValue = $attrs.value || $element.val();
-            return {
-                pre: function($scope, $element, $attrs) {
-                    $parse($attrs.ngModel).assign($scope, initialValue);
-                }
-            };
-        }
-    };
-});
-
 productsModule.controller('ProductSearchFormController', function($scope) {
 
 	$scope.brand;

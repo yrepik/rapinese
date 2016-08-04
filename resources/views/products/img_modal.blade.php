@@ -21,7 +21,7 @@
 				</div>
 				<div class="text-center mt20">
 					<a class="btn btn-success btn-block hidden-print" href="{{ route('cart-add', '%%item.code%%') }}">
-						<span class="glyphicon glyphicon-shopping-cart"></span> @lang('buttons.buy')
+						<span class="glyphicon glyphicon-shopping-cart"></span> @lang('buttons.add_to_cart')
 					</a>
 				</div>				
 				<div class="text-center mt20">

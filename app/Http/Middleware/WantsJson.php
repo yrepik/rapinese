@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Ajax
+class WantsJson
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,9 @@ class Ajax
      */
     public function handle($request, Closure $next)
     {
-        if ($request->ajax()) {
-            // Handle the non-ajax request
-            return response('', 404);
+        if (!$request->wantsJson()) {
+            return abort(404);
         }
-
         return $next($request);
     }
 }
