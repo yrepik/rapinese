@@ -6,18 +6,17 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Brand extends Model
 {
-	
+
     public function products()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany(Product::class);
     }
 
     public function scopeOptionsForSelect($query)
     {
         return $query
             ->orderBy('order')
-            ->lists('name', 'alias')
-            ->all();
+            ->pluck('name', 'alias');
     }
 
 }

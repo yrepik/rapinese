@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 class ProductCategory extends Model
 {
 
-    protected $table = 'product_categories'; 	
-	
+    protected $table = 'product_categories';
+
     public function products()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany(Product::class);
     }
 
     public function scopeOptionsForSelect($query)
@@ -19,8 +19,7 @@ class ProductCategory extends Model
         return $query
             ->orderBy('name_es')
             ->where('status', 1)
-            ->lists('name_es', 'alias_es')
-            ->all();
-    }    
+            ->pluck('name_es', 'alias_es');
+    }
 
 }

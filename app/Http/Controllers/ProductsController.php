@@ -10,13 +10,13 @@ use Mail;
 
 class ProductsController extends Controller
 {
-	
+
     public function getIndex()
     {
         return view('products.index', [
-            'brands' => Brand::optionsForSelect(),
-            'categories' => ProductCategory::optionsForSelect(),
-            'selected_brand' => null, 
+            'brands' => Brand::optionsForSelect()->all(),
+            'categories' => ProductCategory::optionsForSelect()->all(),
+            'selected_brand' => null,
             'selected_category' => null
         ]);
     }
@@ -24,7 +24,7 @@ class ProductsController extends Controller
     public function postSearchRedirect(Request $request)
     {
         return redirect()->route(
-            'product-search-results', 
+            'product-search-results',
             ['brand_alias' => $request->input('brand_alias'), 'category_alias' => $request->input('category_alias')]
         );
     }
@@ -39,10 +39,10 @@ class ProductsController extends Controller
         }
 
         $itemsPerPage = 20;
-        
+
         $items = Product::search($brand->id, $category->id)
             ->paginate($itemsPerPage);
-            
+
         $total = $items->total();
         $from = ($total > 0)
             ? ($items->currentPage() - 1) * $itemsPerPage + 1
@@ -53,7 +53,7 @@ class ProductsController extends Controller
         }
 
         $data = [
-            'result_count' => [                
+            'result_count' => [
                 'total' => $total,
                 'from' => $from,
                 'to' => $to
@@ -61,15 +61,15 @@ class ProductsController extends Controller
             'results' => $items
         ];
         return view('products.search_results', [
-            'data' => $data, 
+            'data' => $data,
             'data_json' => $items->toJson(),
-            'brands' => Brand::optionsForSelect(),
-            'categories' => ProductCategory::optionsForSelect(),            
-            'selected_brand' => $brandAlias, 
+            'brands' => Brand::optionsForSelect()->all(),
+            'categories' => ProductCategory::optionsForSelect()->all(),
+            'selected_brand' => $brandAlias,
             'selected_category' => $categoryAlias,
             'brand' => $brand,
             'category' => $category
-        ]);   
+        ]);
     }
 
     public function postSendQuery(Request $request)
@@ -89,15 +89,15 @@ class ProductsController extends Controller
 
         if ($validator->passes()) {
             $sendResult = Mail::send(
-                'emails.product_query', 
+                'emails.product_query',
                 [
-                    'name' => $request->input('name'), 
+                    'name' => $request->input('name'),
                     'email' => $request->input('email'),
                     'tel' => $request->input('tel'),
                     'comments' => $request->input('comments'),
                     'product_code' => $request->input('itemCod'),
                     'product_description' => $request->input('itemDescrip')
-                ], 
+                ],
                 function($message) {
                     $message
                         ->from($request->input('email'), $request->input('name'))
@@ -105,15 +105,15 @@ class ProductsController extends Controller
                         ->bcc('german.medaglia@gmail.com')
                         ->subject('Consulta desde la web');
                 }
-            );  
+            );
             $result = $sendResult != false;
-            $msg = ($result) 
-                ? trans('alerts.ask_success') 
+            $msg = ($result)
+                ? trans('alerts.ask_success')
                 : trans('alerts.send_failure');
-        } else {       
+        } else {
             $errors = $validator->errors()->all();
             $result = false;
-        }        
+        }
         return response()->json(['result' => $result, 'msg' => $msg, 'errors' => $errors]);
     }
 

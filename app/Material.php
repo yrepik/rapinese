@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Material extends Model
 {
-	
+
     public function products()
     {
-        return $this->hasMany('App\Product');
-    }  
+        return $this->hasMany(Product::class);
+    }
 
 }

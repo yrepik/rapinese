@@ -24,7 +24,7 @@
 				<h3 class="text-center">@lang('headers.home.quality')</h3>
 				<p>@lang('texts.quality')</p>
 			</div>
-			<div class="clearfix visible-xs-block visible-sm-block hidden-md hidden-lg"></div>			
+			<div class="clearfix visible-xs-block visible-sm-block hidden-md hidden-lg"></div>
 			<div class="col-xxs-12 col-xs-6 col-sm-6 col-md-3">
 				<div class="text-center"><i class="fa fa-4x fa-refresh"></i></div>
 				<h3 class="text-center">@lang('headers.home.stock')</h3>
@@ -35,8 +35,7 @@
 				<div class="text-center"><i class="fa fa-4x fa-globe"></i></div>
 				<h3 class="text-center">@lang('headers.home.exportations')</h3>
 				<p>@lang('texts.exportations')</p>
-			</ul>
-			</div>									
+			</div>
 		</div>
 	</div>
 @stop
