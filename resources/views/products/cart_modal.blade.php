@@ -4,7 +4,7 @@
         <h3>@lang('headers.cart')</h3>
     </div>
     <div class="modal-body">
-        {!! Form::open(['action' => ['CartController@postSubmitOrder'], 'role' => 'form', 'method' => 'post']) !!}
+        {!! Form::open(['action' => ['CartController@submitOrder'], 'role' => 'form', 'method' => 'post']) !!}
             <table class="table table-striped">
                 <tr>
                     <th>@lang('Descripción')</th>

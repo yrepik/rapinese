@@ -5,8 +5,8 @@ use Cart;
 
 class CheckoutController extends Controller
 {
-    
-    public function getIndex(Request $request, $result)
+
+    public function index(Request $request, $result)
     {
         $cond = $request->session()->has('preference_id')
             && $request->has('preference_id')
@@ -18,7 +18,7 @@ class CheckoutController extends Controller
         }
 
         //$request->session()->get('preference_id')
-        
+
         switch ($result) {
             case 'success':
                 $text = trans('alerts.chekcout.success');

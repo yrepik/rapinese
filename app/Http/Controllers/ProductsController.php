@@ -11,7 +11,7 @@ use Mail;
 class ProductsController extends Controller
 {
 
-    public function getIndex()
+    public function index()
     {
         return view('products.index', [
             'brands' => Brand::optionsForSelect()->all(),
@@ -21,7 +21,7 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function postSearchRedirect(Request $request)
+    public function searchRedirect(Request $request)
     {
         return redirect()->route(
             'product-search-results',
@@ -29,7 +29,7 @@ class ProductsController extends Controller
         );
     }
 
-    public function getSearchResults($brandAlias, $categoryAlias, $page = 1)
+    public function searchResults($brandAlias, $categoryAlias, $page = 1)
     {
         $brand = Brand::where('alias', $brandAlias)->first();
         $category = ProductCategory::where('alias_es', $categoryAlias)->first();
@@ -72,7 +72,7 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function postSendQuery(Request $request)
+    public function sendQuery(Request $request)
     {
         $result = null;
         $msg = null;

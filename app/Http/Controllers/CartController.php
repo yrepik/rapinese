@@ -8,15 +8,15 @@ use App\Product;
 
 class CartController extends Controller
 {
-    
-    public function getIndex()
+
+    public function index()
     {
         $content = Cart::content();
         $subtotal = Cart::subtotal(2, '.', false);
         $tax = Cart::tax(2, '.', false);
         $total = Cart::total(2, '.', false);
 
-        return view('cart/index', [            
+        return view('cart/index', [
             'content' => $content,
             'count' => Cart::count(),
             'subtotal' => $subtotal,
@@ -25,7 +25,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function postSubmitOrder(Request $request)
+    public function submitOrder(Request $request)
     {
         //dd($request->all());
         $content = Cart::content();
@@ -43,7 +43,7 @@ class CartController extends Controller
             $name = $item->name;
             if ($item->qty > 1) {
                 $name .= ' (' . $item->qty .')';
-            } 
+            }
             $itemNames[] = $name;
         }
 
@@ -71,7 +71,7 @@ class CartController extends Controller
                     'category_id' => 'automotive',
                     'currency_id' => config('app.currency'),
                     'unit_price' => /*$item->price + $tax,*/ $total2,
-                    'picture_url' => /*array_key_exists('img', $item->options) 
+                    'picture_url' => /*array_key_exists('img', $item->options)
                         ? $item->options['img']
                         : null*/null
                 ]
@@ -83,8 +83,8 @@ class CartController extends Controller
         return redirect()->to($preference['response']['init_point']);
     }
 
-    public function getAdd($code)
-    {        
+    public function addItem($code)
+    {
         $product = Product::find($code);
 
         if (empty($product)) {
@@ -98,9 +98,9 @@ class CartController extends Controller
         }
 
         Cart::add([
-            'id' => $product->code, 
-            'name' => $product->name_es, 
-            'qty' => 1, 
+            'id' => $product->code,
+            'name' => $product->name_es,
+            'qty' => 1,
             'price' => $product->price_ars,
             'options' => $options
         ]);
@@ -108,7 +108,7 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function getAddAjax(Request $request, $code)
+    public function addItemAjax(Request $request, $code)
     {
 
         $product = Product::find($code);
@@ -124,9 +124,9 @@ class CartController extends Controller
         }
 
         Cart::add([
-            'id' => $product->code, 
-            'name' => $product->name_es, 
-            'qty' => 1, 
+            'id' => $product->code,
+            'name' => $product->name_es,
+            'qty' => 1,
             'price' => $product->price_ars,
             'options' => $options
         ]);
@@ -134,7 +134,7 @@ class CartController extends Controller
         return response()->json([
             'content' => Cart::content()
         ]);
-    } 
+    }
 
     public function getCartAjax()
     {
@@ -144,26 +144,26 @@ class CartController extends Controller
             'tax' => Cart::tax(2, '.', false),
             'total' => Cart::total(2, '.', false)
         ]);
-    }   
+    }
 
-    public function getRemove($rowId)
-    {        
+    public function removeItem($rowId)
+    {
         Cart::remove($rowId);
         return redirect()->route('cart')->with(['item_deleted' => true]);
-    } 
+    }
 
-    public function getEmpty()
-    {        
+    public function emptyCart()
+    {
         Cart::destroy();
         return redirect()->route('cart')->with(['cart_emptied' => true]);
-    }     
+    }
 
-    public function getUpdate($code, $qty)
-    {        
+    public function updateCart($code, $qty)
+    {
 
     }
 
-    public function postCalculateShipping(Request $request)
+    public function calculateShipping(Request $request)
     {
         $content = Cart::content();
         $tax = Cart::tax(2, ',', '.');

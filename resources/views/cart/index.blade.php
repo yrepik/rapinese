@@ -21,7 +21,7 @@
                 </div>
             @endif
 
-            {!! Form::open(['action' => ['CartController@postSubmitOrder'], 'role' => 'form', 'method' => 'post', 'class' => 'hidden-print mb20']) !!}
+            {!! Form::open(['action' => ['CartController@submitOrder'], 'role' => 'form', 'method' => 'post', 'class' => 'hidden-print mb20']) !!}
                 @foreach ($content as $item)
                     <div class="row row-no-sidemargin item">
                         <div class="col-md-2 col-sm-3 col-xs-5 col-xxs-12 text-center">
