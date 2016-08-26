@@ -43,11 +43,11 @@ elixir(function(mix) {
 
 var exec = require('child_process').exec;
 
-gulp.task('composer_install', function (cb) {
+gulp.task('composer_install', function(cb) {
     exec('composer install');
 });
 
-gulp.task('bower_install', function (cb) {
+gulp.task('bower_install', function(cb) {
     exec('bower install');
 });
 
