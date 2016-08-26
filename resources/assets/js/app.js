@@ -1,25 +1,5 @@
 var appModule = angular.module('app', ['ui.bootstrap']);
 
-appModule.config(function($interpolateProvider/*, $httpProvider*/) {
-    $interpolateProvider.startSymbol('%%');
-    $interpolateProvider.endSymbol('%%');
-    /*$httpProvider.interceptors.push(['$q', function($q) {
-        return function(promise) {
-            return promise.then(function(successfulResponse) {
-                return successfulResponse; 
-            }, function(errorResponse) {
-                if (errorResponse.status === 401) {                    
-                    alert('auth!');
-                    return errorResponse;
-                } else if (1 < 0) {
-
-                }
-                return $q.reject(errorResponse);
-            });
-        };
-    }]);*/
-});
-
 appModule.directive('ngInitial', function($parse) {
     return {
         restrict: 'A',
@@ -51,11 +31,11 @@ appModule.directive('prompt', ['$confirm', '$window', function($confirm, $window
         link: function(scope, element, attrs) {
             element.on('click', function($event) {
                 $event.preventDefault();
-                $confirm({title: attrs.promptTitle, ok: attrs.promptOk, cancel: attrs.promptCancel}, {template: '<div class="modal-header"><h3 class="modal-title">%%data.title%%</h3></div>' +
+                $confirm({title: attrs.promptTitle, ok: attrs.promptOk, cancel: attrs.promptCancel}, {template: '<div class="modal-header"><h3 class="modal-title">{{ data.title }}</h3></div>' +
                     '<div class="modal-body">' + attrs.promptText + '</div>' +
                     '<div class="modal-footer">' +
-                    '<button class="btn btn-danger" ng-click="ok()">%%data.ok%%</button>' +
-                    '<button class="btn btn-default" ng-click="cancel()">%%data.cancel%%</button>' +
+                    '<button class="btn btn-danger" ng-click="ok()">{{ data.ok }}</button>' +
+                    '<button class="btn btn-default" ng-click="cancel()">{{ data.cancel }}</button>' +
                     '</div>'
                 }).then(function() {
                     $window.location.href = attrs.promptConfirmUrl;

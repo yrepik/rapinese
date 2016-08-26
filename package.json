@@ -8,6 +8,10 @@
     "grunt-contrib-less": "^0.11.3",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-exec": "^0.4.6"
+    "grunt-exec": "^0.4.6",
+    "gulp": "^3.9.1",
+    "gulp-exec": "^2.1.2",
+    "laravel-elixir": "^6.0.0-9",
+    "laravel-elixir-browsersync-official": "^1.0.0"
   }
 }

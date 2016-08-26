@@ -63,11 +63,11 @@
                     <div class="col-lg-offset-6 col-lg-3 col-md-offset-5 col-md-4 col-sm-offset-4 col-sm-5 col-xs-offset-7 text-right">
                         <dl class="dl-horizontal">
                             <dt>@lang('labels.subtotal', ['currency' => config('app.currency')])</dt>
-                            <dd>%%subtotal%%</dd>
+                            <dd>@{{ subtotal }}</dd>
                             <dt>@lang('labels.tax', ['currency' => config('app.currency')])</dt>
-                            <dd>%%tax%%</dd>
+                            <dd>@{{ tax }}</dd>
                             <dt>@lang('labels.total', ['currency' => config('app.currency')])</dt>
-                            <dd>%%total%%</dd>
+                            <dd>@{{ total }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -107,8 +107,8 @@
                         </div>
                         <div class="radio" ng-repeat="shippingOption in shippingOptions">
                             <label>
-                                <input type="radio" name="shippingMethod" value="%%shippingOption.shipping_method_id%%" ng-model="shipingMethod">
-                                <span class="fa fa-truck"></span>  %%shippingOption.name%%: %%shippingOption.currency_id%% %%shippingOption.cost%%
+                                <input type="radio" name="shippingMethod" value="@{{ shippingOption.shipping_method_id }}" ng-model="shipingMethod">
+                                <span class="fa fa-truck"></span>  @{{ shippingOption.name }}: @{{ shippingOption.currency_id }} @{{ shippingOption.cost }}
                             </label>
                         </div>
                         <div class="alert alert-danger mt20" ng-show="shippingCostCalcFailed">

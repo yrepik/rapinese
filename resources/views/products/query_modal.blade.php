@@ -1,18 +1,18 @@
 <script type="text/ng-template" id="product-query-modal">
 	<div class="modal-header">
 		<button ng-click="close()" type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-		<h3>@lang('headers.products.ask')<br />%%item.name_es%%</h3>
+		<h3>@lang('headers.products.ask')<br />@{{ item.name_es }}</h3>
 	</div>
 	<div class="modal-body">
 		<div ng-show="sending"></div>
 		<div ng-show="result != null && errors.length == 0 && !sending" class="alert" ng-class="{'alert-success': result == true, 'alert-danger': result == false}">
-			%%msg%%
+			@{{ msg }}
 		</div>
 		<div ng-show="errors.length > 0 && !sending" class="alert alert-danger alert-dismissible" role="alert">
 			<!--<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
 			<h5>@lang('headers.verify_errors')</h5>
 			<ul>
-				<li ng-repeat="error in errors">%%error%%</li>
+				<li ng-repeat="error in errors">@{{ error }}</li>
 			</ul>
 		</div>
 		<div ng-show="result != true">
@@ -31,7 +31,7 @@
 							{!! Form::label('tel', trans('labels.tel')) !!}
 							{!! Form::text('tel', null, ['class' => 'form-control', 'ng-model' => 'tel', 'ng-disabled' => 'sending']) !!}
 						</div>
-					</div> 
+					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							{!! Form::label('comments', trans('labels.comments')) !!}

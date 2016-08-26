@@ -6,7 +6,7 @@
 			<div>
 				<uib-carousel interval="myInterval">
 					<uib-slide ng-repeat="slide in slides" active="slide.active">
-						<img ng-src="%%slide.image%%">
+						<img ng-src="@{{ slide.image }}">
 					</uib-slide>
 				</uib-carousel>
 			</div>
