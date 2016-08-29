@@ -35,10 +35,7 @@ elixir(function(mix) {
         .scripts(['products.js'], 'public/js/products.js')
         .scripts(['./bower_components/angular-confirm-modal/angular-confirm.js', 'cart.js'], 'public/js/cart.js')
         .copy('./bower_components/bootstrap/dist/fonts', 'public/fonts')
-        .copy('./bower_components/components-font-awesome/fonts', 'public/fonts')
-        .browserSync({
-            proxy: 'local.rapinese'
-        });
+        .copy('./bower_components/components-font-awesome/fonts', 'public/fonts');
 });
 
 var exec = require('child_process').exec;
