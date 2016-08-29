@@ -5,14 +5,10 @@ Install NPM dependencies:
 $ npm install
 ```
 
-Run Grunt `copy:env` task:
-```sh
-$ grunt copy:env
-```
-After that, edit the generated `.env` file with the corresponding values.
+Copy `.env.example` to `.env` and update the new file with the corresponding values.
 
-Run Grunt `install` task:
+Run Gulp `install` task:
 ```sh
-$ grunt install
+$ gulp install
 ```
 
