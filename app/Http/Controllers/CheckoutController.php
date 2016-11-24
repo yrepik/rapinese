@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 use Cart;
 
 class CheckoutController extends Controller
@@ -14,7 +16,7 @@ class CheckoutController extends Controller
 
         if (!$cond) {
             //dd($request->session()->get('preference_id'));
-            abort(404);
+            abort(Response::HTTP_NOT_FOUND);
         }
 
         //$request->session()->get('preference_id')

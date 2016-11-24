@@ -2,8 +2,6 @@ var cartModule = angular.module('cart', ['app', 'angular-confirm']);
 
 cartModule.controller('CartController', function($scope, $http, $filter) {
 
-    $scope.subtotal = null;
-    $scope.tax = null;
     $scope.total = null;
     $scope.content = null;
     $scope.shipment = 'oca';
@@ -14,10 +12,8 @@ cartModule.controller('CartController', function($scope, $http, $filter) {
     $scope.calculatingShippingCost = false;
     $scope.shippingCostCalcFailed = false;
 
-    $scope.init = function(content, count, subtotal, tax, total) {
-        $scope.subtotal = $filter('number')(subtotal, 2);
-        $scope.tax = $filter('number')(tax, 2);
-        $scope.total = $filter('number')(total, 2);
+    $scope.init = function(content, count, total) {
+        $scope.total = total;
         $scope.content = content;
         if (count > 3) {
             $scope.shipment = 'pickup';
@@ -34,13 +30,13 @@ cartModule.controller('CartController', function($scope, $http, $filter) {
         $scope.calculatingShippingCost = true;
         $http.post(element.data('request-path'), {zipCode: $scope.zipCode}).success(function(data, status, headers, config) {
             $scope.shippingCostCalcFailed = false;
-            $scope.shippingOptions = data.response.options;        
+            $scope.shippingOptions = data.response.options;
         }).error(function(data, status, headers, config) {
             $scope.shippingOptions = [];
             $scope.shippingCostCalcFailed = true;
         }).finally(function(data, status, headers, config) {
             $scope.calculatingShippingCost = false;
-        });         
+        });
     };
 
     $scope.sarasa = function($event) {

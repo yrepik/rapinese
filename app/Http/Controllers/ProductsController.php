@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use App\Brand;
 use App\ProductCategory;
@@ -35,13 +36,13 @@ class ProductsController extends Controller
         $category = ProductCategory::where('alias_es', $categoryAlias)->first();
 
         if (!$brand || !$category) {
-            return abort(404);
+            return abort(Response::HTTP_NOT_FOUND);
         }
 
         $itemsPerPage = 20;
 
         $items = Product::search($brand->id, $category->id)
-            ->paginate($itemsPerPage);
+            ->paginate($itemsPerPage, null, 'pag');
 
         $total = $items->total();
         $from = ($total > 0)
@@ -98,15 +99,15 @@ class ProductsController extends Controller
                     'product_code' => $request->input('itemCod'),
                     'product_description' => $request->input('itemDescrip')
                 ],
-                function($message) {
+                function($message) use($request) {
                     $message
                         ->from($request->input('email'), $request->input('name'))
                         ->to('rapinese@rapinese.com.ar')
                         ->bcc('german.medaglia@gmail.com')
-                        ->subject('Consulta desde la web');
+                        ->subject(trans('Consulta desde la web'));
                 }
             );
-            $result = $sendResult != false;
+            $result = $sendResult !== false;
             $msg = ($result)
                 ? trans('alerts.ask_success')
                 : trans('alerts.send_failure');

@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "5.2.*",
+		"laravel/framework": "5.3.*",
 		"laravelcollective/html": "5.*",
         "intervention/image": "dev-master",
         "santigraviano/laravel-mercadopago": "dev-master",
@@ -17,7 +17,7 @@
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
-        "symfony/dom-crawler": "2.8.*|3.0.*"	
+        "symfony/dom-crawler": "2.8.*|3.0.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -48,5 +48,5 @@
 	},
 	"config": {
 		"preferred-install": "dist"
-	}	
+	}
 }

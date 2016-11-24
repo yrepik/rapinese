@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use Cart;
 use MP;
@@ -12,31 +13,20 @@ class CartController extends Controller
     public function index()
     {
         $content = Cart::content();
-        $subtotal = Cart::subtotal(2, '.', false);
-        $tax = Cart::tax(2, '.', false);
-        $total = Cart::total(2, '.', false);
+        $total = Cart::total();
 
         return view('cart/index', [
             'content' => $content,
             'count' => Cart::count(),
-            'subtotal' => $subtotal,
-            'tax' => $tax,
             'total' => $total
         ]);
     }
 
     public function submitOrder(Request $request)
     {
-        //dd($request->all());
         $content = Cart::content();
-        $total = Cart::total(2, ',', '.');
-        $tax = Cart::tax(2, ',', '.');
 
-        $total2 = 0.00;
-        foreach ($content as $item) {
-            $total2 += $item->price;
-        }
-        $total2 += $tax;
+        $total = $content->sum('price');
 
         $itemNames = [];
         foreach ($content as $item) {
@@ -55,7 +45,7 @@ class CartController extends Controller
 
         $preferenceData = [
             'back_urls' => [
-                'success' => route('checkout' , 'success'),
+                'success' => route('checkout', 'success'),
                 'failure' => route('checkout', 'failure'),
                 'pending' => route('checkout', 'pending')
             ],
@@ -70,7 +60,7 @@ class CartController extends Controller
                     'quantity' => 1, //$item->qty,
                     'category_id' => 'automotive',
                     'currency_id' => config('app.currency'),
-                    'unit_price' => /*$item->price + $tax,*/ $total2,
+                    'unit_price' => /*$item->price + $tax,*/ $total,
                     'picture_url' => /*array_key_exists('img', $item->options)
                         ? $item->options['img']
                         : null*/null
@@ -88,7 +78,7 @@ class CartController extends Controller
         $product = Product::find($code);
 
         if (empty($product)) {
-            return abort(404);
+            return abort(Response::HTTP_NOT_FOUND);
         }
 
         $options = [];
@@ -114,7 +104,7 @@ class CartController extends Controller
         $product = Product::find($code);
 
         if (empty($product)) {
-            return abort(404);
+            return abort(Response::HTTP_NOT_FOUND);
         }
 
         $options = [];
@@ -140,9 +130,7 @@ class CartController extends Controller
     {
         return response()->json([
             'content' => Cart::content(),
-            'subtotal' => Cart::subtotal(2, '.', false),
-            'tax' => Cart::tax(2, '.', false),
-            'total' => Cart::total(2, '.', false)
+            'total' => Cart::total()
         ]);
     }
 
@@ -166,7 +154,6 @@ class CartController extends Controller
     public function calculateShipping(Request $request)
     {
         $content = Cart::content();
-        $tax = Cart::tax(2, ',', '.');
         $item = $content->first();
         $dimensions = '10x70x30,2000'; //$item->options['dimensions'];
 
@@ -174,7 +161,6 @@ class CartController extends Controller
         foreach ($content as $item) {
             $itemPrice += $item->price;
         }
-        $itemPrice += $tax;
 
         $response = MP::get('/shipping_options', [
             'dimensions' => $dimensions,

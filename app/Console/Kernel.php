@@ -13,7 +13,6 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        // Commands\Inspire::class,
         Commands\InsertImages::class
     ];
 
@@ -27,11 +26,15 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule
-            ->command('ii')
-            /*->dailyAt('23:28')*/
-            ->everyMinute()
-            ->sendOutputTo(base_path() . '/files/cron.txt')
-            ->emailOutputTo('german.medaglia@gmail.com');
+    }
+
+    /**
+     * Register the Closure based commands for the application.
+     *
+     * @return void
+     */
+    protected function commands()
+    {
+        require base_path('routes/console.php');
     }
 }

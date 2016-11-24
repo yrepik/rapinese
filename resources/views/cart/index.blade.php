@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div id="cart" ng-app="cart" ng-controller="CartController" ng-init="init({{ $content }}, {{ $count }}, '{{ $subtotal }}', '{{ $tax }}', '{{ $total }}')" ng-cloak>
+    <div id="cart" ng-app="cart" ng-controller="CartController" ng-init="init({{ $content }}, {{ $count }}, '{{ $total }}')" ng-cloak>
         <h1>@lang('headers.cart')</h1>
 
         @if (!count($content))
@@ -62,10 +62,6 @@
                 <div id="totals" class="row row-no-sidemargin">
                     <div class="col-lg-offset-6 col-lg-3 col-md-offset-5 col-md-4 col-sm-offset-4 col-sm-5 col-xs-offset-7 text-right">
                         <dl class="dl-horizontal">
-                            <dt>@lang('labels.subtotal', ['currency' => config('app.currency')])</dt>
-                            <dd>@{{ subtotal }}</dd>
-                            <dt>@lang('labels.tax', ['currency' => config('app.currency')])</dt>
-                            <dd>@{{ tax }}</dd>
                             <dt>@lang('labels.total', ['currency' => config('app.currency')])</dt>
                             <dd>@{{ total }}</dd>
                         </dl>
@@ -115,16 +111,14 @@
                             Se ha producido un error.
                         </div>
                     </div>
-                    <div class="col-md-4" ng-show="shipment == 'oca'">
+                    <div id="mp" class="col-md-4 mb20-sm mt20 text-center">
+                        <small class="mr20">@lang('texts.processed_by')</small>
+                        <img src="images/logo-mercadopago.png" style="width: 96px;" />
                     </div>
                 </div>
 
                 <div class="row">
-                    <div id="mp" class="col-md-4 mb20-sm text-center-sm">
-                        <small class="mr20">@lang('texts.processed_by')</small>
-                        <img src="images/logo-mercadopago.png" style="width: 96px;" />
-                    </div>
-                    <div id="cta" class="col-md-8 text-right text-center-sm">
+                    <div id="cta" class="col-md-12 text-right text-center-sm">
                         <ul class="list-inline">
                             <li>
                                 <a href="{{ route('cart-empty') }}"
@@ -146,9 +140,8 @@
             {!! Form::close() !!}
         @endif
 
-        @section('scripts')
-            @parent
+        @push('scripts')
             {!! HTML::script('js/cart.js') !!}
-        @stop
+        @endpush
     </div>
 @stop

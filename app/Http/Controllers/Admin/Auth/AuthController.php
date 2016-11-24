@@ -45,20 +45,10 @@ class AuthController extends Controller
         if (Auth::guard('admin')->check()) {
             return redirect('/admin/home');
         }
-        
+
         return view('admin.auth.login');
     }
-    
-    /*public function showRegistrationForm()
-    {
-        return view('admin.auth.register');
-    }
-    
-    public function resetPassword()
-    {
-        return view('admin.auth.passwords.email');
-    }*/
-    
+
     public function logout()
     {
         Auth::guard('admin')->logout();

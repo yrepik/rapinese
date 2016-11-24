@@ -17,7 +17,7 @@
         </div>
     @endif
 
-    {!! Form::open(['action' => ['Auth\AuthController@postLogin'], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) !!}
+    {!! Form::open(['action' => ['Auth\LoginController@login'], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) !!}
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
         <div class="form-group">
             {!! Form::label('email', trans('labels.auth.email'), ['class' => 'col-md-4 control-label']) !!}
@@ -56,7 +56,7 @@
             <div class="col-md-6 col-md-offset-4">
                 <a href="">@lang('Registrarme')</a>
             </div>
-        </div>        
+        </div>
     {!! Form::close() !!}
 
 @stop

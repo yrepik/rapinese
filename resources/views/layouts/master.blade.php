@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>RAPINESE @yield('title')</title>        
+        <title>RAPINESE @yield('title')</title>
         @section('styles')
             {!! HTML::style('css/lib.css') !!}
             {!! HTML::style('css/styles.css') !!}
@@ -15,23 +15,23 @@
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     </head>
-    <body>       
+    <body>
 
         <div id="page" class="container">
 			<header class="row">
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<img src="/images/logo2.png" class="img-responsive" />
-				</div>	
+				</div>
 				<div class="col-sm-8 col-md-8 visible-md visible-lg text-center" style="padding-top: 20px; color: grey;">
                     @include('contact_info')
 				</div>
 			</header>
-			
+
 			<nav class="navbar navbar-inverse" role="navigation">
                 <ul class="list-unstyled pull-left hidden-xxs visible-xs" style="padding: 6px 0 6px 20px; color: white; margin-bottom: 0;">
                     <li><small><span class="glyphicon glyphicon-envelope"></span> {{ config('app.contact_email') }}</small></li>
                     <li><small><span class="glyphicon glyphicon-earphone"></span> {{ config('app.contact_phones') }}</small></li>
-                </ul>            
+                </ul>
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
@@ -45,35 +45,35 @@
 						<!--<li><a href="{{ route('price-list') }}">@lang('nav.pricelist')</a></li>-->
                         <li><a href="{{ route('cart') }}">@lang('nav.cart') <!--({{ request('cart_count') }})--></a></li>
 						<!--<li><a href="{{ route('clients') }}">@lang('nav.clients')</a></li>-->
-					</ul>	
+					</ul>
 					<!--<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">                             
-							<a data-toggle="dropdown" class="dropdown-toggle" href="">								
+						<li class="dropdown">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="">
 								@lang('Idioma') <span class="caret"></span>
-							</a>                                 
+							</a>
 							<ul class="dropdown-menu">
 								<li><a href="http://gifwall-admin.mundonick-q.mtvi.com/account/change-lang/es">Español</a></li>
 								<li><a href="http://gifwall-admin.mundonick-q.mtvi.com/account/change-lang/en">English</a></li>
 								<li><a href="http://gifwall-admin.mundonick-q.mtvi.com/account/change-lang/pt">Portugueis</a></li>
-							</ul>                                
+							</ul>
 						</li>
 					</ul>-->
 				</div>
-			</nav>			
-			
+			</nav>
+
             <div id="main" role="main">
-                @yield('content') 
+                @yield('content')
             </div>
-			
-            <footer class="hidden-print text-center">                
+
+            <footer class="hidden-print text-center">
                 @include('contact_info')
-            </footer> 
-			
+            </footer>
+
         </div>
 
-        @section('scripts') 
-        	{!! HTML::script('js/base.js') !!}       	
-        @stop
-        @yield('scripts')        
+        @push('scripts')
+        	{!! HTML::script('js/base.js') !!}
+        @endpush
+        @stack('scripts')
     </body>
 </html>

@@ -17,18 +17,8 @@
                     <td class="text-center">@{{ item.qty }}</td>
                 </tr>
                 <tr>
-                    <td class="text-right"><strong>@lang('labels.subtotal', ['currency' => config('app.currency')])</strong></td>
-                    <td class="text-right">@{{ cart.subtotal | number:2 }}</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="text-right"><strong>@lang('labels.tax', ['currency' => config('app.currency')])</strong></td>
-                    <td class="text-right">@{{ cart.tax | number:2 }}</td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td class="text-right"><strong>@lang('labels.total', ['currency' => config('app.currency')])</strong></td>
-                    <td class="text-right">@{{ cart.total | number:2 }}</td>
+                    <td class="text-right">@{{ cart.total }}</td>
                     <td></td>
                 </tr>
             </table>

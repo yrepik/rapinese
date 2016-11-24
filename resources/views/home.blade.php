@@ -40,7 +40,6 @@
 	</div>
 @stop
 
-@section('scripts')
-	@parent
+@push('scripts')
 	{!! HTML::script('js/home.js') !!}
-@stop
+@endpush

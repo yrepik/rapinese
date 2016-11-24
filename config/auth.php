@@ -39,6 +39,7 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+            'redirect_route' => 'login'
         ],
 
         'api' => [
@@ -49,7 +50,8 @@ return [
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
-        ],        
+            'redirect_route' => 'admin-login'
+        ],
     ],
 
     /*
@@ -114,6 +116,6 @@ return [
         'email' => 'auth.emails.password',
         'table' => 'password_resets',
         'expire' => 60,
-    ],    
+    ],
 
 ];

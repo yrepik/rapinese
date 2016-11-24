@@ -3,6 +3,14 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "laravel-elixir": "^6.0.0-9",
-    "laravel-elixir-browsersync-official": "^1.0.0"
+    "laravel-elixir-browsersync-official": "^1.0.0",
+    "jquery": "~3.1.1",
+    "angular": "~1.4.7",
+    "angular-i18n": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "angular-ui-bootstrap": "~2.2.0",
+    "angular-confirm": "^1.2.5",
+    "components-font-awesome": "~4.2.0",
+    "bootstrap": "~3.3.4"
   }
 }
