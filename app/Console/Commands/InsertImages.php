@@ -4,7 +4,9 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-use DB;
+//use DB;
+use App\Product;
+use App\ProductImage;
 use App;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -39,8 +41,8 @@ class InsertImages extends Command {
 
 		            $arr = explode('_', $entry);
 		            $code = $arr[0];
-		            $record = DB::table($table)->where('filename', $entry)->first();
-		            if (!$record || $force) {
+		            $productImage = ProductImage::where('filename', $entry)->first();
+		            if (!$productImage || $force) {
 		            	$fixedEntry = str_replace('JPG', 'jpg', $entry);
 
 		            	$smImgPath = $dir . '/sm/' . $fixedEntry;
@@ -51,13 +53,13 @@ class InsertImages extends Command {
 						$img->resize(158, null, function($constraint) {
 						    $constraint->aspectRatio();
 						});
-						$img->save($smImgPath);		            	
+						$img->save($smImgPath);
 
 						$img = Image::make($dir . '/' . $entry);
-						$img->resize(640, null, function($constraint) {
+						$img->resize(640, null, function ($constraint) {
 						    $constraint->aspectRatio();
 						});
-						
+
 						/*$watermark = Image::make($publicDir . '/images/logo.png');
 						$watermark->opacity(50);
 						$img->insert($watermark, 'center');*/
@@ -67,11 +69,12 @@ class InsertImages extends Command {
 						unlink($dir . '/' . $entry);
 
 						if (!$force) {
-			            	$insert = DB::table($table)->insert([
-			            		'product_code' => $code, 
-			            		'filename' => $fixedEntry
-		            		]);
-			            	if ($insert) {
+		            		$product = Product::find($code);
+		            		$productImage = new ProductImage;
+		            		$productImage->filename = $fixedEntry;
+		            		$productImage->product()->associate($product);
+
+			            	if ($productImage->save()) {
 			            		$this->info($entry . ' INSERTED');
 			            		$count++;
 		            		} else {
@@ -79,7 +82,7 @@ class InsertImages extends Command {
 		            			unlink($lgImgPath);
 		            		}
 	            		}
-		            }  
+		            }
 		        }
 		    }
 		    closedir($handle);

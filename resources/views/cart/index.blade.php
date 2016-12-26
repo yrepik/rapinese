@@ -21,7 +21,7 @@
                 </div>
             @endif
 
-            {!! Form::open(['action' => ['CartController@submitOrder'], 'role' => 'form', 'method' => 'post', 'class' => 'hidden-print mb20']) !!}
+            {!! Form::open(['route' => 'cart-submit-order', 'role' => 'form', 'method' => 'post', 'class' => 'hidden-print mb20']) !!}
                 @foreach ($content as $item)
                     <div class="row row-no-sidemargin item">
                         <div class="col-md-2 col-sm-3 col-xs-5 col-xxs-12 text-center">
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 @endforeach
-                <div id="totals" class="row row-no-sidemargin">
+                <div class="row row-no-sidemargin">
                     <div class="col-lg-offset-6 col-lg-3 col-md-offset-5 col-md-4 col-sm-offset-4 col-sm-5 col-xs-offset-7 text-right">
                         <dl class="dl-horizontal">
                             <dt>@lang('labels.total', ['currency' => config('app.currency')])</dt>

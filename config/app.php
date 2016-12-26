@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => env('APP_URL'),
 
     /*
     |--------------------------------------------------------------------------
@@ -207,7 +207,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-		'Form'		=> Collective\Html\FormFacade::class, 
+		'Form'		=> Collective\Html\FormFacade::class,
 		'HTML'		=> Collective\Html\HtmlFacade::class,
 
         'MP'        => SantiGraviano\LaravelMercadoPago\Facades\MP::class,

@@ -4,7 +4,7 @@ return [
 	'search' => 'Buscar',
     'buy' => 'Comprar',
     'add_to_cart' => 'Agregar al carrito',
-	'ask' => 'Consultar por este producto',
+	'ask' => 'Consultar',
 	'send_query' => 'Enviar consulta',
     'edit_cart' => 'Editar carrito',
     'empty_cart' => 'Vaciar carrito',

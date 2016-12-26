@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\InsertImages::class
+        Commands\InsertImages::class,
+        Commands\Sitemap::class
     ];
 
     /**

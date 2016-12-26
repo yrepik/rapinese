@@ -16,7 +16,7 @@
 			</ul>
 		</div>
 		<div ng-show="result != true">
-			{!! Form::open(['role' => 'form', 'class' => '', 'ng-submit' => 'sendForm($event)', 'novalidate']) !!}
+			{!! Form::open(['method' => 'post', 'route' => 'products-send-query', 'role' => 'form', 'class' => '', 'ng-submit' => 'sendForm($event)', 'novalidate']) !!}
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">

@@ -4,6 +4,10 @@
 	{{ $category->name_es }} {{ $brand->name }}
 @stop
 
+@section('meta-description')
+
+@stop
+
 @section('content')
 	<div ng-app="products">
 		<h1>@lang('headers.products')</h1>
@@ -41,15 +45,17 @@
 								@endif
 							</div>
 							<div class="col-md-5 col-sm-4 col-xs-8 col-xxs-12 mb20-sm">
-								<div class="product-name mb20">{{ $item->name_es }}</div>
-								<div><strong>@lang('labels.code')</strong> {{ $item->code }}</div>
+								<div class="product-name mb20">
+									<a><big>{{ $item->name_es }}</big></a>
+								</div>
+								<div style="color: #555;"><strong>@lang('labels.code')</strong> {{ $item->code }}</div>
 								@if (!empty($item->material->name_es))
-									<div><strong>@lang('labels.material')</strong> {{ $item->material->name_es }}</div>
+									<div style="color: #555;"><strong>@lang('labels.material')</strong> {{ $item->material->name_es }}</div>
 								@endif
 							</div>
 							<div class="clearfix visible-xs"></div>
 							<div class="col-md-2 col-sm-2 col-xs-4 col-xxs-12 text-center mb20-sm product-price">
-								{{ $item->formatted_price_ars }}
+								<big><strong>{{ $item->formatted_price_ars }}</strong></big>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-8 col-xxs-12 text-center">
 								<p>

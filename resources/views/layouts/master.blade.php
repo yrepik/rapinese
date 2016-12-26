@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="{{ @yield('meta-description') }}" />
         <title>RAPINESE @yield('title')</title>
         @section('styles')
             {!! HTML::style('css/lib.css') !!}
@@ -43,7 +44,7 @@
 						<li><a href="{{ route('home') }}">@lang('nav.company')</a></li>
 						<li><a href="{{ route('products') }}">@lang('nav.products')</a></li>
 						<!--<li><a href="{{ route('price-list') }}">@lang('nav.pricelist')</a></li>-->
-                        <li><a href="{{ route('cart') }}">@lang('nav.cart') <!--({{ request('cart_count') }})--></a></li>
+                        <li><a href="{{ route('cart') }}" rel="nofollow">@lang('nav.cart') <!--({{ request('cart_count') }})--></a></li>
 						<!--<li><a href="{{ route('clients') }}">@lang('nav.clients')</a></li>-->
 					</ul>
 					<!--<ul class="nav navbar-nav navbar-right">

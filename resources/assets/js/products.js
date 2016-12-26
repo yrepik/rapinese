@@ -2,7 +2,7 @@ var productsModule = angular.module('products', ['app']);
 
 productsModule.controller('ProductSearchFormController', function($scope) {
 	$scope.brand;
-	$scope.category;	
+	$scope.category;
 	$scope.brandOrCategoryNotSelected = function() {
 		return $scope.brand == '' || $scope.category == '';
 	};
@@ -16,7 +16,7 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 
 	$scope.init = function($json, $cart) {
 		$scope.items = $json.data;
-		$scope.cart = $cart;	
+		$scope.cart = $cart;
 	};
 
 	$scope.openModal = function($event, $index) {
@@ -34,10 +34,10 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 				},
 				items: function() {
 					return $scope.items;
-				}			
+				}
 			}
 		});
-	};	
+	};
 
 	$scope.openQueryModal = function($event, $index) {
 		$event.preventDefault();
@@ -48,7 +48,7 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 			resolve: {
 				item: function() {
 					return $scope.items[$index];
-				}			
+				}
 			}
 		});
 	};
@@ -70,7 +70,7 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 			  	});
 	  	}).error(function(data, status, headers, config) {
 	  	}).finally(function(data, status, headers, config) {
-	  	});		
+	  	});
 	};
 
 	$scope.openCartModal = function($index) {
@@ -82,7 +82,7 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 			resolve: {
 				cart: function() {
 					return $scope.cart;
-				}			
+				}
 			}
 		});
 	};
@@ -92,7 +92,7 @@ productsModule.controller('ProductSearchResultsController', function($scope, $ui
 productsModule.controller('CartModalController', function($scope, $uibModalInstance, cart) {
 	$scope.cart = cart;
 	$scope.close = function() {
-		$uibModalInstance.dismiss('cancel');	 
+		$uibModalInstance.dismiss('cancel');
 	};
 });
 
@@ -110,18 +110,18 @@ productsModule.controller('QueryModalController', function($scope, $http, $uibMo
 	$scope.errors = [];
 
 	$scope.close = function() {
-		$uibModalInstance.dismiss('cancel');	 
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.sendForm = function($event) {
 		$event.preventDefault();
 		$scope.sending = true;
-		$http.post('/products/send-query', {
-			name: $scope.name, 
-			email: $scope.email, 
-			tel: $scope.tel, 
+		$http.post(angular.element($event.target).attr('action'), {
+			name: $scope.name,
+			email: $scope.email,
+			tel: $scope.tel,
 			comments: $scope.comments,
-			itemCod: $scope.item.code, 
+			itemCod: $scope.item.code,
 			itemDescrip: $scope.item.name_es
 		}).success(function(data, status, headers, config) {
   			$scope.result = data.result;
@@ -130,7 +130,7 @@ productsModule.controller('QueryModalController', function($scope, $http, $uibMo
 	  	}).error(function(data, status, headers, config) {
 	  	}).finally(function(data, status, headers, config) {
 	  		$scope.sending = false;
-	  	});	
+	  	});
 	};
 });
 
@@ -141,7 +141,7 @@ productsModule.controller('ProductModalController', function($scope, $uibModal, 
 	//$scope.items = items;
 
 	$scope.close = function() {
-		$uibModalInstance.dismiss('cancel');    
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.showImage = function($index) {
@@ -157,10 +157,10 @@ productsModule.controller('ProductModalController', function($scope, $uibModal, 
 			resolve: {
 				item: function() {
 					return $item;
-				}			
+				}
 			}
 		});
-	};		
+	};
 
     /*$scope.nextProduct = function() {
 		if ($scope.productIndex + 1 >= $scope.items.length) {
@@ -170,9 +170,9 @@ productsModule.controller('ProductModalController', function($scope, $uibModal, 
 		}
         $scope.item = $scope.items[$scope.productIndex];
         $scope.imgIndex = 0;
-    };	
+    };
 
-    $scope.prevProduct = function() { 
+    $scope.prevProduct = function() {
 		if ($scope.productIndex == 0) {
 			$scope.productIndex = $scope.items.length - 1;
 		} else {
@@ -180,5 +180,5 @@ productsModule.controller('ProductModalController', function($scope, $uibModal, 
 		}
         $scope.item = $scope.pedals[$scope.productIndex];
         $scope.imgIndex = 0;
-    };*/	
+    };*/
 });

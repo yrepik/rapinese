@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /carrito
+Disallow: /checkout/
+
+Sitemap: http://www.rapinese.com.ar/sitemap.txt

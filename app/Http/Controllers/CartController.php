@@ -29,15 +29,25 @@ class CartController extends Controller
         $total = $content->sum('price');
 
         $itemNames = [];
+        //$items = [];
         foreach ($content as $item) {
             $name = $item->name;
             if ($item->qty > 1) {
                 $name .= ' (' . $item->qty .')';
             }
             $itemNames[] = $name;
-        }
 
-        //$item = $content->first();
+            /*$items[] =  [
+                'title' => $item->name,
+                'quantity' => $item->qty,
+                'category_id' => 'automotive',
+                'currency_id' => config('app.currency'),
+                'unit_price' => $item->price,
+                'picture_url' => array_key_exists('img', $item->options)
+                    ? $item->options['img']
+                    : null
+            ];*/
+        }
 
         $shippingMethod = ($request->has('shippingMethod'))
             ? (int) $request->input('shippingMethod')
@@ -56,14 +66,12 @@ class CartController extends Controller
             ],
             'items' => [
                 [
-                    'title' => /*$item->name,*/ implode(' + ', $itemNames),
-                    'quantity' => 1, //$item->qty,
+                    'title' => implode(' + ', $itemNames),
+                    'quantity' => 1,
                     'category_id' => 'automotive',
                     'currency_id' => config('app.currency'),
-                    'unit_price' => /*$item->price + $tax,*/ $total,
-                    'picture_url' => /*array_key_exists('img', $item->options)
-                        ? $item->options['img']
-                        : null*/null
+                    'unit_price' => $total,
+                    'picture_url' => null
                 ]
             ]
         ];

@@ -29,12 +29,24 @@ Route::group([], function() {
     }]);
 
     Route::get('/productos', 'ProductsController@index')->name('products');
-    Route::post('/productos/search-redirect', 'ProductsController@searchRedirect');
+    Route::get('/products', function () {
+        return redirect()->route('products', [], 301);
+    });
+    Route::post('/productos/search-redirect', 'ProductsController@searchRedirect')->name('products-search-redirect');
     Route::get('/productos/{brand_alias}/{category_alias}', 'ProductsController@searchResults')
         ->name('product-search-results');
-    Route::post('/products/send-query', 'ProductsController@sendQuery');
+    Route::get('/products/{brand_alias}/{category_alias}', function ($brandAlias, $categoryAlias) {
+        return redirect()->route('product-search-results', [
+            'brand_alias' => $brandAlias,
+            'category_alias' => $categoryAlias
+        ], 301);
+    });
+    Route::post('/productos/enviar-consulta', 'ProductsController@sendQuery')->name('products-send-query');
 
     Route::get('/carrito', 'CartController@index')->name('cart');
+    Route::get('/cart', function () {
+        return redirect()->route('cart', [], 301);
+    });
     Route::get('/carrito/agregar/{code}', 'CartController@addItem')->name('cart-add')
         ->where('code', '[A-Z\.0-9]+');
     Route::group(['middleware' => ['wants_json']], function() {

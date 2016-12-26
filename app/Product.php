@@ -40,6 +40,7 @@ class Product extends Model
         return $query
 			->where('brand_id', $brandId)
 			->where('product_category_id', $categoryId);
+            //->has('images');
     }
 
     public function scopeByName($query, $name)
@@ -65,9 +66,15 @@ class Product extends Model
         return $query;
     }
 
-    public function getFormattedPriceArsAttribute() {
+    public function getFormattedPriceArsAttribute()
+    {
         return config('app.currency') . ' ' . number_format($this->price_ars, 2, ',', '.');
     }
+
+    /*public function getNameEsAttribute($value)
+    {
+        return ucwords(strtolower($value));
+    }*/
 
     public function hasImg()
     {
